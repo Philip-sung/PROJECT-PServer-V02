@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import { Text } from 'react';
+import { creditView } from './components/credit';
+import { creditstore } from './store/creditStore';
 
 function App() {
   return (
