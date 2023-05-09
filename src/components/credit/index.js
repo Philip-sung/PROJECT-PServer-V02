@@ -1,14 +1,23 @@
 import { observer } from "mobx-react-lite";
-import { Text } from 'react';
+import './index.css';
 
-const creditView = observer(({store}) => {
+const CreditView = observer(({store}) => {
+
+    const onClickIncrease = () => {
+        store.increaseCredit();
+    }
+
+    const onClickDecrease = () => {
+        store.decreaseCredit();
+    }
 
     return(
         <div>
-            {store.report}
-            <Text>Hello</Text>
+            <small style={{fontSize:10}}>{store.reportCredit}</small>
+            <button onClick={ onClickIncrease } className="creditButton">Increase</button>
+            <button onClick={ onClickDecrease } className="creditButton">Decrease</button>
         </div>
     );
 });
 
-export { creditView };
+export { CreditView };

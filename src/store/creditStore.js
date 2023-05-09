@@ -12,20 +12,17 @@ class creditStore {
         makeObservable(this,{
             credits: observable,
             increaseCredit: action,
-            decreaseCredit: action
+            decreaseCredit: action,
         });
+        autorun(() => console.log(this.report));
     }
 
     increaseCredit() {
-        this.credits++
-
-        return this.credits;
+       this.credits++;
     }
 
     decreaseCredit() {
         this.credits--;
-
-        return this.credits;
     }
 
     get reportCredit() {
@@ -33,6 +30,6 @@ class creditStore {
     }
 }
 
-const creditstore = new creditStore();
+const creditStoreObj = new creditStore();
 
-export { creditstore };
+export { creditStoreObj };

@@ -1,0 +1,11 @@
+.creditButton {
+    width: 70px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 700;
+    border-style: none;
+}
+
+.creditButton:hover {
+    background-color: #aaa;
+}

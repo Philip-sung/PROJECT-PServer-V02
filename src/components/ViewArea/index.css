@@ -1,0 +1,11 @@
+.ViewArea {
+    flex: 0.95;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+
+    background-color: #113355;
+  }
