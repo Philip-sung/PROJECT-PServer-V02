@@ -2,8 +2,6 @@ import {
     makeObservable,
     observable,
     action,
-    autorun,
-    computed,
 } from 'mobx'
 
 class screenStore {
@@ -21,13 +19,12 @@ class screenStore {
     GetNewScreen(screenName) {
         this.prevScreens.push(this.currentScreen);
         this.currentScreen = screenName;
-        alert(`${screenName} Screen Clicked`);
 
         return this.currentScreen;
     }
 
     GetPrevScreen() {
-        if(this.prevScreens.length == 0) {
+        if(this.prevScreens.length === 0) {
             alert("First Screen");
             console.log("First Screen");
         }
@@ -41,6 +38,10 @@ class screenStore {
     Report() {
         console.log(`{Current Screen : ${this.currentScreen}}`)
         console.log(`{Previous Screens : ${this.prevScreens}}`)
+    }
+
+    get CurrentScreen() {
+        return `${this.currentScreen}`;
     }
 }
 

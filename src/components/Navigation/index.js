@@ -3,20 +3,24 @@ import "./index.css";
 import { CreditView } from '../Credit/index';
 import { creditStoreObj } from '../../store/creditStore';
 import { screenStoreObj } from '../../store/screenStore';
-import image1 from "../../assets/img/SearchIcon.png"
+import { DevReport } from "../../dev/devtools";
+import searchIcon from "../../assets/img/SearchIcon.png"
+import reservationIcon from "../../assets/img/ReservationIcon.png"
+import ongoingIcon from "../../assets/img/OnGoingIcon.png"
+import worksIcon from "../../assets/img/WorksIcon.png"
+import devIcon from "../../assets/img/DevIcon.png"
 
 function NavigationBar(props) {
 
-  let clicked = false;
-
   return (
     <div className={props.className} >
+      <button className="LoginButton"><a href='../../assets/html/login.html'>Log In</a></button>
       <CreditView store={creditStoreObj} />
-      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Search")}} /*style={{marginLeft: clicked ? 15:-1000 }}*/><img src={image1} width="40px;"  /></button>
-      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Reservation")}}><img src={image1} width="40px;" /></button>
-      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("OnGoing")}}><img src={image1} width="40px;" /></button>
-      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Works")}}><img src={image1} width="40px;" /></button>
-      <button className="NavigationButton" onClick={() => {screenStoreObj.Report()}}><img src={image1} width="40px;" /></button>
+      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Search")}} /*style={{marginLeft: clicked ? 15:-1000 }}*/><img src={searchIcon} width="40px;" alt="SearchIcon" /></button>
+      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Reservation")}}><img src={reservationIcon} width="40px;" alt="ReservationIcon" /></button>
+      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("OnGoing")}}><img src={ongoingIcon} width="40px;" alt="OnGoingIcon" /></button>
+      <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Works")}}><img src={worksIcon} width="40px;" alt="WorksIcon" /></button>
+      <button className="NavigationButton" onClick={() => {DevReport()}}><img src={devIcon} width="40px;" alt="DevIcon" /></button>
     </div>
   )
 }
