@@ -1,3 +1,5 @@
+@import "../../styles/colorTheme.css";
+
 .ViewArea {
     flex: 0.95;
 
@@ -7,5 +9,5 @@
     text-align: center;
     vertical-align: middle;
 
-    background-color: #113355;
+    background-color: var(--main, #222);
   }

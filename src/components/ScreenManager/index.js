@@ -5,6 +5,15 @@ import { OnGoingScreen } from "../../screens/OnGoingScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
 
 const ScreenManager = observer(({store}) => {
+    if (store.CurrentScreen === ""){
+        return (
+            <div>
+                Welcome!<br/><br/>
+                <small>This page will going to provide</small><br/><br/>
+                Hot Topics, Recent Tools, etc.
+            </div>
+        )
+    }
     if (store.CurrentScreen === "Search"){
         return (
             <SearchScreen />

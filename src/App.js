@@ -1,8 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import { Text } from 'react';
-import { CreditView } from './components/Credit';
-import { creditstore } from './store/creditStore';
 import { NavigationBar } from './components/Navigation';
 import { ViewArea } from './components/ViewArea';
 

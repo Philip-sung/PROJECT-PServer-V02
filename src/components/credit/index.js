@@ -14,8 +14,8 @@ const CreditView = observer(({store}) => {
     return(
         <div>
             <small style={{fontSize:10}}>{store.reportCredit}</small>
-            <button onClick={ onClickIncrease } className="creditButton">Increase</button>
-            <button onClick={ onClickDecrease } className="creditButton">Decrease</button>
+            <button onClick={ onClickIncrease } className="creditButton">Inc.</button>
+            <button onClick={ onClickDecrease } className="creditButton">Dec.</button>
         </div>
     );
 });

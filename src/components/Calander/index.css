@@ -1,0 +1,18 @@
+.EachDay {
+    font-size: 14px;
+}
+
+.Days {
+    margin: 20px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+    .Days {
+        display: flex;
+        flex-direction: column;
+    }
+}

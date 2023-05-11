@@ -8,6 +8,26 @@ function SearchScreen() {
     return (
         <div className="SearchScreen">
             <SearchBar />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     )
 }

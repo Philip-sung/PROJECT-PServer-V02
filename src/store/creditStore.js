@@ -2,7 +2,6 @@ import { makeObservable,
          action,
          observable,
          autorun,
-         computed,
         } from "mobx";
 
 class creditStore {
@@ -26,7 +25,7 @@ class creditStore {
     }
 
     get reportCredit() {
-        return `Your Credits : ${this.credits}`
+        return `${this.credits} Credits`
     }
 }
 

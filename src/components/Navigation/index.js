@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { Link } from "react-router-dom";
 import { CreditView } from '../Credit/index';
 import { creditStoreObj } from '../../store/creditStore';
 import { screenStoreObj } from '../../store/screenStore';
@@ -14,7 +15,7 @@ function NavigationBar(props) {
 
   return (
     <div className={props.className} >
-      <button className="LoginButton"><a href='../../assets/html/login.html'>Log In</a></button>
+      <button className="LoginButton"><Link to="login">Log In</Link></button>
       <CreditView store={creditStoreObj} />
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Search")}} /*style={{marginLeft: clicked ? 15:-1000 }}*/><img src={searchIcon} width="40px;" alt="SearchIcon" /></button>
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Reservation")}}><img src={reservationIcon} width="40px;" alt="ReservationIcon" /></button>
