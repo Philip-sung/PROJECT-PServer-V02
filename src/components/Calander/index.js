@@ -15,8 +15,7 @@ function CurrentCalander(props) {
         curMonthDays.push(vday.getDate());
     }
 
-    const dayList = curMonthDays.map((curDay) => (<EachDay year={curYear} month={curMonth} day={curDay}/>));
-    console.log(dayList);
+    const dayList = curMonthDays.map((curDay) => (<EachDay key={curDay} year={curYear} month={curMonth} day={curDay}/>));
 
     return (
         <div className={props.className}>

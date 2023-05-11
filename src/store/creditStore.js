@@ -1,7 +1,6 @@
 import { makeObservable,
          action,
          observable,
-         autorun,
         } from "mobx";
 
 class creditStore {
@@ -13,7 +12,6 @@ class creditStore {
             increaseCredit: action,
             decreaseCredit: action,
         });
-        autorun(() => console.log(this.report));
     }
 
     increaseCredit() {
