@@ -9,8 +9,9 @@ const ScreenManager = observer(({store}) => {
         return (
             <div>
                 Welcome!<br/><br/>
-                <small>This page will going to provide</small><br/><br/>
-                Hot Topics, Recent Tools, etc.
+                This page will going to provide<br/><br/>
+                Our Hot Topics, Recent Tools, etc.<br /><br /><br />
+                <div style={{fontSize:10}}>Copyright © 2023 Philip Sung. All right reserved.</div>
             </div>
         )
     }

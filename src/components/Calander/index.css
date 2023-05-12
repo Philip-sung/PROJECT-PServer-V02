@@ -1,18 +1,82 @@
-.EachDay {
-    font-size: 14px;
+@import "/src/styles/colorTheme.css";
+
+.CalanderHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.Days {
+.Year {
+    width: 120px;
+}
+
+.ExploreMonth {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    height: 8px;
+    width: 20px;    
+    background-color: var(--bright);
+
+    border-radius: 10px;
+    border-style: none;
+    border-width: 0px;
+}
+
+.Month {
     margin: 20px;
     
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
+.Week {
+    margin-top:  2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 25%;
+}
+
+.EachDay {
+    font-size: 14px;
+}
+
+.Sat {
+    color: rgba(60,60,190,1);
+}
+
+.Sun {
+    color: rgba(190,60,60,1);
+}
+
+.WeekDay {
+    display:none;
+}
+
+.NumBox {
+    width: 10px;
+}
+
+
 @media (max-width: 800px) {
-    .Days {
+    .Month {
         display: flex;
         flex-direction: column;
+        
     }
+
+    .Week {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .WeekDay {
+        display:flex;
+    }
+    
 }
