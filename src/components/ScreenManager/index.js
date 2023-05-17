@@ -3,11 +3,13 @@ import { SearchScreen } from "../../screens/SearchScreen/index";
 import { ReservationScreen } from "../../screens/ReservationScreen/index";
 import { OnGoingScreen } from "../../screens/OnGoingScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
+import { Clock } from "../Clock";
 
 const ScreenManager = observer(({store}) => {
     if (store.CurrentScreen === ""){
         return (
             <div>
+                <Clock />
                 Welcome!<br/><br/>
                 This page will going to provide<br/><br/>
                 Our Hot Topics, Recent Tools, etc.<br /><br /><br />
