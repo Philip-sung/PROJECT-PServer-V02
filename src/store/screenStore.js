@@ -16,6 +16,10 @@ class screenStore {
         });
     }
 
+    PushScreenStack() {
+        this.prevScreens.push(this.CurrentScreen);
+    }
+
     GetNewScreen(screenName) {
         this.prevScreens.push(this.currentScreen);
         this.currentScreen = screenName;
@@ -25,8 +29,8 @@ class screenStore {
 
     GetPrevScreen() {
         if(this.prevScreens.length === 0) {
-            alert("First Screen");
-            console.log("First Screen");
+            alert("Initial Page");
+            console.log("Initial Page");
         }
         else if (this.prevScreens.length > 0) {
             this.currentScreen = this.prevScreens.pop();

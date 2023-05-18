@@ -1,13 +1,13 @@
 import React from "react";
 import "./index.css";
 import { screenStoreObj } from "../../store/screenStore";
-import { ScreenManager } from "../ScreenManager";
+import { ViewAreaScreenManager } from "../ViewAreaScreenManager";
 
 function ViewArea(props) {
     
     return(
         <div className={props.className}>
-            <ScreenManager store={screenStoreObj} />
+            <ViewAreaScreenManager store={screenStoreObj} />
         </div>
     )
 }

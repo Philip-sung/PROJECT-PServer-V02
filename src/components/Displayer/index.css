@@ -1,8 +1,8 @@
 .Displayer {
     margin: 1vh;
 
-    width: 180px;
-    height:150px;
+    width: 300px;
+    height:250px;
     display: flex;
     flex-direction: column;
 
@@ -14,16 +14,91 @@
 
     color: #000;
     font-size: 15px;
+    text-decoration: none;
+    cursor: default;
+}
+
+.displayerMount-enter {
+    opacity: 0;
+    transform: translateY(20%);
+}
+  
+.displayerMount-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: transform 500ms, opacity 500ms;
+}
+
+.Displayer:hover {
+    filter: brightness(130%) contrast(130%);
+}
+
+.Displayer:active {
+    filter: brightness(100%) contrast(100%);
 }
 
 .DisplayerImg {
     flex: 0.7;
+    height:80%;
     display: flex;
+    object-fit:cover;
 }
 
 .DisplayDescription {
     flex: 0.3;
+    height:20%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.DisplayerContainer {
+    margin: auto;
+    display: flex;
+    width: 80%;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    align-items: top;
+}
+
+.DisplayerContainer>* {
+    flex: 1 1 100px;
+}
+
+@media (max-width: 800px) {
+    .Displayer {
+        margin: 1vh;
+    
+        width: 180px;
+        height:150px;
+        display: flex;
+        flex-direction: column;
+    
+        border-color: #fff;
+        border-width: 2px;
+        border-radius: 5px;
+        border-style: solid;
+        background-color: #fff;
+    
+        color: #000;
+        font-size: 15px;
+        text-decoration: none;
+    }
+
+    .DisplayerImg {
+        flex: 0.7;
+        height:80%;
+        display: flex;
+        object-fit: cover;
+    }
+
+    .DisplayDescription {
+        flex: 0.3;
+        height:20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

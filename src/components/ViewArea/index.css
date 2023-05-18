@@ -1,9 +1,8 @@
 @import "../../styles/colorTheme.css";
 
 .ViewArea {
-    flex: 0.95;
-
     display: flex;
+    width: 94%;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -11,3 +10,16 @@
 
     background-color: var(--main, #222);
   }
+
+@media (max-width: 800px) {
+  .ViewArea {
+    display: flex;
+    width: 88%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+
+    background-color: var(--main, #222);
+  }
+}

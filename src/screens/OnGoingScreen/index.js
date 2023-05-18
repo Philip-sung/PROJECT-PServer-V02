@@ -1,17 +1,21 @@
 import React from "react";
-import { Displayer } from "../../components/Displayer";
+import { Displayer, DisplayerContainer } from "../../components/Displayer";
+import sampleImg from '../../assets/img/Sample.jpeg';
 
 function OnGoingScreen() {
 
     
     return (
-        <div>
-            This is OnGoing Screen.
-            <div style={{display: "flex", margin: 10}}>
-            <Displayer />
-            <Displayer />
-            <Displayer />
-            </div>
+        <div className="onGoingScreen">
+            <DisplayerContainer>
+                <Displayer name="SampleProject" img={sampleImg} />
+                <Displayer name="SampleProject" img={sampleImg} />
+                <Displayer name="SampleProject" img={sampleImg} />
+                <Displayer name="SampleProject" img={sampleImg} />
+                <Displayer name="SampleProject" img={sampleImg} />
+                <Displayer name="SampleProject" img={sampleImg} />
+                <Displayer name="SampleProject" img={sampleImg} />
+            </DisplayerContainer>
         </div>
     )
 }

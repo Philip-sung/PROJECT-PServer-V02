@@ -1,16 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
+import { useEffect, useState } from "react";
 import "./index.css";
-import sampleImg from '../../assets/img/Sample.jpeg';
 
-function Displayer() {
-
+function Displayer(props) {
+    const projectImg = props.img;
+    const projectName = props.name;
+    const [displayerMounted, setDisplayerMounted] = useState(false);
+    useEffect(() => {
+        setDisplayerMounted(true);
+    },[])
 
     return(
-        <div className="Displayer">
-            <img className="DisplayerImg" src={sampleImg} />
-            <div className="DisplayDescription">[PROJECT]Test Project</div>
-        </div>
+        <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
+                <Link className="Displayer" to="login">
+                    <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
+                    <div className="DisplayDescription">{projectName}</div>
+                </Link>
+        </CSSTransition>
     );
 }
 
-export { Displayer };
+function DisplayerContainer({children}) {
+
+    return(
+        <div className="DisplayerContainer">
+            {children}
+        </div>
+    )
+}
+
+export { Displayer, DisplayerContainer };

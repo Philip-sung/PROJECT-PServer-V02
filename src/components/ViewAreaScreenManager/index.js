@@ -5,7 +5,7 @@ import { OnGoingScreen } from "../../screens/OnGoingScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
 import { Clock } from "../Clock";
 
-const ScreenManager = observer(({store}) => {
+const ViewAreaScreenManager = observer(({store}) => {
     if (store.CurrentScreen === ""){
         return (
             <div>
@@ -39,4 +39,4 @@ const ScreenManager = observer(({store}) => {
     }
 })
 
-export { ScreenManager };
+export { ViewAreaScreenManager };
