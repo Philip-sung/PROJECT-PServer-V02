@@ -43,7 +43,7 @@
 }
 
 .loginImg {
-    margin: 0px 0px 0px 0px;
+    margin: 0px;
 
     width: 300px;
 }
@@ -96,15 +96,32 @@
 @media (prefers-reduced-motion: no-preference) {
     .loginImg {
       animation: App-logo-spin infinite 2s linear;
+      /*animation: App-logo-blink infinite 2s linear;*/
     }
   }
 
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+@keyframes App-logo-blink {
+  from {
+    opacity: 0;
   }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360);
+  }
+}
+
   

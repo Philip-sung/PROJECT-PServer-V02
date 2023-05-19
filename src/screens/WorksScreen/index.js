@@ -7,6 +7,7 @@ function WorksScreen() {
     
     return (
         <div>
+            <div style={{margin: 10, fontWeight: 700}}>COMPLETED</div>
             <DisplayerContainer>
                 <Displayer name="SampleProject" img={sampleImg} />
                 <Displayer name="SampleProject" img={sampleImg} />

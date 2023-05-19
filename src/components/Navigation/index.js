@@ -22,8 +22,8 @@ function NavigationBar(props) {
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Reservation")}}><img src={reservationIcon} width="40px;" alt="ReservationIcon" /></button>
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("OnGoing")}}><img src={ongoingIcon} width="40px;" alt="OnGoingIcon" /></button>
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Works")}}><img src={worksIcon} width="40px;" alt="WorksIcon" /></button>
-      <button className="NavigationButton" onClick={() => {DevReport()}}><img src={devIcon} width="40px;" alt="DevIcon" /></button>
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetPrevScreen()}}><img src={backIcon} width="40px;" alt="backIcon" /></button>
+      <button className="NavigationButton" onClick={() => {DevReport()}}><img src={devIcon} width="40px;" alt="DevIcon" /></button>
     </div>
   )
 }
