@@ -1,0 +1,41 @@
+@import '../../styles/colorTheme.css';
+
+.TimeBar {
+    display: flex;
+    flex-direction: row;
+}
+
+.TimeBlock {
+    display: flex;
+    height:30px;
+    width:6.66%;
+    background-color: var(--main);
+    border-width:1px;
+    border-left-width: 1px;
+    border-right-width: 0px;
+    border-color: var(--white);
+    border-style:dotted;
+    
+    align-items: center;
+    justify-content: center;
+    color:var(--text);
+    font-size: 10px;
+}
+
+.TimeBlockSelected {
+    display: flex;
+    height:30px;
+    width:6.66%;
+
+    background-color: var(--highlight);
+    border-width:1px;
+    border-left-width: 1px;
+    border-right-width: 0px;
+    border-color: var(--white);
+    border-style:dotted;
+    
+    align-items: center;
+    justify-content: center;
+    color:var(--text);
+    font-size: 10px;
+}

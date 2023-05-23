@@ -1,5 +1,7 @@
+import { observer } from "mobx-react-lite";
 import "./index.css"
 import { useState } from "react";
+import { timeStoreObj } from "../../store/timeStore";
 
 //curTime : Currently Exploring
 function CurrentCalander(props) {
@@ -67,7 +69,7 @@ function EachDay(props) {
     if(props.day > 0 && props.day <= props.dayNum){
         return(
             <div className={`EachDay ${props.weekday === 6 ? 'Sat' : (props.weekday === 0 ? 'Sun' : '')}`}>
-                <div className="NumBox" onClick={()=>{alert(`${props.year}.${props.month}.${props.day} (${ReturnWeekdayText(props.weekday)})`)}}>{props.day}</div>
+                <CurTimeStore store={timeStoreObj} year={props.year} month={props.month} date={props.day}>{props.day}</CurTimeStore>
             </div>
         )
     }
@@ -119,5 +121,19 @@ function ReturnWeekdayText(num){
     }
     return weekdayText;
 }
+
+const CurTimeStore = observer(({store, children, year, month, date}) => {
+    const selectTime = () => {
+        store.SetIsDateNotSelected();
+        store.SetTime(year, month, date, 0, 0, 0);
+        store.SetIsDateSelected();
+        console.log(`Selected Date : ${store.selectedTime}`)
+        store.setDayMarker(date);
+    }
+
+    return(
+        <div className={(date === store.dayMarker)? "NumBoxHighlighted" : "NumBox"} onClick={ selectTime }>{children}</div>
+    )
+});
 
 export { CurrentCalander };

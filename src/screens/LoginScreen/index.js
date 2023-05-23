@@ -29,7 +29,7 @@ function LoginScreen () {
                             <input className="loginInput" placeholder="Password" onChange={(e) => {setPW(e.target.value)}} type="password" onKeyDown={(e) => {if(e.code === "Enter"){alert(`${userID} + ${userPW}`)}}}/>
                         </div>
                         <div>
-                            <button className="loginButton" onClick={(e) => {alert(`${userID} + ${userPW}`)}}>Log In</button>
+                            <button className="loginButton" onClick={(e) => {alert(`The ID(${userID}) or password(${userPW}) you entered is incorrect.`)}}>Log In</button>
                         </div>
                     </div>
                 </div>

@@ -5,26 +5,47 @@ import { makeObservable,
 
 class timeStore {
     selectedTime = new Date();
+    selectedStartTime = new Date();
+    selectedEndTime = new Date();
+    isDateSelected = false;
+    isStartTimeSelected = false;
+    isEndTimeSelected = false;
+    dayMarker = 0;
 
     constructor() {
         makeObservable(this,{
             selectedTime: observable,
+            selectedStartTime: observable,
+            selectedEndTime: observable,
+            isDateSelected: observable,
+            isStartTimeSelected: observable,
+            isEndTimeSelected: observable,
+            dayMarker: observable,
             SetTime: action,
             SetYear: action,
             SetMonth: action,
             SetDay: action,
             SetHours: action,
-            SetMinutes: action
+            SetMinutes: action,
+            SetIsDateSelected: action,
+            SetIsDateNotSelected: action,
+            SetIsStartTimeSelected: action,
+            SetIsStartTimeNotSelected: action,
+            SetIsEndTimeSelected: action,
+            SetIsEndTimeNotSelected: action,
+            SetStartTimeInSelectedDate: action,
+            SetEndTimeInSelectedDate: action,
+            setDayMarker: action
         });
     }
 
-    SetTime(year, month, day, date, hours, minutes){
+    SetTime(year, month, date, hours, minutes, seconds){
         this.selectedTime.setFullYear(year);
         this.selectedTime.setMonth(month - 1);
-        this.selectedTime.setDay(day);
         this.selectedTime.setDate(date);
         this.selectedTime.setHours(hours);
         this.selectedTime.setMinutes(minutes);
+        this.selectedTime.setSeconds(seconds);
     }
 
     SetYear(year) {
@@ -49,6 +70,47 @@ class timeStore {
 
     SetMinutes(minutes) {
         this.selectedTime.setMinutes(minutes);
+    }
+
+    SetIsDateSelected() {
+        this.isDateSelected = true;
+    }
+
+    SetIsDateNotSelected() {
+        this.isDateSelected = false;
+    }
+
+    SetIsStartTimeSelected() {
+        this.isStartTimeSelected = true;
+    }
+
+    SetIsStartTimeNotSelected() {
+        this.isStartTimeSelected = false;
+    }
+    SetIsEndTimeSelected() {
+        this.isEndTimeSelected = true;
+    }
+
+    SetIsEndTimeNotSelected() {
+        this.isEndTimeSelected = false;
+    }
+
+    SetStartTimeInSelectedDate(hours) {
+        this.selectedStartTime = new Date(this.selectedTime.getTime());
+        this.selectedStartTime.setHours(hours);
+    }
+
+    SetEndTimeInSelectedDate(hours) {
+        this.selectedEndTime = new Date(this.selectedTime.getTime());
+        this.selectedEndTime.setHours(hours);
+    }
+
+    GetCurrentTime() {
+        return this.selectedTime;
+    }
+
+    setDayMarker(date) {
+        this.dayMarker = date;
     }
 }
 

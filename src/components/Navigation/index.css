@@ -79,7 +79,8 @@
         right: 0;
         top: 0;
         display:flex;
-        width: 12%;
+        width: 15%;
+        min-width: 55px;
         height: 100%;
       
         flex-direction: column;
@@ -87,4 +88,5 @@
       
         background-color: var(--sub);
     }
+    
 }
