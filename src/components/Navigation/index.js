@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-import { CreditView } from '../Credit/index';
+import { CreditView } from '../credit/index';
 import { creditStoreObj } from '../../store/creditStore';
 import { screenStoreObj } from '../../store/screenStore';
 import { DevReport } from "../../dev/devtools";
