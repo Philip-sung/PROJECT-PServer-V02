@@ -1,3 +1,17 @@
 .SearchScreen {
     width: 90%;
 }
+
+.PostButton {
+    position:fixed;
+    top:80vh;
+    right: 12vh;
+    width: 40px;
+    height: 40px;
+
+    cursor: default;
+}
+
+.PostButton:hover {
+    filter: brightness(150%);
+}

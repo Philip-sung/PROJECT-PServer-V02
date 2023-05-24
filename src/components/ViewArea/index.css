@@ -2,7 +2,7 @@
 
 .ViewArea {
     display: flex;
-    width: 94%;
+    width: 95vw;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -14,7 +14,7 @@
 @media (max-width: 800px) {
   .ViewArea {
     display: flex;
-    width: 85%;
+    width: 85vw;
     align-items: center;
     justify-content: center;
     text-align: center;

@@ -9,13 +9,13 @@ function OnGoingScreen() {
         <div className="onGoingScreen">
         <div style={{margin: 10, fontWeight: 700}}>IN PROGRESS</div>
             <DisplayerContainer>
-                <Displayer name="SampleProject" img={sampleImg} />
-                <Displayer name="SampleProject" img={sampleImg} />
-                <Displayer name="SampleProject" img={sampleImg} />
-                <Displayer name="SampleProject" img={sampleImg} />
-                <Displayer name="SampleProject" img={sampleImg} />
-                <Displayer name="SampleProject" img={sampleImg} />
-                <Displayer name="SampleProject" img={sampleImg} />
+                <Displayer name="SampleProject" img={sampleImg} action={"Link"} LinkTo={"/login"} />
+                <Displayer name="SampleProject" img={sampleImg} action={"Link"} LinkTo={"/login"} />
+                <Displayer name="SampleProject" img={sampleImg} action={"Link"} LinkTo={"/login"} />
+                <Displayer name="SampleProject" img={sampleImg} action={"Link"} LinkTo={"/login"} />
+                <Displayer name="SampleProject" img={sampleImg} action={"Link"} LinkTo={"/login"} />
+                <Displayer name="SampleProject" img={sampleImg} action={"Link"} LinkTo={"/login"} />
+                <Displayer name="SampleProject" img={sampleImg} action={"Link"} LinkTo={"/login"} />
             </DisplayerContainer>
         </div>
     )

@@ -1,0 +1,17 @@
+@import "../../styles/colorTheme.css";
+
+.Submit {
+    margin-top: 40px;
+    margin-bottom: 100px;
+    width: 78%;
+    height: 40px;
+
+    background-color: var(--highlight);
+    color: var(--text);
+    border-style: none;
+    font-weight: 700;
+}
+
+.Submit:hover {
+    filter: brightness(130%);
+}

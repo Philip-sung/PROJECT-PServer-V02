@@ -7,17 +7,38 @@ import "./index.css";
 function Displayer(props) {
     const projectImg = props.img;
     const projectName = props.name;
+    const link = props.LinkTo;
+    const userFunction = props.function;
+    const value = props.value;
+    let action = () => {alert("Action Not defined")};
     const [displayerMounted, setDisplayerMounted] = useState(false);
     useEffect(() => {
         setDisplayerMounted(true);
     },[])
+    
+    if (props.action === "Link") {
+        return(
+            <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
+                    <Link className="Displayer" to={link}>
+                        <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
+                        <div className="DisplayDescription">{projectName}</div>
+                    </Link>
+            </CSSTransition>
+        )
+    }
+    else if (props.action === "GetProjectName"){
+        action = () => {alert(projectName)}
+    }
+    else if (props.action === "SetValue"){
+        action = () => {userFunction(value)}
+    }
 
     return(
         <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
-                <Link className="Displayer" to="login">
+                <div className="Displayer" onClick={action}>
                     <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
                     <div className="DisplayDescription">{projectName}</div>
-                </Link>
+                </div>
         </CSSTransition>
     );
 }
