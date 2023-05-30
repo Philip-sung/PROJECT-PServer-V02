@@ -35,7 +35,7 @@ class timeStore {
             SetIsEndTimeNotSelected: action,
             SetStartTimeInSelectedDate: action,
             SetEndTimeInSelectedDate: action,
-            setDayMarker: action
+            SetDayMarker: action
         });
     }
 
@@ -109,7 +109,7 @@ class timeStore {
         return this.selectedTime;
     }
 
-    setDayMarker(date) {
+    SetDayMarker(date) {
         this.dayMarker = date;
     }
 }
