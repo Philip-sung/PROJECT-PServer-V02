@@ -53,7 +53,8 @@ const TimeBlock = observer(({store, hour}) => {
         }
     }
     if(store.isStartTimeSelected || store.isEndTimeSelected) {
-        if(hour >= store.selectedStartTime.getHours() && hour <= store.selectedEndTime.getHours())
+        if(store.selectedTime.getDate() * 100 + hour >= store.selectedStartTime.getDate() * 100 + store.selectedStartTime.getHours() && 
+            store.selectedTime.getDate() * 100 + hour <= store.selectedEndTime.getDate() * 100 + store.selectedEndTime.getHours())
             selected = true;
     }
     else {
