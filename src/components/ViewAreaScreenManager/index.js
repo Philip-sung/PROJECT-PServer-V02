@@ -4,6 +4,9 @@ import { ReservationScreen } from "../../screens/ReservationScreen/index";
 import { OnGoingScreen } from "../../screens/OnGoingScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
 import { Clock } from "../Clock";
+import GithubIcon from "../../assets/img/GithubW.png";
+import BlogIcon from "../../assets/img/BlogW.png";
+import VelogIcon from "../../assets/img/VelogW.png";
 
 const ViewAreaScreenManager = observer(({store}) => {
     if (store.CurrentScreen === ""){
@@ -11,9 +14,13 @@ const ViewAreaScreenManager = observer(({store}) => {
             <div>
                 <Clock />
                 Welcome!<br/><br/>
-                This page will going to provide<br/><br/>
+                This page will provide<br/><br/>
                 Our Hot Topics, Recent Tools, etc.<br /><br /><br />
                 <div style={{fontSize:10}}>Copyright © 2023 Philip Sung. All right reserved.</div>
+                <br /><br />
+                <a href={"http://github.com/Philip-sung"}><img src={GithubIcon} width={30} alt="Github"></img></a> &nbsp;
+                <a href={"http://velog.io/@velog_sp"}><img src={VelogIcon} width={30} alt="Velog"></img></a> &nbsp;
+                <a href={"http://blog.naver.com/spinnavor"}><img src={BlogIcon} width={30} alt="NaverBlog"></img></a>
             </div>
         )
     }
