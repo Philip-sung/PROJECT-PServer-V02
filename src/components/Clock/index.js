@@ -19,7 +19,7 @@ function Clock() {
 function ClockDisplay(props) {
     return(
         <div>
-            {props.Time.getFullYear()}. {props.Time.getMonth()}. {props.Time.getDate()}
+            {props.Time.getFullYear()}. {props.Time.getMonth() + 1}. {props.Time.getDate()}
             <div className="ClockDisplay">
                 <div className="TextBox">{props.Time.getHours()}</div> : <div className="TextBox">{props.Time.getMinutes()}</div> : <div className="TextBox">{props.Time.getSeconds()}</div>
             </div>
