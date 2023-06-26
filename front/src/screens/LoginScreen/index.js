@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Logo from '../../logo.svg';
 import './index.css';
 import { CSSTransition } from "react-transition-group";
+import { useQuery, gql } from '@apollo/client';
 
 function LoginScreen () {
 
@@ -36,6 +37,46 @@ function LoginScreen () {
             </CSSTransition>
         </div>
     );
+}
+
+
+function UserQuery(uID, uPW) {
+    
+    return (gql`
+        query GetUsers{
+            auths {
+            _id
+            userName
+            credit
+            privilege
+            }
+        }`
+    )
+}
+
+function EncryptModule(uID, uPW){
+    //fake module
+}
+
+function Login(uID, uPW) {
+    const [uID_E, uPW_E] = EncryptModule(uID, uPW)
+
+    const {loading, error, data} = useQuery(UserQuery(uID_E, uPW_E));
+
+    if(loading){
+        console.log("Login processing")
+    }
+    if(error){
+        console.log(error.message);
+    }
+
+    return data.auths.map(({_id, userName, credit, privilege}) => (
+        <div key={_id}>
+            {userName}
+            {credit}
+            {privilege}
+        </div>
+    ))
 }
 
 export { LoginScreen }

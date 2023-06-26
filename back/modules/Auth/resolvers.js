@@ -3,7 +3,10 @@ import Info from "../../ServiceInformation.js";
 
 const resolvers = {
     Query: {
-        auths: () => Auth.find({})
+        auths : async () => {
+            const users = await Auth.find({})
+            return users;
+        }
     },
     Mutation: {
         signIn: (parent, auth) => {
@@ -13,10 +16,5 @@ const resolvers = {
     }
 }
 
-const adminUser = new Auth(
-    Info.pserverAdminUser
-);
-
-adminUser.save().then(()=>{console.log(adminUser)})
 
 export default resolvers;

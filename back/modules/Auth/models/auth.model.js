@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const authSchema = new Schema({
     userID: String,
-    userPW: String
+    userPW: String,
 })
 
 const Auth = model('auth', authSchema);

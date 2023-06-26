@@ -45,5 +45,4 @@ const ViewAreaScreenManager = observer(({store}) => {
         )
     }
 })
-
 export { ViewAreaScreenManager };

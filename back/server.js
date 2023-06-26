@@ -14,11 +14,11 @@ const __dirname = path.dirname(__filename);
 await server.start(console.log('Apollo server started successfully'));
 server.applyMiddleware({app});
 
-app.set('port', 80)
+app.set('port', 27017)
 app.use(express.static(path.join(__dirname, '../front/build')));
 
 app.listen(app.get('port'), () => {
-    console.log(`Server running on http://localhost:${app.get('port')}`);
+    console.log(`Server running on http://localhost:${app.get('port')}${server.graphqlPath}`);
 })
 
 app.get('/', (req,res) => {
