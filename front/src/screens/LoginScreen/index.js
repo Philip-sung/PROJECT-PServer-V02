@@ -94,8 +94,6 @@ function LoginButton(props) {
                             userInfoStoreObj.toggleLogOnState();
                             userInfoStoreObj.setUserName(data?.login.userName);
                             userInfoStoreObj.setPrivilege(data?.login.privilege);
-                            console.log('set user informations');
-                            console.log(data?.login.userName);
                             navigate('/');
                         }
                     }}

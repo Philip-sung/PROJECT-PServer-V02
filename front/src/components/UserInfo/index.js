@@ -6,9 +6,10 @@ const UserInfoView = observer(({store}) => {
 
     const [userName, setUserName] = useState('GUEST');
     const [userPrivilege, setUserPrivilege] = useState('GUEST');
-
-    useEffect(() => {setUserName(store.getUserName())},[store.getUserName()]);
-    useEffect(() => {setUserPrivilege(store.getUserPrivilege())},[store.getUserPrivilege()]);
+    // eslint-disable-next-line
+    useEffect(() => {setUserName(store.getUserName())},[store.userName]);
+    // eslint-disable-next-line
+    useEffect(() => {setUserPrivilege(store.getPrivilege())},[store.privilege]);
 
     return(
         <div>

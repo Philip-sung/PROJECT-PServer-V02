@@ -31,7 +31,7 @@ class userInfoStore {
     }
 
     getUserName() {
-        return `${this.userName}`;
+        return this.userName;
     }
 
     setUserName(name){
@@ -42,7 +42,7 @@ class userInfoStore {
         this.privilege = privilege;
     }
 
-    getPrivilege(privilege){
+    getPrivilege(){
         return this.privilege;
     }
 }
