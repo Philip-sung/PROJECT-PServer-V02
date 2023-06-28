@@ -6,7 +6,7 @@ import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import "./index.css"
 import backIcon from "../../assets/img/BackArrowIcon.png"
-import postIcon from "../../assets/img/PostIcon_04.png"
+import postIcon from "../../assets/img/PostIcon.png"
 import { userInfoStoreObj } from "../../store/userInfoStore";
 
 function PostScreen (){
@@ -26,7 +26,7 @@ function PostScreen (){
         <div className="PostScreen">
             <div className="Header">
                 <div className="ButtonContainer"><Link to={"/"}><img className="Icon" src={backIcon} alt="Back"/></Link></div>
-                <input className="Title" type="text" placeholder="Post Title" value={title} onChange={(e)=>{SetTitle(e.target.value)}}></input>
+                <input className="Title" type="text" placeholder="(POST TITLE)" value={title} onChange={(e)=>{SetTitle(e.target.value)}}></input>
                 <PostButton title={title} content={mdText} />
             </div>
             <div className="Board" data-color-mode="dark">

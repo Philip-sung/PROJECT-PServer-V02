@@ -7,7 +7,8 @@ import { SearchBar } from "../../components/SearchBar";
 import { userInfoStoreObj } from "../../store/userInfoStore";
 
 //Static Imports
-import postIcon from "../../assets/img/PostIcon_04.png";
+import postIcon from "../../assets/img/PostIcon.png";
+import FetchIcon from "../../assets/img/FetchIcon_03.png";
 import "./index.css";
 
 function SearchScreen() {
@@ -28,9 +29,7 @@ function SearchScreen() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <div className="LoadButton"><img className="LoadButton" alt="PostIcon" src={postIcon} /></div>
+            <div className="LoadButton"><img className="LoadButton" alt="PostIcon" src={FetchIcon} /></div>
             <ConditionalLink />
         </div>
     )

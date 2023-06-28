@@ -1,9 +1,15 @@
 @import "../../styles/colorTheme.css";
 
+.RScreen {
+    margin-left: auto;
+    margin-right:auto;
+    width: 90%;
+}
+
 .Submit {
     margin-top: 40px;
     margin-bottom: 100px;
-    width: 78%;
+    width: 98.5%;
     height: 40px;
 
     background-color: var(--highlight);
