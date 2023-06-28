@@ -1,12 +1,14 @@
 import React from "react";
+import CryptoJS from 'crypto-js';
 import { useState, useEffect } from "react";
-import Logo from '../../logo.svg';
-import './index.css';
 import { CSSTransition } from "react-transition-group";
 import { useQuery, gql } from '@apollo/client';
-import CryptoJS from 'crypto-js';
 import { useNavigate } from "react-router-dom";
+
 import { userInfoStoreObj } from "../../store/userInfoStore";
+
+import Logo from '../../logo.svg';
+import './index.css';
 
 function LoginScreen () {
 
@@ -46,12 +48,16 @@ function LoginScreen () {
     );
 }
 
+function EncryptModule(uPW){
+    const userPW_E = CryptoJS.SHA512(uPW).toString().toUpperCase();
+    return userPW_E;
+}
 
 function UserQuery(uID, uPW) {
     
     return (gql`
         query GetUsers{
-            login(userID:"${uID}", userPW:"${uPW}"){
+            getUserInfo(userID:"${uID}", userPW:"${uPW}"){
                 userID
                 userPW
                 userName
@@ -60,11 +66,6 @@ function UserQuery(uID, uPW) {
             }
         }`
     )
-}
-
-function EncryptModule(uPW){
-    const userPW_E = CryptoJS.SHA512(uPW).toString().toUpperCase();
-    return userPW_E;
 }
 
 function LoginButton(props) {
@@ -85,15 +86,16 @@ function LoginButton(props) {
                     if(props.userID === '' || props.userPW === ''){
                         alert('Form Incompleted')} 
                     else{
-                        if(data?.login === null){
+                        if(data?.getUserInfo === null){
                             console.log('!Login Failed');
                             alert('Invalid ID/PW');
                         }
-                        else if(data?.login.userID === props.userID){
+                        else if(data?.getUserInfo.userID === props.userID){
                             console.log('!Login Success')
                             userInfoStoreObj.toggleLogOnState();
-                            userInfoStoreObj.setUserName(data?.login.userName);
-                            userInfoStoreObj.setPrivilege(data?.login.privilege);
+                            userInfoStoreObj.setUserID(data?.getUserInfo.userID);
+                            userInfoStoreObj.setUserName(data?.getUserInfo.userName);
+                            userInfoStoreObj.setPrivilege(data?.getUserInfo.privilege);
                             navigate('/');
                         }
                     }}

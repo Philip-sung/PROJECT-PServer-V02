@@ -9,8 +9,8 @@ function SearchBar () {
 
     return(
         <div className="SearchBarForm">
-            <input className="SearchBar" placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} onKeyDown={(e) => {if(e.code === "Enter"){alert(search)}}}></input>
-            <button className="Search" onClick={() =>{alert(search)}}><img className="SearchImg" src={image1} alt="SearchImg"></img> </button>
+            <input className="SearchBar" placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById('SearchButton').click()}}}></input>
+            <button id="SearchButton" className="Search" onClick={() =>{alert(`No Result on "${search}"`)}}><img className="SearchImg" src={image1} alt="SearchImg"></img> </button>
         </div>
     )
 }

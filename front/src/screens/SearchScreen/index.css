@@ -2,9 +2,19 @@
     width: 90%;
 }
 
+.LoadButton {
+    position:fixed;
+    top:75vh;
+    right: 12vh;
+    width: 40px;
+    height: 40px;
+
+    cursor: default;
+}
+
 .PostButton {
     position:fixed;
-    top:80vh;
+    top:82vh;
     right: 12vh;
     width: 40px;
     height: 40px;

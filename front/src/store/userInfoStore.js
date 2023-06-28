@@ -5,7 +5,8 @@ import { makeObservable,
 
 class userInfoStore {
     logOn = false;
-    userName = '';
+    userID = '';
+    userName = 'Anonymous';
     privilege = 'GUEST';
 
     constructor() {
@@ -15,6 +16,8 @@ class userInfoStore {
             privilege: observable,
             toggleLogOnState: action,
             getLogOnState: action,
+            setUserID: action,
+            getUserID: action,
             setUserName: action,
             getUserName: action,
             getPrivilege: action,
@@ -28,6 +31,14 @@ class userInfoStore {
 
     getLogOnState() {
         return this.logOn;
+    }
+
+    getUserID() {
+        return this.userID;
+    }
+
+    setUserID(id){
+        this.userID = id;
     }
 
     getUserName() {

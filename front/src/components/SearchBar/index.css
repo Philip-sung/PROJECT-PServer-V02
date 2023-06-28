@@ -1,4 +1,6 @@
 .SearchBarForm {
+    margin-top: 20vh;
+    margin-bottom: 20vh;
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -2,6 +2,9 @@ import React from "react";
 import { Displayer, DisplayerContainer } from "../../components/Displayer";
 import sampleImg from '../../assets/img/Sample.jpeg';
 
+//Static Imports
+import "./index.css"
+
 function OnGoingScreen() {
 
     
