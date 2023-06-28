@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 await server.start(console.log('Apollo server started successfully'));
 server.applyMiddleware({app});
 
-app.set('port', 27018)
+app.set('port', 3000)
 app.use(express.static(path.join(__dirname, '../front/build')));
 
 app.listen(app.get('port'), () => {
