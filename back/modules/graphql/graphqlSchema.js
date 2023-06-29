@@ -22,6 +22,9 @@ const typeDefs = gql`
     type Query {
         getAllUsers: [Auth],
         getUserInfo(userID: String!, userPW: String!) : Auth
+
+        getAllPosts: [Post],
+        getPostbyTitle: [Post]
     },
     type Mutation {
         createUser(

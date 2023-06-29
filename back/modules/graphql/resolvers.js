@@ -10,6 +10,14 @@ const resolvers = {
         getUserInfo : async (parent, args, contextValue, info) => {
             const user = await Auth.findOne({ userID: args.userID, userPW: args.userPW });
             return user;
+        },
+
+        getAllPosts : async () => {
+            const posts = await Post.find({});
+            return posts;
+        },
+        getPostbyTitle : async (parent, args, contextValue, info) => {
+            const posts = await Post.find({title: /args.title/})
         }
     },
     Mutation: {

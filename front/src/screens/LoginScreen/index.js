@@ -1,3 +1,4 @@
+//External Imports
 import React from "react";
 import CryptoJS from 'crypto-js';
 import { useState, useEffect } from "react";
@@ -5,8 +6,10 @@ import { CSSTransition } from "react-transition-group";
 import { useQuery, gql } from '@apollo/client';
 import { useNavigate } from "react-router-dom";
 
+//Local Imports
 import { userInfoStoreObj } from "../../store/userInfoStore";
 
+//Static Imports
 import Logo from '../../logo.svg';
 import './index.css';
 
