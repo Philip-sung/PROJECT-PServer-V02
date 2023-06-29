@@ -49,6 +49,7 @@
     text-align: center;
     top: -40%;
     height: 0px;
+    font-weight: 700;
     color: #fff;
 }
 
@@ -58,6 +59,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-size: 0.8vw;
 }
 
 .DisplayerContainer {

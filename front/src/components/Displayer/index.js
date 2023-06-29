@@ -22,10 +22,10 @@ function Displayer(props) {
             <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
                     <Link className="Displayer" to={link}>
                         <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
+                        <div className="onImgText">{onImgText}</div>
                         <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
                             <React.Fragment key={index}>{text}<br /></React.Fragment>)}
                         </div>
-                        <div className="DisplayDescription">{projectName}</div>
                     </Link>
             </CSSTransition>
         )
