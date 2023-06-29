@@ -2,35 +2,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery, gql } from '@apollo/client';
+import { observer } from "mobx-react-lite";
 
 //Local Imports
 import { SearchBar } from "../../components/SearchBar";
 import { userInfoStoreObj } from "../../store/userInfoStore";
+import { Displayer, DisplayerContainer } from "../../components/Displayer";
+import { postStoreObj } from "../../store/postStore";
 
 //Static Imports
 import postIcon from "../../assets/img/PostIcon.png";
 import FetchIcon from "../../assets/img/FetchIcon_Combined.png";
 import "./index.css";
 
-function SearchScreen() {
+//Imports for Tests
+import TestImg from "../../assets/img/test.jpg"
 
+function SearchScreen() {
     
     return (
         <div className="SearchScreen">
             <SearchBar />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <button className="LoadButton"><img className="LoadButtonImg" alt="PostIcon" src={FetchIcon} onClick={() => {GetAllPosts()}} /></button>
+            <DisplayerContainer>
+                <DisplayerMap store={postStoreObj} />
+            </DisplayerContainer>
+            <GetAllPosts />
             <ConditionalLink />
         </div>
     )
@@ -59,6 +55,7 @@ function GetAllPostsQuery() {
         gql`
         query GetPosts {
             getAllPosts {
+                _id
                 postTitle
                 postDate
                 postWriter
@@ -74,10 +71,26 @@ function GetAllPosts() {
     if(error){
         console.log(error.message);
     }
-    if(data){
-        console.log(data);
-    }
+
+    return(
+        <button className="LoadButton" onClick={
+            () => {
+            postStoreObj.ClearPostStack();
+            postStoreObj.PushPostStack(data?.getAllPosts); 
+            }
+        }>
+                <img className="LoadButtonImg" alt="PostIcon" src={FetchIcon}  />
+        </button>
+    )
 }
 
+const DisplayerMap = observer(({store}) => {
+    const loadedData = store.loadedPosts;
+    return(
+        loadedData.slice().reverse().map(({_id, postTitle, postDate, postWriter}) => (
+            <Displayer key={_id} name={`${postDate}\n${postWriter}`} img={TestImg} imgTxt={postTitle} />
+        ))
+    )
+});
 
 export { SearchScreen }

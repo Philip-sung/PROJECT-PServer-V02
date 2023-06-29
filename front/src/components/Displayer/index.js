@@ -7,6 +7,7 @@ import "./index.css";
 function Displayer(props) {
     const projectImg = props.img;
     const projectName = props.name;
+    const onImgText = props.imgTxt;
     const link = props.LinkTo;
     const userFunction = props.function;
     const value = props.value;
@@ -21,6 +22,9 @@ function Displayer(props) {
             <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
                     <Link className="Displayer" to={link}>
                         <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
+                        <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
+                            <React.Fragment key={index}>{text}<br /></React.Fragment>)}
+                        </div>
                         <div className="DisplayDescription">{projectName}</div>
                     </Link>
             </CSSTransition>
@@ -37,7 +41,10 @@ function Displayer(props) {
         <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
                 <div className="Displayer" onClick={action}>
                     <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
-                    <div className="DisplayDescription">{projectName}</div>
+                    <div className="onImgText">{onImgText}</div>
+                    <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
+                        <React.Fragment key={index}>{text}<br /></React.Fragment>)}
+                    </div>
                 </div>
         </CSSTransition>
     );

@@ -44,6 +44,14 @@
     object-fit:cover;
 }
 
+.onImgText {
+    position:relative;
+    text-align: center;
+    top: -40%;
+    height: 0px;
+    color: #fff;
+}
+
 .DisplayDescription {
     flex: 0.3;
     height:20%;
@@ -54,6 +62,7 @@
 
 .DisplayerContainer {
     margin: auto;
+    margin-bottom:5vh;
     display: flex;
     width: 100%;
 

@@ -41,12 +41,20 @@ function PostScreen (){
 function PostQuery(title, content){
     const writer = userInfoStoreObj.getUserID();
     const contentString = encodeURI(content);
+    const curTime = new Date();
+    const curYear = curTime.getFullYear().toString();
+    const curMonth = (curTime.getMonth() + 1).toString().padStart(2,'0');
+    const curDate = curTime.getDate().toString().padStart(2,'0');
+    const Days = ['Sn','Mn','Tu','Wd','Th','Fr','St'];
+    const curDay = Days[curTime.getDay()].toString();
+    const curHour = curTime.getHours().toString().padStart(2,'0');
+    const curMinute = curTime.getMinutes().toString().padStart(2,'0');
     return(gql`
             mutation CreatePost{
                 createPost(
                     postTitle: "${title}",
                     postContent: "${contentString}"
-                    postDate: "${new Date()}",
+                    postDate: "${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}",
                     postWriter: "${writer}"
                 ) {
                     postTitle
