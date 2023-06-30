@@ -42,9 +42,9 @@ function PostbyID(props) {
     return(
         <div className="PostReadScreen">
             <div className="PostHeader">
-                <div><small style={{fontSize: 15}}>{data?.getPostbyID.postDate}</small></div>
-                <div><strong>{data?.getPostbyID.postTitle}</strong></div>
-                <div><small style={{fontSize: 15}}>{data?.getPostbyID.postWriter}</small></div>
+                <div className="PostHeaderDate"><small style={{fontSize: 15}}>{data?.getPostbyID.postDate}</small></div>
+                <div className="PostHeaderTitle"><strong>{data?.getPostbyID.postTitle}</strong></div>
+                <div className="PostHeaderWriter"><small style={{fontSize: 15}}>{data?.getPostbyID.postWriter}</small></div>
             </div>
             <div className="PostReaderWindow" data-color-mode="dark">
                 <MDEditor.Markdown className="mdReader" source={decodeURI(data?.getPostbyID.postContent)} />

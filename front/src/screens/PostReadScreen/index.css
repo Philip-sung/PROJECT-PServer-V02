@@ -14,6 +14,18 @@
     justify-content: space-between;
 }
 
+.PostHeaderDate {
+    flex: 0.15;
+}
+
+.PostHeaderTitle {
+    flex: 0.7;
+}
+
+.PostHeaderWriter {
+    flex: 0.15;
+}
+
 .PostReaderWindow {
     margin-bottom:100px;
     display: flex;

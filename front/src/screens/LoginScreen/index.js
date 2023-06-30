@@ -76,7 +76,6 @@ function LoginButton(props) {
     const navigate = useNavigate();
     const uPW_E = EncryptModule(props.userPW);
     const [login,{loading, error}] = useLazyQuery(UserQuery(IDPW.ID, IDPW.PW), {
-        fetchPolicy: 'no-cache',
         onCompleted: (data) => {
             if(props.userID === '' || props.userPW === ''){
                 alert('Authentication Form Incompleted');
