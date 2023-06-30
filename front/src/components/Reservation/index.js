@@ -21,11 +21,11 @@ const Reservation = observer(({store}) => {
                     <br />
                     <br />
                     <DisplayerContainer>
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject1"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject2"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject3"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject4"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject5"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject1"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject2"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject3"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject4"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject5"} />
                     </DisplayerContainer>
                     <button className="Submit" onClick={() => alert(`${store.selectedStartTime} ~ ${store.selectedEndTime}, Project : ${projectName}`)}>Make Appointment</button>
                 </div>
@@ -43,11 +43,11 @@ const Reservation = observer(({store}) => {
                     <br />
                     <br />
                     <DisplayerContainer>
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject1"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject2"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject3"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject4"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"SetValue"} function={SetProjectName} value={"SampleProject5"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={""} function={SetProjectName} parameter={"SampleProject1"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject2"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject3"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject4"} />
+                        <Displayer name="SampleProject" img={sampleImg} action={"useFunction"} function={SetProjectName} parameter={"SampleProject5"} />
                     </DisplayerContainer>
                 </div>
             </div>

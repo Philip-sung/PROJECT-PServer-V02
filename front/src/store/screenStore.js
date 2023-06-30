@@ -5,13 +5,17 @@ import {
 } from 'mobx'
 
 class screenStore {
-    currentScreen = "";
+    currentScreen = {
+        screenName: "",
+        screenID: ""
+    };
     prevScreens = [];
 
     constructor() {makeObservable(this, {
             currentScreen: observable,
             prevScreens: observable,
             GetNewScreen: action,
+            GetCurrentScreen: action,
             GetPrevScreen: action
         });
     }
@@ -20,10 +24,15 @@ class screenStore {
         this.prevScreens.push(this.CurrentScreen);
     }
 
-    GetNewScreen(screenName) {
-        this.prevScreens.push(this.currentScreen);
-        this.currentScreen = screenName;
+    GetNewScreen(screenName, screenID = "") {
+        this.prevScreens.push({...this.currentScreen});
+        this.currentScreen.screenName = screenName;
+        this.currentScreen.screenID = screenID;
 
+        return this.currentScreen;
+    }
+
+    GetCurrentScreen() {
         return this.currentScreen;
     }
 

@@ -1,0 +1,10 @@
+.TransitionObjMount-enter {
+    opacity: 0;
+    transform: translateY(20%);
+}
+  
+.TransitionObjMount-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: transform 500ms, opacity 500ms;
+}

@@ -1,7 +1,11 @@
+//External Imports
 import React from "react";
 import { Link } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
-import { useEffect, useState } from "react";
+
+//Local Imports
+import { TransitionObject } from "../TransitionObj";
+
+//Static Imports
 import "./index.css";
 
 function Displayer(props) {
@@ -10,16 +14,11 @@ function Displayer(props) {
     const onImgText = props.imgTxt;
     const link = props.LinkTo;
     const userFunction = props.function;
-    const value = props.value;
     let action = () => {alert("Action Not defined")};
-    const [displayerMounted, setDisplayerMounted] = useState(false);
-    useEffect(() => {
-        setDisplayerMounted(true);
-    },[])
     
     if (props.action === "Link") {
         return(
-            <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
+            <TransitionObject>
                     <Link className="Displayer" to={link}>
                         <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
                         <div className="onImgText">{onImgText}</div>
@@ -27,18 +26,18 @@ function Displayer(props) {
                             <React.Fragment key={index}>{text}<br /></React.Fragment>)}
                         </div>
                     </Link>
-            </CSSTransition>
+            </TransitionObject>
         )
     }
     else if (props.action === "GetProjectName"){
         action = () => {alert(projectName)}
     }
-    else if (props.action === "SetValue"){
-        action = () => {userFunction(value)}
+    else if (props.action === "useFunction"){
+        action = () => {userFunction()}
     }
 
     return(
-        <CSSTransition in={displayerMounted} timeout={500} classNames="displayerMount" unmountOnExit>
+        <TransitionObject>
                 <div className="Displayer" onClick={action}>
                     <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
                     <div className="onImgText">{onImgText}</div>
@@ -46,7 +45,7 @@ function Displayer(props) {
                         <React.Fragment key={index}>{text}<br /></React.Fragment>)}
                     </div>
                 </div>
-        </CSSTransition>
+        </TransitionObject>
     );
 }
 

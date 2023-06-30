@@ -18,17 +18,6 @@
     cursor: default;
 }
 
-.displayerMount-enter {
-    opacity: 0;
-    transform: translateY(20%);
-}
-  
-.displayerMount-enter-active {
-    opacity: 1;
-    transform: translateY(0%);
-    transition: transform 500ms, opacity 500ms;
-}
-
 .Displayer:hover {
     filter: brightness(130%) contrast(130%);
 }

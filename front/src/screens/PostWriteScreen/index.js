@@ -9,7 +9,7 @@ import backIcon from "../../assets/img/BackArrowIcon.png"
 import postIcon from "../../assets/img/PostIcon.png"
 import { userInfoStoreObj } from "../../store/userInfoStore";
 
-function PostScreen (){
+function PostWriteScreen (){
     const navigate = useNavigate();
      useEffect(() => {
          if(userInfoStoreObj.logOn === false){
@@ -23,7 +23,7 @@ function PostScreen (){
 
     
     return (
-        <div className="PostScreen">
+        <div className="PostWriteScreen">
             <div className="Header">
                 <div className="ButtonContainer"><Link to={"/"}><img className="Icon" src={backIcon} alt="Back"/></Link></div>
                 <input className="Title" type="text" placeholder="(POST TITLE)" value={title} onChange={(e)=>{SetTitle(e.target.value)}}></input>
@@ -88,4 +88,4 @@ function PostButton(props){
         )
 }
 
-export { PostScreen }
+export { PostWriteScreen }

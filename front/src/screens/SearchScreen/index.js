@@ -9,6 +9,7 @@ import { SearchBar } from "../../components/SearchBar";
 import { userInfoStoreObj } from "../../store/userInfoStore";
 import { Displayer, DisplayerContainer } from "../../components/Displayer";
 import { postStoreObj } from "../../store/postStore";
+import { screenStoreObj } from "../../store/screenStore";
 
 //Static Imports
 import postIcon from "../../assets/img/PostIcon.png";
@@ -19,7 +20,7 @@ import "./index.css";
 import TestImg from "../../assets/img/test.jpg"
 
 function SearchScreen() {
-    
+
     return (
         <div className="SearchScreen">
             <SearchBar />
@@ -88,9 +89,10 @@ const DisplayerMap = observer(({store}) => {
     const loadedData = store.loadedPosts;
     return(
         loadedData.slice().reverse().map(({_id, postTitle, postDate, postWriter}) => (
-            <Displayer key={_id} name={`${postDate}\n${postWriter}`} img={TestImg} imgTxt={postTitle} />
+            <Displayer key={_id} name={`${postDate}\n${postWriter}`} img={TestImg} imgTxt={postTitle} action={"useFunction"} function={() => {screenStoreObj.GetNewScreen("PostRead",_id)}} />
         ))
     )
 });
+
 
 export { SearchScreen }

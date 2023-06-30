@@ -1,15 +1,21 @@
+//External Imports
 import { observer } from "mobx-react-lite";
+
+//Local Imports
 import { SearchScreen } from "../../screens/SearchScreen/index";
 import { ReservationScreen } from "../../screens/ReservationScreen/index";
 import { OnGoingScreen } from "../../screens/OnGoingScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
+import { PostReadScreen } from "../../screens/PostReadScreen";
 import { Clock } from "../Clock";
+
+//Static Imports
 import GithubIcon from "../../assets/img/GithubW.png";
 import BlogIcon from "../../assets/img/BlogW.png";
 import VelogIcon from "../../assets/img/VelogW.png";
 
 const ViewAreaScreenManager = observer(({store}) => {
-    if (store.CurrentScreen === ""){
+    if (store.GetCurrentScreen().screenName === ""){
         return (
             <div>
                 <Clock />
@@ -24,25 +30,31 @@ const ViewAreaScreenManager = observer(({store}) => {
             </div>
         )
     }
-    if (store.CurrentScreen === "Search"){
+    if (store.currentScreen.screenName === "Search"){
         return (
             <SearchScreen />
         )
     }
-    else if (store.CurrentScreen === "Reservation"){
+    else if (store.currentScreen.screenName === "Reservation"){
         return (
             <ReservationScreen />
         )
     }
-    else if (store.CurrentScreen === "OnGoing"){
+    else if (store.currentScreen.screenName === "OnGoing"){
         return (
             <OnGoingScreen />
         )
     }
-    else if (store.CurrentScreen === "Works"){
+    else if (store.currentScreen.screenName === "Works"){
         return (
             <WorksScreen />
         )
     }
+    else if (store.currentScreen.screenName === "PostRead"){
+        return (
+            <PostReadScreen postID={store.currentScreen.screenID} />
+        )
+    }
+
 })
 export { ViewAreaScreenManager };

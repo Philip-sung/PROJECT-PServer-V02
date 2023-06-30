@@ -3,7 +3,7 @@ import React from "react";
 import CryptoJS from 'crypto-js';
 import { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useQuery, gql } from '@apollo/client';
+import { useLazyQuery, gql } from '@apollo/client';
 import { useNavigate } from "react-router-dom";
 
 //Local Imports
@@ -72,11 +72,34 @@ function UserQuery(uID, uPW) {
 }
 
 function LoginButton(props) {
+    const [IDPW,setIDPW] = useState({ID:'', PW:''});
     const navigate = useNavigate();
     const uPW_E = EncryptModule(props.userPW);
-    const {loading, error, data} = useQuery(UserQuery(props.userID, uPW_E));
+    const [login,{loading, error}] = useLazyQuery(UserQuery(IDPW.ID, IDPW.PW), {
+        fetchPolicy: 'no-cache',
+        onCompleted: (data) => {
+            if(props.userID === '' || props.userPW === ''){
+                alert('Authentication Form Incompleted');
+            }
+            else{
+                if(data?.getUserInfo === null){
+                    console.log('Authetication Failed');
+                    alert('Invalid ID or Password');
+                }
+                else if(data?.getUserInfo.userID === IDPW.ID){
+                    console.log('Authetication Success')
+                    userInfoStoreObj.toggleLogOnState();
+                    userInfoStoreObj.setUserID(data?.getUserInfo.userID);
+                    userInfoStoreObj.setUserName(data?.getUserInfo.userName);
+                    userInfoStoreObj.setPrivilege(data?.getUserInfo.privilege);
+                    navigate('/');
+                }
+            }
+        }
+    });
 
     if(loading){
+        console.log("Loading");
     }
     if(error){
         console.log(error.message);
@@ -84,25 +107,11 @@ function LoginButton(props) {
 
     return (
         <div>
-            <button id="loginButton" className="loginButton" onClick={
-                (e) => {
-                    if(props.userID === '' || props.userPW === ''){
-                        alert('Form Incompleted')} 
-                    else{
-                        if(data?.getUserInfo === null){
-                            console.log('!Login Failed');
-                            alert('Invalid ID/PW');
-                        }
-                        else if(data?.getUserInfo.userID === props.userID){
-                            console.log('!Login Success')
-                            userInfoStoreObj.toggleLogOnState();
-                            userInfoStoreObj.setUserID(data?.getUserInfo.userID);
-                            userInfoStoreObj.setUserName(data?.getUserInfo.userName);
-                            userInfoStoreObj.setPrivilege(data?.getUserInfo.privilege);
-                            navigate('/');
-                        }
-                    }}
-                }>Log In</button>
+            <button id="loginButton" className="loginButton" onClick={() => {
+                    setIDPW({ID:props.userID, PW:uPW_E});
+                    login();
+                }
+            }>Log In</button>
         </div>
     )
 }
