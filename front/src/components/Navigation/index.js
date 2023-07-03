@@ -18,7 +18,7 @@ function NavigationBar(props) {
 
   return (
     <div className={props.className} >
-      {userInfoStoreObj.getLogOnState() === true? <button className="LoginButton" onClick={() => {LogOut(); navigate('/'); console.log('LogOut')}}>LogOut</button> : <Link className="LoginButton" to="login" >Log In</Link>}
+      {userInfoStoreObj.getLogOnState() === true? <button className="LoginButton" onClick={() => {LogOut(); navigate('/'); console.log('USER : LogOut')}}>LogOut</button> : <Link className="LoginButton" to="login" >Log In</Link>}
       <UserInfoView store={userInfoStoreObj} />
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Search")}} /*style={{marginLeft: clicked ? 15:-1000 }}*/><img src={searchIcon} width="40px;" alt="SearchIcon" /></button>
       <button className="NavigationButton" onClick={() => {screenStoreObj.GetNewScreen("Reservation")}}><img src={reservationIcon} width="40px;" alt="ReservationIcon" /></button>
@@ -33,7 +33,7 @@ function NavigationBar(props) {
 function LogOut() {
   
   userInfoStoreObj.toggleLogOnState();
-  userInfoStoreObj.setUserName('Anonymous');
+  userInfoStoreObj.setUserName('NONAME');
   userInfoStoreObj.setPrivilege('GUEST');
 }
 

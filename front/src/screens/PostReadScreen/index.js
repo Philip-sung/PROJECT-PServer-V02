@@ -7,7 +7,6 @@ import { useQuery, gql } from '@apollo/client';
 import "./index.css";
 
 function PostReadScreen(props) {
-    console.log(props.postID)
     return (
         <PostbyID postID={props.postID} />
     )
@@ -32,7 +31,6 @@ function GetPostbyIDQuery(postIdString) {
 
 function PostbyID(props) {
     const {loading, error, data} = useQuery(GetPostbyIDQuery(props.postID));
-    console.log("HE")
     if(loading){
     }
     if(error){

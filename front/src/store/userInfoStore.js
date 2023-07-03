@@ -6,7 +6,7 @@ import { makeObservable,
 class userInfoStore {
     logOn = false;
     userID = '';
-    userName = 'Anonymous';
+    userName = 'NONAME';
     privilege = 'GUEST';
 
     constructor() {

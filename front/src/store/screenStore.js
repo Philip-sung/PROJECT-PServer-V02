@@ -39,7 +39,7 @@ class screenStore {
     GetPrevScreen() {
         if(this.prevScreens.length === 0) {
             alert("Initial Page");
-            console.log("Initial Page");
+            console.log("WELCOME : INITIAL PAGE");
         }
         else if (this.prevScreens.length > 0) {
             this.currentScreen = this.prevScreens.pop();

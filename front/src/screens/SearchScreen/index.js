@@ -1,7 +1,7 @@
 //External Imports
 import React from "react";
 import { Link } from "react-router-dom";
-import { useQuery, gql } from '@apollo/client';
+import { useLazyQuery, gql } from '@apollo/client';
 import { observer } from "mobx-react-lite";
 
 //Local Imports
@@ -27,7 +27,7 @@ function SearchScreen() {
             <DisplayerContainer>
                 <DisplayerMap store={postStoreObj} />
             </DisplayerContainer>
-            <GetAllPosts />
+            <GetAllPostsButton />
             <ConditionalLink />
         </div>
     )
@@ -64,8 +64,14 @@ function GetAllPostsQuery() {
     `)
 }
 
-function GetAllPosts() {
-    const {loading, error, data} = useQuery(GetAllPostsQuery());
+function GetAllPostsButton() {
+    const [getAllPost, {loading, error}] = useLazyQuery(GetAllPostsQuery(),{
+        onCompleted: (data) => {
+            postStoreObj.ClearPostStack();
+            postStoreObj.PushPostStack(data?.getAllPosts); 
+        },
+        fetchPolicy: 'network-only'
+    });
     if(loading){
     }
     if(error){
@@ -75,8 +81,7 @@ function GetAllPosts() {
     return(
         <button className="LoadButton" onClick={
             () => {
-            postStoreObj.ClearPostStack();
-            postStoreObj.PushPostStack(data?.getAllPosts); 
+                getAllPost();
             }
         }>
                 <img className="LoadButtonImg" alt="PostIcon" src={FetchIcon}  />
@@ -92,33 +97,6 @@ const DisplayerMap = observer(({store}) => {
         ))
     )
 });
-
-function GetPostsbyTitleQuery(postTitle) {
-    return(
-        gql`
-        query GetPostsbyTitle {
-            getPostsbyTitle(postTitle:${postTitle}) {
-                _id
-                postTitle
-                postDate
-                postWriter
-            }
-        }
-    `)
-}
-
-function GetPostsbyTitle(postTitle){
-    const {loading, error, data} = useQuery(GetPostsbyTitleQuery(postTitle));
-    if(loading){
-    }
-    if(error){
-        console.log(error.message);
-    }
-    if(data){
-        postStoreObj.ClearPostStack();
-        postStoreObj.PushPostStack(data?.GetPostsbyTitle); 
-    }
-}
 
 
 export { SearchScreen }

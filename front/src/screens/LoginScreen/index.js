@@ -82,11 +82,9 @@ function LoginButton(props) {
             }
             else{
                 if(data?.getUserInfo === null){
-                    console.log('Authetication Failed');
                     alert('Invalid ID or Password');
                 }
                 else if(data?.getUserInfo.userID === IDPW.ID){
-                    console.log('Authetication Success')
                     userInfoStoreObj.toggleLogOnState();
                     userInfoStoreObj.setUserID(data?.getUserInfo.userID);
                     userInfoStoreObj.setUserName(data?.getUserInfo.userName);
@@ -94,11 +92,11 @@ function LoginButton(props) {
                     navigate('/');
                 }
             }
-        }
+        },
+        fetchPolicy: 'network-only',
     });
 
     if(loading){
-        console.log("Loading");
     }
     if(error){
         console.log(error.message);
@@ -108,7 +106,7 @@ function LoginButton(props) {
         <div>
             <button id="loginButton" className="loginButton" onClick={() => {
                     setIDPW({ID:props.userID, PW:uPW_E});
-                    login();
+                    setTimeout(()=>{login()},0);
                 }
             }>Log In</button>
         </div>

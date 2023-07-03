@@ -80,9 +80,17 @@ function PostButton(props){
     return (
         <button className="ButtonContainer">
             <img className="Icon" src={postIcon} alt="Post" onClick={() => {
-                addPost();
-                alert('Posted');
-                navigate('/');
+                if(props.title === ''){
+                    alert("Please Enter Post Title");
+                }
+                else if(props.content === ''){
+                    alert("Please Enter Post Content");
+                }
+                else{
+                    addPost();
+                    alert('Posted Successfully');
+                    navigate('/');
+                }
                 }} />
         </button>
         )

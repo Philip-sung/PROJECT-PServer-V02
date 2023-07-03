@@ -19,7 +19,6 @@ const ViewAreaScreenManager = observer(({store}) => {
         return (
             <div>
                 <Clock />
-                Welcome!<br/><br/>
                 This page will provide<br/><br/>
                 Our Hot Topics, Recent Tools, etc.<br /><br /><br />
                 <div style={{fontSize:10}}>Copyright © 2023 Philip Sung. All right reserved.</div>

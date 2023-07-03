@@ -10,9 +10,9 @@ const resolvers = {
         getUserInfo : async (parent, args, contextValue, info) => {
             const curTime = new Date();
             const user = await Auth.findOne({ userID: args.userID, userPW: args.userPW });
-            console.log(`Login Attempt on [ID:${args.userID}] at [${curTime.getFullYear()}.${curTime.getMonth()}.${curTime.getDate()} ${curTime.getHours()}:${curTime.getMinutes()}:${curTime.getSeconds()}]`)
+            console.log(`Login Attempt on [ID:${args.userID}] at [${curTime.getFullYear()}.${curTime.getMonth() + 1}.${curTime.getDate()} ${curTime.getHours()}:${curTime.getMinutes()}:${curTime.getSeconds()}]`)
             if(args.userPW === user?.userPW){
-                console.log(`Attempt Above Succeeded`)
+                console.log(`*Login Attempt Above Succeeded`)
             }
             return user;
         },
@@ -56,9 +56,5 @@ const resolvers = {
         }
     }
 }
-
-//const a = await Post.findById('649bd4c406c5441f7617f6c2')
-//console.log(a)
-
 
 export default resolvers;
