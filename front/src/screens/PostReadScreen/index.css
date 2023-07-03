@@ -10,20 +10,35 @@
 .PostHeader {
     margin: 5vh;
     display: flex;
-    width:80%;
+    width:90%;
+    justify-content: space-between;
+}
+
+.PostHeaderTitle {
+    flex: 1;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.PostData {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    width:90%;
     justify-content: space-between;
 }
 
 .PostHeaderDate {
-    flex: 0.15;
+    flex: 0.6;
+    text-align: left;
+    font-size: 17px;
 }
 
-.PostHeaderTitle {
-    flex: 0.7;
-}
 
 .PostHeaderWriter {
-    flex: 0.15;
+    flex: 0.4;
+    text-align: right;
+    font-size: 17px;
 }
 
 .PostReaderWindow {
@@ -42,6 +57,27 @@
     padding: 5%;
     text-align: left;
     border-radius: 10px;
-    width: 80%;
+    width: 90%;
     height: 100%;
+}
+
+@media (max-width: 800px) {
+    .PostHeaderTitle {
+        flex: 1;
+        font-size: 6vw;
+        font-weight: 700;
+    }
+    .PostHeaderDate {
+        flex: 0.6;
+        text-align: left;
+        font-size: 3vw;
+    }
+    
+    
+    .PostHeaderWriter {
+        flex: 0.4;
+        text-align: right;
+        font-size: 3vw;
+    }
+    
 }

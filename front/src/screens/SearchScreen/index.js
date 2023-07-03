@@ -23,7 +23,7 @@ function SearchScreen() {
 
     return (
         <div className="SearchScreen">
-            <SearchBar />
+            <SearchBar function={() =>{alert("Hello")}}/>
             <DisplayerContainer>
                 <DisplayerMap store={postStoreObj} />
             </DisplayerContainer>
@@ -49,7 +49,6 @@ function ConditionalLink(props) {
     }
     return(<Link to={test} onClick={onClickFunction} ><img className="PostButton" alt="PostIcon" src={postIcon} /></Link>)
 }
-
 
 function GetAllPostsQuery() {
     return(
@@ -93,6 +92,33 @@ const DisplayerMap = observer(({store}) => {
         ))
     )
 });
+
+function GetPostsbyTitleQuery(postTitle) {
+    return(
+        gql`
+        query GetPostsbyTitle {
+            getPostsbyTitle(postTitle:${postTitle}) {
+                _id
+                postTitle
+                postDate
+                postWriter
+            }
+        }
+    `)
+}
+
+function GetPostsbyTitle(postTitle){
+    const {loading, error, data} = useQuery(GetPostsbyTitleQuery(postTitle));
+    if(loading){
+    }
+    if(error){
+        console.log(error.message);
+    }
+    if(data){
+        postStoreObj.ClearPostStack();
+        postStoreObj.PushPostStack(data?.GetPostsbyTitle); 
+    }
+}
 
 
 export { SearchScreen }

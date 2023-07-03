@@ -24,6 +24,11 @@ const resolvers = {
         getPostbyID : async (parent, args, contextValue, info) => {
             const posts = await Post.findById(args.postID);
             return posts;
+        },
+        getPostsbyTitle : async (parent, args, contextValue, info) => {
+            const query = new RegExp(args.postTitle);
+            const posts = await Post.find({postTitle: query});
+            return posts
         }
     },
     Mutation: {
