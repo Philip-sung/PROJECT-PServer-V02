@@ -10,6 +10,7 @@ import { userInfoStoreObj } from "../../store/userInfoStore";
 import { Displayer, DisplayerContainer } from "../../components/Displayer";
 import { postStoreObj } from "../../store/postStore";
 import { screenStoreObj } from "../../store/screenStore";
+import { searchStoreObj } from "../../store/SearchStore";
 
 //Static Imports
 import postIcon from "../../assets/img/PostIcon.png";
@@ -23,7 +24,7 @@ function SearchScreen() {
 
     return (
         <div className="SearchScreen">
-            <SearchBar function={() =>{alert("Hello")}}/>
+            <SearchBar />
             <DisplayerContainer>
                 <DisplayerMap store={postStoreObj} />
             </DisplayerContainer>
@@ -32,6 +33,15 @@ function SearchScreen() {
         </div>
     )
 }
+
+const DisplayerMap = observer(({store}) => {
+    const loadedData = store.loadedPosts;
+    return(
+        loadedData.map(({_id, postTitle, postDate, postWriter}) => (
+            <Displayer key={_id} name={`${postDate}\n${postWriter}`} img={TestImg} imgTxt={postTitle} action={"useFunction"} function={() => {screenStoreObj.GetNewScreen("PostRead",_id)}} />
+        ))
+    )
+});
 
 function ConditionalLink(props) {
     let test = 'post';
@@ -50,25 +60,27 @@ function ConditionalLink(props) {
     return(<Link to={test} onClick={onClickFunction} ><img className="PostButton" alt="PostIcon" src={postIcon} /></Link>)
 }
 
-function GetAllPostsQuery() {
-    return(
-        gql`
-        query GetPosts {
-            getAllPosts {
-                _id
-                postTitle
-                postDate
-                postWriter
-            }
+const GetPostsbyTitleQuery = gql`
+    query GetPostsbyTitlePaginated($postTitle: String!, $offset: Int!, $limit: Int!) {
+        getPostsbyTitlePaginated(postTitle: $postTitle, offset: $offset, limit: $limit) {
+            _id
+            postTitle
+            postDate
+            postWriter
         }
-    `)
-}
+    }
+`
 
 function GetAllPostsButton() {
-    const [getAllPost, {loading, error}] = useLazyQuery(GetAllPostsQuery(),{
-        onCompleted: (data) => {
+    const [getPostsbyTitle, {loading, error}] = useLazyQuery(GetPostsbyTitleQuery, {
+        variables: {
+            postTitle: searchStoreObj.curKeyword,
+            offset: searchStoreObj.offset,
+            limit: searchStoreObj.limit
+        },
+        onCompleted: (data) =>{
             postStoreObj.ClearPostStack();
-            postStoreObj.PushPostStack(data?.getAllPosts); 
+            postStoreObj.PushPostStack(data?.getPostsbyTitlePaginated);
         },
         fetchPolicy: 'network-only'
     });
@@ -81,22 +93,13 @@ function GetAllPostsButton() {
     return(
         <button className="LoadButton" onClick={
             () => {
-                getAllPost();
+                searchStoreObj.ExtendLimit();
+                getPostsbyTitle();
             }
         }>
                 <img className="LoadButtonImg" alt="PostIcon" src={FetchIcon}  />
         </button>
     )
 }
-
-const DisplayerMap = observer(({store}) => {
-    const loadedData = store.loadedPosts;
-    return(
-        loadedData.slice().reverse().map(({_id, postTitle, postDate, postWriter}) => (
-            <Displayer key={_id} name={`${postDate}\n${postWriter}`} img={TestImg} imgTxt={postTitle} action={"useFunction"} function={() => {screenStoreObj.GetNewScreen("PostRead",_id)}} />
-        ))
-    )
-});
-
 
 export { SearchScreen }

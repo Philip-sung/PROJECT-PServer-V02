@@ -24,8 +24,9 @@ const typeDefs = gql`
         getUserInfo(userID: String!, userPW: String!) : Auth
 
         getAllPosts: [Post],
+        getPostsbyTitlePaginated(postTitle: String!, offset: Int!, limit: Int!): [Post],
+        getPostsbyTitle(postTitle: String!): [Post],
         getPostbyID(postID: String!): Post,
-        getPostsbyTitle(postTitle: String!): [Post]
     },
     type Mutation {
         createUser(

@@ -18,17 +18,25 @@ const resolvers = {
         },
 
         getAllPosts : async () => {
-            const posts = await Post.find({});
+            const posts = await Post.find({}).sort({ postDate : -1 });
             return posts;
+        },
+        getPostsbyTitlePaginated : async (parent, args, contextValue, info) => {
+            const query = new RegExp(args.postTitle);
+            const posts = await Post.find({postTitle: query})
+                .sort({ postDate : -1 })
+                .skip(args.offset)
+                .limit(args.limit);
+            return posts
+        },
+        getPostsbyTitle : async (parent, args, contextValue, info) => {
+            const query = new RegExp(args.postTitle);
+            const posts = await Post.find({postTitle: query}).sort({ postDate : -1 });
+            return posts
         },
         getPostbyID : async (parent, args, contextValue, info) => {
             const posts = await Post.findById(args.postID);
             return posts;
-        },
-        getPostsbyTitle : async (parent, args, contextValue, info) => {
-            const query = new RegExp(args.postTitle);
-            const posts = await Post.find({postTitle: query});
-            return posts
         }
     },
     Mutation: {

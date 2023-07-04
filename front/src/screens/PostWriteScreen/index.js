@@ -30,10 +30,8 @@ function PostWriteScreen (){
                 <PostButton title={title} content={mdText} />
             </div>
             <div className="Board" data-color-mode="dark">
-                <MDEditor height="100%" value={mdText} onChange={SetMDTest} />
+                <MDEditor className="Editor" enableScroll={false} height="100%" value={mdText} onChange={SetMDTest} />
             </div>
-            {title}<br/>
-            {mdText}<br/>
         </div>
     )
 }
