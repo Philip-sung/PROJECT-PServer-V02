@@ -28,38 +28,42 @@ app.use(express.json());
 app.use(express.urlencoded( {extended : false } ));
 app.use(session({
     secret: Info.encryptKey,
-    store: new MemoryStore(),
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    store: new MemoryStore({
+        checkPeriod: 86400000, // 24 hours (= 24 * 60 * 60 * 1000 ms)
+    }),
     cookie: {
-        sameSite: false,
-        path: '/',
-        httpOnly: 'true',
-        secure: 'false',
-        maxAge: null
+        maxAge: 86400000
     }
 }));
+
+//!START! : CORS CODE FOR TEST ENVIRONMENT
 app.use(cors({
     origin: "http://localhost:3001",
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
 }));
-
-app.listen(app.get('port'), () => {
-    console.log(`Server running on http://localhost:${app.get('port')}${server.graphqlPath}`);
-})
+//!END! : CORS CODE FOR TEST ENVIRONMENT
 
 app.get('/', (req,res) => {
     res.send(express.static(path.join(__dirname, '../../front/build/index.html')));
 })
 
 app.post('/setLoginInfo', (req,res) =>{
-    console.log(req.body);
-
     req.session.user = req.body;
-    console.log(req.session)
-
-    res.json({body: req.body});
+    res.json({body: req.session.user});
 })
 
-app.get('/')
+app.get('/getLoginInfo', (req,res) =>{
+    const loginInfo = req.session.user;
+    res.json({body: loginInfo});
+})
+
+app.get('/logout', (req,res) =>{
+    req.session.destroy();
+})
+
+app.listen(app.get('port'), () => {
+    console.log(`Server running on http://localhost:${app.get('port')}${server.graphqlPath}`);
+})

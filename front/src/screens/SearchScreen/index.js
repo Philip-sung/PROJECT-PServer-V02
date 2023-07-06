@@ -44,20 +44,20 @@ const DisplayerMap = observer(({store}) => {
 });
 
 function ConditionalLink(props) {
-    let test = 'post';
+    let redirection = 'post';
     let onClickFunction = function(){};
     if(userInfoStoreObj.getLoginState() === false){
         onClickFunction = function(){
             alert('Only Authorized Memebers can write posts.')
         }
-        test = '/'
+        redirection = '/'
     }
     else if(userInfoStoreObj.getLoginState() === true){
         onClickFunction = function(){
         }
-        test = 'post'
+        redirection = 'post'
     }
-    return(<Link to={test} onClick={onClickFunction} ><img className="PostButton" alt="PostIcon" src={postIcon} /></Link>)
+    return(<Link to={redirection} onClick={onClickFunction} ><img className="PostButton" alt="PostIcon" src={postIcon} /></Link>)
 }
 
 const GetPostsbyTitleQuery = gql`

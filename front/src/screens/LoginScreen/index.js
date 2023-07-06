@@ -86,11 +86,11 @@ function LoginButton(props) {
                     alert('Invalid ID or Password');
                 }
                 else if(data?.getUserInfo.userID === IDPW.ID){
-                    userInfoStoreObj.toggleLogOnState();
+                    userInfoStoreObj.setStateLogin();
                     userInfoStoreObj.setUserID(data?.getUserInfo.userID);
                     userInfoStoreObj.setUserName(data?.getUserInfo.userName);
                     userInfoStoreObj.setPrivilege(data?.getUserInfo.privilege);
-                    window.fetch(Info.loginURI,{
+                    window.fetch(Info.setloginStateURI,{
                         method: "POST",
                         credentials: 'include',
                         headers: {
@@ -98,7 +98,7 @@ function LoginButton(props) {
                         },
                         body: JSON.stringify(userInfoStoreObj.GetUser())
                     }).then((res) => {
-                        res.json().then((data)=>{console.log(data.body)});
+                        //res.json().then((data)=>{console.log(data.body)});
                     })
                     navigate('/');
                 }

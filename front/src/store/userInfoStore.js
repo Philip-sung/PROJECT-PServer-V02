@@ -15,7 +15,8 @@ class userInfoStore {
         makeObservable(this,{
             loginState: observable,
             curUser: observable,
-            toggleLogOnState: action,
+            setStateLogin: action,
+            setStateLogout: action,
             getLoginState: action,
             setUserID: action,
             getUserID: action,
@@ -30,8 +31,12 @@ class userInfoStore {
         return this.curUser;
     }
 
-    toggleLogOnState() {
-        this.loginState = !this.loginState;
+    setStateLogin() {
+        this.loginState = true;
+    }
+
+    setStateLogout() {
+        this.loginState = false;
     }
 
     getLoginState() {
