@@ -12,6 +12,7 @@ import { userInfoStoreObj } from "../../store/userInfoStore";
 //Static Imports
 import Logo from '../../logo.svg';
 import './index.css';
+import Info from "../../ServiceInformation";
 
 function LoginScreen () {
 
@@ -89,6 +90,16 @@ function LoginButton(props) {
                     userInfoStoreObj.setUserID(data?.getUserInfo.userID);
                     userInfoStoreObj.setUserName(data?.getUserInfo.userName);
                     userInfoStoreObj.setPrivilege(data?.getUserInfo.privilege);
+                    window.fetch(Info.loginURI,{
+                        method: "POST",
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type':'application/json; charset=utf-8'
+                        },
+                        body: JSON.stringify(userInfoStoreObj.GetUser())
+                    }).then((res) => {
+                        res.json().then((data)=>{console.log(data.body)});
+                    })
                     navigate('/');
                 }
             }

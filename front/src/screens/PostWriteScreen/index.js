@@ -12,7 +12,7 @@ import { userInfoStoreObj } from "../../store/userInfoStore";
 function PostWriteScreen (){
     const navigate = useNavigate();
      useEffect(() => {
-         if(userInfoStoreObj.logOn === false){
+         if(userInfoStoreObj.getLoginState() === false){
              navigate('/');
              alert('Only Authorized Memebers can write posts.');
          }

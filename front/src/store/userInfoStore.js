@@ -4,18 +4,19 @@ import { makeObservable,
    } from "mobx";
 
 class userInfoStore {
-    logOn = false;
-    userID = '';
-    userName = 'NONAME';
-    privilege = 'GUEST';
+    loginState = false;
+    curUser = {
+        id: '',
+        name: 'NONAME',
+        privilege: 'GUEST'
+    }
 
     constructor() {
         makeObservable(this,{
-            logOn: observable,
-            userName: observable,
-            privilege: observable,
+            loginState: observable,
+            curUser: observable,
             toggleLogOnState: action,
-            getLogOnState: action,
+            getLoginState: action,
             setUserID: action,
             getUserID: action,
             setUserName: action,
@@ -25,36 +26,40 @@ class userInfoStore {
         });
     }
 
-    toggleLogOnState() {
-        this.logOn = !this.logOn;
+    GetUser() {
+        return this.curUser;
     }
 
-    getLogOnState() {
-        return this.logOn;
+    toggleLogOnState() {
+        this.loginState = !this.loginState;
+    }
+
+    getLoginState() {
+        return this.loginState;
     }
 
     getUserID() {
-        return this.userID;
+        return this.curUser.id;
     }
 
     setUserID(id){
-        this.userID = id;
+        this.curUser.id = id;
     }
 
     getUserName() {
-        return this.userName;
+        return this.curUser.name;
     }
 
     setUserName(name){
-        this.userName = name;
+        this.curUser.name = name;
     }
     
     setPrivilege(privilege){
-        this.privilege = privilege;
+        this.curUser.privilege = privilege;
     }
 
     getPrivilege(){
-        return this.privilege;
+        return this.curUser.privilege;
     }
 }
 

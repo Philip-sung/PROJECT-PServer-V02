@@ -4,12 +4,12 @@ import './index.css';
 
 const UserInfoView = observer(({store}) => {
 
-    const [userName, setUserName] = useState('GUEST');
+    const [userName, setUserName] = useState('NONAME');
     const [userPrivilege, setUserPrivilege] = useState('GUEST');
     // eslint-disable-next-line
-    useEffect(() => {setUserName(store.getUserName())},[store.userName]);
+    useEffect(() => {setUserName(store.getUserName())},[store.curUser.name]);
     // eslint-disable-next-line
-    useEffect(() => {setUserPrivilege(store.getPrivilege())},[store.privilege]);
+    useEffect(() => {setUserPrivilege(store.getPrivilege())},[store.curUser.privilege]);
 
     return(
         <div>

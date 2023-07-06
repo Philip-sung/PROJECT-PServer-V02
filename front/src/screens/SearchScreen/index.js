@@ -46,13 +46,13 @@ const DisplayerMap = observer(({store}) => {
 function ConditionalLink(props) {
     let test = 'post';
     let onClickFunction = function(){};
-    if(userInfoStoreObj.logOn === false){
+    if(userInfoStoreObj.getLoginState() === false){
         onClickFunction = function(){
             alert('Only Authorized Memebers can write posts.')
         }
         test = '/'
     }
-    else if(userInfoStoreObj.logOn === true){
+    else if(userInfoStoreObj.getLoginState() === true){
         onClickFunction = function(){
         }
         test = 'post'
