@@ -19,6 +19,12 @@ const typeDefs = gql`
         category: String,
         tag: String
     },
+    type Log {
+        _id: ID,
+        logTime: String!,
+        log: String!
+    },
+    
     type Query {
         getAllUsers: [Auth],
         getUserInfo(userID: String!, userPW: String!) : Auth

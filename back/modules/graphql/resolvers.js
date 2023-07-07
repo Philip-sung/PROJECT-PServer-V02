@@ -1,5 +1,6 @@
 import Auth from "./Auth/models/auth.model.js";
 import Post from "./Post/models/post.model.js";
+import Log from "./Log/models/log.model.js";
 
 const resolvers = {
     Query: {
@@ -11,8 +12,10 @@ const resolvers = {
             const curTime = new Date();
             const user = await Auth.findOne({ userID: args.userID, userPW: args.userPW });
             console.log(`Login Attempt on [ID:${args.userID}] at [${curTime.getFullYear()}.${curTime.getMonth() + 1}.${curTime.getDate()} ${curTime.getHours()}:${curTime.getMinutes()}:${curTime.getSeconds()}]`)
+            const log = await Log.create({logTime: Date(), log: `Login Attempt on [ID:${args.userID}] at [${curTime.getFullYear()}.${curTime.getMonth() + 1}.${curTime.getDate()} ${curTime.getHours()}:${curTime.getMinutes()}:${curTime.getSeconds()}]`});
             if(args.userPW === user?.userPW){
                 console.log(`*Login Attempt Above Succeeded`)
+                const log = await Log.create({logTime: Date(), log: `*Login Attempt Above Succeeded`});
             }
             return user;
         },
