@@ -37,8 +37,16 @@ function SearchScreen() {
 const DisplayerMap = observer(({store}) => {
     const loadedData = store.loadedPosts;
     return(
-        loadedData.map(({_id, postTitle, postDate, postWriter}) => (
-            <Displayer key={_id} name={`${postDate}\n${postWriter}`} img={TestImg} imgTxt={postTitle} action={"useFunction"} function={() => {screenStoreObj.GetNewScreen("PostRead",_id)}} />
+        loadedData.map(({_id, postTitle, postDate, postWriter, thumbnail}) => (
+            <Displayer 
+                key={_id}
+                name={`${postDate}\n${postWriter}`}
+                img={TestImg}
+                imgTxt={postTitle}
+                action={"useFunction"}
+                function={
+                    () => {screenStoreObj.GetNewScreen("PostRead",_id)}
+                } />
         ))
     )
 });
@@ -67,6 +75,7 @@ const GetPostsbyTitleQuery = gql`
             postTitle
             postDate
             postWriter
+            thumbnail
         }
     }
 `

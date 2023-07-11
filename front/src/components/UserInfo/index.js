@@ -3,10 +3,14 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+//Local Imports
 import { userInfoStoreObj } from "../../store/userInfoStore";
+import { screenStoreObj } from "../../store/screenStore";
 
+//Static Imports
 import './index.css';
 import Info from "../../ServiceInformation";
+import mypageIcon from "../../assets/img/MyPage.png";
 
 const UserInfoView = observer(({store}) => {
 
@@ -20,9 +24,12 @@ const UserInfoView = observer(({store}) => {
     useEffect(() => {setUserPrivilege(store.getPrivilege())},[store.curUser.privilege]);
 
     return(
-        <div>
+        <div className="UIContainer">
             {store.loginState === true?
-                <button className="LoginButton" onClick={() => {LogOut(); navigate('/');}}>LogOut</button>
+                <>
+                    <button className="LoginButton" onClick={() => {LogOut(); navigate('/');}}>LogOut</button>
+                    <button className="MyPageButton" onClick={() => {screenStoreObj.GetNewScreen("MyPage")}}><img className="MyPageIcon" src={mypageIcon} /></button>
+                </>
                  : <Link className="LoginButton" to="login" >Log In</Link>}
             <div><small style={{fontSize:10}}><strong>{userName}</strong></small></div>
             <div><small style={{fontSize:10}}>{userPrivilege}</small></div>

@@ -38,41 +38,6 @@
     filter: brightness(150%);
 }
 
-.LoginButton {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-
-    width: 45px;
-    height: 25px;
-
-    background-color: var(--highlight);
-    color: var(--text);
-    border-style: none;
-    border-radius: 20px;
-
-    font-weight: 700;
-    font-size: 11px;
-    line-height: 25px;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    cursor: default;
-}
-
-.LoginButton:hover {
-    filter: brightness(150%);
-}
-
-.LoginButton >a {
-    width: 70px;
-    height: 30px;
-    color: #fff;
-    text-decoration: none;
-    cursor: default;
-}
-
 @media (max-width: 800px) {
     .NavigationBar {
         position: fixed;

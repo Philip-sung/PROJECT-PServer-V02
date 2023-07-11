@@ -7,6 +7,7 @@ import { ReservationScreen } from "../../screens/ReservationScreen/index";
 import { OnGoingScreen } from "../../screens/OnGoingScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
 import { PostReadScreen } from "../../screens/PostReadScreen";
+import { MyPageScreen } from "../../screens/MyPageScreen";
 import { Clock } from "../Clock";
 
 //Static Imports
@@ -52,6 +53,11 @@ const ViewAreaScreenManager = observer(({store}) => {
     else if (store.currentScreen.screenName === "PostRead"){
         return (
             <PostReadScreen postID={store.currentScreen.screenID} />
+        )
+    }
+    else if (store.currentScreen.screenName === "MyPage"){
+        return (
+            <MyPageScreen />
         )
     }
 
