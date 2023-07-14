@@ -1,9 +1,11 @@
 import Auth from "./Auth/models/auth.model.js";
 import Post from "./Post/models/post.model.js";
 import Log from "./Log/models/log.model.js";
+import Project from "./Project/models/project.model.js";
 
 const resolvers = {
     Query: {
+        //Auth
         getAllUsers : async () => {
             const users = await Auth.find({});
             return users;
@@ -19,7 +21,7 @@ const resolvers = {
             }
             return user;
         },
-
+        //Post
         getAllPosts : async () => {
             const posts = await Post.find({}).sort({ postDate : -1 });
             return posts;
@@ -40,6 +42,11 @@ const resolvers = {
         getPostbyID : async (parent, args, contextValue, info) => {
             const posts = await Post.findById(args.postID);
             return posts;
+        },
+        //Project
+        getProjectsbyStatus : async (parent, args, contextValue, info) => {
+            const projects = await Project.find({status: args.status});
+            return projects;
         }
     },
     Mutation: {
@@ -67,5 +74,44 @@ const resolvers = {
         }
     }
 }
+
+/*
+function insertNew(){
+const newProject = new Project({
+    title: "DatePlaylist",
+    status: "inProgress",
+    funding: 0,
+    started: "2023-01-01",
+    completed: "",
+    progress: 10,
+    privilege: "Family",
+    link: "DatePlaylist.com",
+    member: ["SungChun", "SungPhil"],
+    tech: ["ReactNative","Mobx","AWS"],
+    thumbnail: "Daply"
+});
+newProject.save();}
+
+insertNew();
+
+
+function insertCompleted(){
+const newProject = new Project({
+    title: "BioIndel",
+    status: "Completed",
+    funding: 0,
+    started: "2023-01-01",
+    completed: "2023-04-01",
+    progress: 100,
+    privilege: "Best Friend",
+    link: "BioIndel.com",
+    member: ["SeokHoon Lee", "SungPhil"],
+    tech: ["Python"],
+    thumbnail: "BioIndel"
+});
+newProject.save();}
+
+insertCompleted();*/
+
 
 export default resolvers;

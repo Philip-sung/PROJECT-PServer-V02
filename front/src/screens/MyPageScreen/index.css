@@ -1,48 +1,60 @@
+@import "../../styles/colorTheme.css";
+
 .MyPageLayout {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     height: 100%;
+
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+}
+
+.MypageHeader {
+    margin: 15px;
+    height: auto;
+
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 
 .MyPageUser {
+    margin-top: 40px;
+    margin-bottom: 40px;
     flex:0.2;
-    background-color: violet;
+    width: 100%;
+
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
 }
 
 .MyPageInfo {
     flex:0.8;
+    flex-wrap: wrap;
+    width: 99%;
 
     display: flex;
     flex-direction: row;
-    background-color: beige;
 }
 
-.MyPageAlarm{
-    flex: 0.4;
+.MyPageNotice{
+    flex: 1;
+    width: 50%;
 
     display: flex;
     flex-direction: column;
-    background-color: red;
 }
 
 .MyPageProject {
-    flex:0.6;
+    flex: 1;
+    width: 70%;
     
     display: flex;
     flex-direction: column;
-    background-color: yellow;
-}
-
-.MyProjects {
-    flex:0.3;
-    
-    display: flex;
-    flex-direction: row;
-    background-color: green;
-}
-
-.ProjectWindow {
-    flex:0.7;
-    background-color: purple;
 }

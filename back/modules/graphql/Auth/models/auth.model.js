@@ -5,7 +5,8 @@ const authSchema = new Schema({
     userPW: String,
     userName: String,
     credit: Number,
-    privilege: String
+    privilege: String,
+    project: [String]
 })
 
 const Auth = model('auth', authSchema);

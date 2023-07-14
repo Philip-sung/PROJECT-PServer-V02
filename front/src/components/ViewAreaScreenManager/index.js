@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 //Local Imports
 import { SearchScreen } from "../../screens/SearchScreen/index";
 import { ReservationScreen } from "../../screens/ReservationScreen/index";
-import { OnGoingScreen } from "../../screens/OnGoingScreen/index";
+import { InProgressScreen } from "../../screens/InProgressScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
 import { PostReadScreen } from "../../screens/PostReadScreen";
 import { MyPageScreen } from "../../screens/MyPageScreen";
@@ -40,9 +40,9 @@ const ViewAreaScreenManager = observer(({store}) => {
             <ReservationScreen />
         )
     }
-    else if (store.currentScreen.screenName === "OnGoing"){
+    else if (store.currentScreen.screenName === "InProgress"){
         return (
-            <OnGoingScreen />
+            <InProgressScreen />
         )
     }
     else if (store.currentScreen.screenName === "Works"){

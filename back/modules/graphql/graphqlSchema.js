@@ -7,7 +7,8 @@ const typeDefs = gql`
         userPW: String!,
         userName: String!,
         credit: Int!,
-        privilege: String!
+        privilege: String!,
+        project: [String]
     },
     type Post {
         _id: ID!,
@@ -24,6 +25,20 @@ const typeDefs = gql`
         logTime: String!,
         log: String!
     },
+    type Project {
+        _id: ID,
+        title: String,
+        status: String,
+        funding: Int,
+        started: String,
+        completed: String,
+        progress: Int,
+        privilege: String,
+        link: String,
+        member: [String],
+        tech: [String],
+        thumbnail: String
+    },
     
     type Query {
         getAllUsers: [Auth],
@@ -33,7 +48,10 @@ const typeDefs = gql`
         getPostsbyTitlePaginated(postTitle: String!, offset: Int!, limit: Int!): [Post],
         getPostsbyTitle(postTitle: String!): [Post],
         getPostbyID(postID: String!): Post,
+
+        getProjectsbyStatus(status: String): [Project],
     },
+
     type Mutation {
         createUser(
             userID: String!, 

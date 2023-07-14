@@ -17,16 +17,13 @@ import postIcon from "../../assets/img/PostIcon.png";
 import FetchIcon from "../../assets/img/FetchIcon_Combined.png";
 import "./index.css";
 
-//Imports for Tests
-import TestImg from "../../assets/img/test.jpg"
-
 function SearchScreen() {
 
     return (
         <div className="SearchScreen">
             <SearchBar />
             <DisplayerContainer>
-                <DisplayerMap store={postStoreObj} />
+                <DisplayerPostMap store={postStoreObj} />
             </DisplayerContainer>
             <GetAllPostsButton />
             <ConditionalLink />
@@ -34,14 +31,14 @@ function SearchScreen() {
     )
 }
 
-const DisplayerMap = observer(({store}) => {
+const DisplayerPostMap = observer(({store}) => {
     const loadedData = store.loadedPosts;
     return(
         loadedData.map(({_id, postTitle, postDate, postWriter, thumbnail}) => (
             <Displayer 
                 key={_id}
                 name={`${postDate}\n${postWriter}`}
-                img={TestImg}
+                img={thumbnail}
                 imgTxt={postTitle}
                 action={"useFunction"}
                 function={

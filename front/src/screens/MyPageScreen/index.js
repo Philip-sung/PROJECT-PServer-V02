@@ -1,5 +1,7 @@
 //Local Imports
 import { TransitionObject } from "../../components/TransitionObj";
+import { NoticeOutline } from "../../components/Notice";
+import { ProjectOutline } from "../../components/ProjectOutline";
 
 //Static Imports
 import "./index.css";
@@ -9,24 +11,20 @@ function MyPageScreen() {
         <TransitionObject>
             <div className="MyPageLayout">
                 <div className="MyPageUser">
-                    Philip Sung : Owner of Philipsung.com
+                    Philip Sung
                 </div>
                 <div className="MyPageInfo">
-                    <div className="MyPageAlarm">
-                        Notice
+                    <div className="MyPageNotice">
+                        <NoticeOutline />
                     </div>
                     <div className="MyPageProject">
-                        <div className="MyProjects">
-                            MY Projects
-                        </div>
-                        <div className="ProjectWindow">
-                            Project Information
-                        </div>
+                        <ProjectOutline />
                     </div>
                 </div>
             </div>
         </TransitionObject>
     )
 }
+
 
 export {MyPageScreen};

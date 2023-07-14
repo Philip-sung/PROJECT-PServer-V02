@@ -1,0 +1,97 @@
+@import "../../styles/colorTheme.css";
+
+.ProjectContainer {
+    height: 85vh;
+}
+
+.ProjectOutlineHeader {
+    margin: 15px;
+
+    height: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.ProjectSelectContainer {
+    margin: 3px;
+    flex:0.3;
+    height:30%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+    
+    border-style: solid;
+    border-color: var(--bright);
+    border-width: 1px;
+    border-radius: 15px;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.ProjectProvider {
+    width: 95%;
+    height: 100%;
+    margin:10px;
+    display:flex;
+    flex-direction: row;
+    
+    overflow: scroll;
+}
+
+.ProjectProvider::-webkit-scrollbar:horizontal{
+    display:block;
+    height:6px;
+    overflow: auto;
+    background-color: var(--main);
+}
+.ProjectProvider::-webkit-scrollbar-thumb:horizontal{
+    height:5px;
+    border-radius: 10px;
+    background: var(--gray);
+}
+
+.ProjectSelectBox {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5px;
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1 / 1;
+
+    background-color: var(--dark);
+    border-width: 1px;
+    border-color: var(--bright);
+    border-style: solid;
+    border-radius: 10px;
+}
+
+
+
+.ProjectInfoContainer {
+    margin: 3px;
+    flex:0.7;
+    height:69%;
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+    
+    border-style: solid;
+    border-color: var(--bright);
+    border-width: 1px;
+    border-radius: 15px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.ProjectInfo {
+    height: 90%;
+}

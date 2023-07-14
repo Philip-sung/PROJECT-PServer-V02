@@ -20,7 +20,7 @@ function Displayer(props) {
         return(
             <TransitionObject>
                     <Link className="Displayer" to={link}>
-                        <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
+                        <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} alt="DisplayerImg" />
                         <div className="onImgText">{onImgText}</div>
                         <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
                             <React.Fragment key={index}>{text}<br /></React.Fragment>)}
@@ -39,7 +39,7 @@ function Displayer(props) {
     return(
         <TransitionObject>
                 <div className="Displayer" onClick={action}>
-                    <img className="DisplayerImg" src={projectImg} alt="DisplayerImg" />
+                    <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} alt="DisplayerImg" />
                     <div className="onImgText">{onImgText}</div>
                     <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
                         <React.Fragment key={index}>{text}<br /></React.Fragment>)}
