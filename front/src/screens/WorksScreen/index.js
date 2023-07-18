@@ -32,22 +32,23 @@ query GetProjectsbyStatus($status: String) {
         title
         status
         thumbnail
+        description
     }
 }
 `
 
 function DisplayerWorkMap() {
-const {loading, error, data} = useQuery(GetCompletedProjects,{
+const {data} = useQuery(GetCompletedProjects,{
     variables: {
         status: "Completed"
     },
     fetchPolicy: 'network-only'
 })
 return(
-    data?.getProjectsbyStatus.map(({_id, title, thumbnail}) => (
+    data?.getProjectsbyStatus.map(({_id, title, thumbnail,description}) => (
         <Displayer 
             key={_id}
-            name={`[${title}]`}
+            name={`[${title}]${description}`}
             img={thumbnail}
             action={"useFunction"}
             function={

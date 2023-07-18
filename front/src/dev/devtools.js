@@ -1,7 +1,7 @@
 import { screenStoreObj } from '../store/screenStore';
 
 function DevReport () {
-    console.log("**Developers' Report**");
+    console.log("[DEV]Developer Report");
     screenStoreObj.Report();
 }
 

@@ -1,0 +1,104 @@
+@import "../../styles/colorTheme.css";
+
+.AddProjectScreen {
+    display: flex;
+
+    height: 100%;
+    min-height: 100vh;
+
+    background-color: var(--main);
+
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.AddThumbnail {
+    margin: 20px;
+    height: 30vh;
+    width: 45vh;
+
+    display: flex;
+    border-style: dotted;
+    border-color: var(--bright);
+    border-radius: 20px;
+    border-width: 2px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text);
+}
+
+.AddProjectInput {
+    margin: 1vh;
+    width: 50%;
+    height: 6vh;
+
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 30px;
+    border-style: none;
+
+    color: var(--text);
+    font-size: 15px;
+    text-align: center;
+}
+
+.AddProjectInput:focus {
+    color:var(--highlight);
+    outline: none;
+}
+
+.ProjectProposalSubmit {
+    width: 100%;
+    margin: 3vh;
+
+}
+
+.AddProjectButton {
+    width: 50%;
+    margin: 3vh;
+    height: 5vh;
+
+    text-decoration: none;
+    background-color: var(--highlight);
+    border-radius: 30px;
+    border-style: none;
+
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.AddProjectButton:hover {
+    filter: brightness(130%);
+}
+
+.Warning {
+    height: 2vh;
+    color: var(--warning);
+}
+
+@media (max-width: 800px){
+    .AddProjectInput {
+        margin: 1vh;
+        width: 75%;
+        height: 6vh;
+    
+        text-decoration: none;
+        background-color: rgba(0,0,0,0.4);
+        border-radius: 30px;
+        border-style: none;
+    
+        color: var(--text);
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .AddProjectButton {
+        width: 75%;
+    }
+}

@@ -10,4 +10,5 @@
     --transparentBlack: rgba(0,0,0,0.6);
     --transparentWhite: rgba(255,255,255,0.1);
     --transparent: rgba(0,0,0,0);
+    --warning: #fa1a1a;
 }

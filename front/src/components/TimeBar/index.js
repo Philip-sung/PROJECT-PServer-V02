@@ -30,17 +30,17 @@ const TimeBlock = observer(({store, hour}) => {
     let selected = false;
 
     function selectTime() {
-        console.log(`Selected Time : ${hour} `);
+        console.log(`[SYSTEM]Selected Time : ${hour} `);
         if(store.isStartTimeSelected === false){
             store.SetStartTimeInSelectedDate(hour);
             store.SetEndTimeInSelectedDate(hour);
-            console.log(`Starting Time Set to : ${store.selectedStartTime}`);
+            console.log(`[SYSTEM]Starting Time Set to : ${store.selectedStartTime}`);
             store.SetIsStartTimeSelected();
             store.SetIsEndTimeNotSelected();
         }
         else if(store.isEndTimeSelected === false){
             store.SetEndTimeInSelectedDate(hour);
-            console.log(`Ending Time Set to : ${store.selectedEndTime}`);
+            console.log(`[SYSTEM]Ending Time Set to : ${store.selectedEndTime}`);
             store.SetIsEndTimeSelected();
             store.SetIsStartTimeNotSelected();
             if(store.selectedStartTime > store.selectedEndTime){

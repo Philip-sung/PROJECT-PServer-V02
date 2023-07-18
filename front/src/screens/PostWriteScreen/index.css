@@ -68,3 +68,43 @@ input::placeholder {
  .Editor {
     white-space: pre-wrap;
  }
+
+ .SelectThumbnailContainer {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+ }
+ 
+ .SelectThumbnail {
+    padding: 3px;
+    margin: 5px;
+
+    cursor: default;
+    display: flex;
+    border-style: solid;
+    border-color: var(--bright);
+    border-radius: 20px;
+    border-width: 1px;
+
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+ }
+
+ .SelectThumbnailClicked {
+    padding: 3px;
+    margin: 5px;
+
+    cursor: default;
+    display: flex;
+    border-style: solid;
+    border-color: var(--bright);
+    border-radius: 20px;
+    border-width: 1px;
+    background-color: var(--bright);
+    color: var(--dark);
+
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+ }

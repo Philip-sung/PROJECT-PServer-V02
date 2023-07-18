@@ -18,7 +18,7 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-await server.start(console.log('Apollo server started successfully'));
+await server.start(console.log('[INIT]Apollo server started successfully'));
 server.applyMiddleware({app});
 
 app.set('port', 3000)
@@ -65,5 +65,5 @@ app.get('/logout', (req,res) =>{
 })
 
 app.listen(app.get('port'), () => {
-    console.log(`Server running on http://localhost:${app.get('port')}${server.graphqlPath}`);
+    console.log(`[INIT]Server running on http://localhost:${app.get('port')}${server.graphqlPath}`);
 })

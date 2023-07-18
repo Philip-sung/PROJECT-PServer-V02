@@ -39,7 +39,7 @@ class screenStore {
     GetPrevScreen() {
         if(this.prevScreens.length === 0) {
             alert("Initial Page");
-            console.log("WELCOME : INITIAL PAGE");
+            console.log("[USER]WELCOME : INITIAL PAGE");
         }
         else if (this.prevScreens.length > 0) {
             this.currentScreen = this.prevScreens.pop();
@@ -49,8 +49,8 @@ class screenStore {
     }
 
     Report() {
-        console.log(`{Current Screen : ${this.currentScreen}}`)
-        console.log(`{Previous Screens : ${this.prevScreens}}`)
+        console.log(`[DEV]{Current Screen : ${this.currentScreen.screenName}:${this.currentScreen.screenID}}`)
+        console.log(`[DEV]{Previous Screens`, this.prevScreens)
     }
 
     get CurrentScreen() {

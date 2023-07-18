@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 const projectSchema = new Schema({
     title: String,
+    designer: String,
     status: String,
     funding: Number,
     started: String,
@@ -11,7 +12,9 @@ const projectSchema = new Schema({
     link: String,
     member: [String],
     tech: [String],
-    thumbnail: String
+    thumbnail: String,
+    description: String,
+    reference: String
 })
 
 const Project = model('project', projectSchema);

@@ -12,14 +12,13 @@ import "./index.css"
 
 function InProgressScreen() {
 
-    
     return (
         <div className="InProgressScreen">
             <TransitionObject>
                 <div style={{margin: 10, fontWeight: 700}}>IN PROGRESS</div>
             </TransitionObject>
             <DisplayerContainer>
-                <Displayer name={"ADD NEW PROJECT"} img={"add"} action={"Link"} LinkTo={"addProject"} />
+                <Displayer name={"PROPOSE NEW PROJECT"} img={"add"} action={"Link"} LinkTo={"addProject"} />
                 <DisplayerWorkMap />
             </DisplayerContainer>
         </div>
@@ -33,6 +32,7 @@ const GetInProgressProjects = gql`
             title
             status
             thumbnail
+            description
         }
     }
 `
@@ -45,10 +45,10 @@ function DisplayerWorkMap() {
         fetchPolicy: 'network-only'
     })
     return(
-        data?.getProjectsbyStatus.map(({_id, title, thumbnail}) => (
+        data?.getProjectsbyStatus.map(({_id, title, thumbnail, description}) => (
             <Displayer 
                 key={_id}
-                name={`[${title}]`}
+                name={`[${title}]${description}`}
                 img={thumbnail}
                 action={"useFunction"}
                 function={

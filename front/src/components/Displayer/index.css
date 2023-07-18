@@ -31,7 +31,7 @@
     height:80%;
     display: flex;
     object-fit:cover;
-    filter: brightness(100%);
+    filter: brightness(80%);
 }
 
 .onImgText {
@@ -51,6 +51,7 @@
     align-items: center;
 
     font-size: 1.3vh;
+    white-space: nowrap;
 }
 
 .DisplayerContainer {

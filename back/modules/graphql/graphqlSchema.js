@@ -28,6 +28,7 @@ const typeDefs = gql`
     type Project {
         _id: ID,
         title: String,
+        designer: String,
         status: String,
         funding: Int,
         started: String,
@@ -37,12 +38,15 @@ const typeDefs = gql`
         link: String,
         member: [String],
         tech: [String],
-        thumbnail: String
+        thumbnail: String,
+        description: String,
+        reference: String,
     },
     
     type Query {
         getAllUsers: [Auth],
-        getUserInfo(userID: String!, userPW: String!) : Auth
+        getUser(userID: [String]): [Auth],
+        getUserInfo(userID: String!, userPW: String!): Auth
 
         getAllPosts: [Post],
         getPostsbyTitlePaginated(postTitle: String!, offset: Int!, limit: Int!): [Post],
@@ -50,6 +54,7 @@ const typeDefs = gql`
         getPostbyID(postID: String!): Post,
 
         getProjectsbyStatus(status: String): [Project],
+        getAllProjects : [Project],
     },
 
     type Mutation {
@@ -57,7 +62,7 @@ const typeDefs = gql`
             userID: String!, 
             userPW: String!, 
             userName: String!
-        ) : Auth
+        ) : Auth,
         createPost(
             postTitle: String!,
             postContent: String!,
@@ -66,7 +71,23 @@ const typeDefs = gql`
             thumbnail: String,
             category: String,
             tag: String
-        ) :  Post
+        ) :  Post,
+        createProject(
+            title: String,
+            designer: String,
+            status: String,
+            funding: Int,
+            started: String,
+            completed: String,
+            progress: Int,
+            privilege: String,
+            link: String,
+            member: [String],
+            tech: [String],
+            thumbnail: String,
+            description: String,
+            reference: String,
+        ) : Project
     }
 `;
 

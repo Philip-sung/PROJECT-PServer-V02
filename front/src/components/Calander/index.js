@@ -127,7 +127,7 @@ const CurTimeStore = observer(({store, children, year, month, date}) => {
         store.SetIsDateNotSelected();
         store.SetTime(year, month, date, 0, 0, 0);
         store.SetIsDateSelected();
-        console.log(`Selected Date : ${store.selectedTime}`)
+        console.log(`[SYSTEM]Selected Date : ${store.selectedTime}`)
         store.SetDayMarker(date);
     }
 
