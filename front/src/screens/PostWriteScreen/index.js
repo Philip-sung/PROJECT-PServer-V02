@@ -24,7 +24,7 @@ function PostWriteScreen (){
 
     const [mdText,SetMDTest] = useState("");
     const [title, SetTitle] = useState("");
-    const [selectedThumbnail, setSelectedThumbnail] = useState("");
+    const [selectedProject, setSelectedProject] = useState("");
 
     
     return (
@@ -32,12 +32,12 @@ function PostWriteScreen (){
             <div className="Header">
                 <div className="ButtonContainer"><Link to={"/"}><img className="Icon" src={backIcon} alt="Back"/></Link></div>
                 <input className="Title" type="text" placeholder="(POST TITLE)" value={title} onChange={(e)=>{SetTitle(e.target.value)}}></input>
-                <PostButton title={title} content={mdText} thumbnail={selectedThumbnail} />
+                <PostButton title={title} content={mdText} project={selectedProject} />
             </div>
-            <div className="SelectThumbnailContainer">
-                <div key="default" className={selectedThumbnail === "default" ? "SelectThumbnailClicked" : "SelectThumbnail" } 
-                    onClick={() => {setSelectedThumbnail(`default`)}}>default</div>
-                <SelectThumbnail curThumb={selectedThumbnail} setFunction={setSelectedThumbnail} />
+            <div className="SelectProjectContainer">
+                <div key="default" className={selectedProject === "default" ? "SelectProjectClicked" : "SelectProject" } 
+                    onClick={() => {setSelectedProject(`default`)}}>default</div>
+                <SelectProject curProject={selectedProject} setFunction={setSelectedProject} />
             </div>
             <div className="Board" data-color-mode="dark">
                 <MDEditor className="Editor" enableScroll={false} height="100%" value={mdText} onChange={SetMDTest} />
@@ -46,7 +46,7 @@ function PostWriteScreen (){
     )
 }
 
-function PostQuery(title, content, thumbnail){
+function PostQuery(title, content, project){
     const writer = userInfoStoreObj.getUserID();
     const contentString = encodeURI(content);
     const curTime = new Date();
@@ -64,13 +64,13 @@ function PostQuery(title, content, thumbnail){
                     postContent: "${contentString}"
                     postDate: "${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}",
                     postWriter: "${writer}",
-                    thumbnail: "${thumbnail}"
+                    project: "${project}"
                 ) {
                     postTitle
                     postContent
                     postDate
                     postWriter
-                    thumbnail
+                    project
                 }
             }
         `
@@ -79,7 +79,7 @@ function PostQuery(title, content, thumbnail){
 
 function PostButton(props){
     const navigate = useNavigate();
-    const [addPost, {loading, error}] = useMutation(PostQuery(props.title, props.content, props.thumbnail));
+    const [addPost, {loading, error}] = useMutation(PostQuery(props.title, props.content, props.project));
 
     if(loading){
     }
@@ -96,7 +96,7 @@ function PostButton(props){
                 else if(props.content === ''){
                     alert("Please Enter Post Content");
                 }
-                else if(props.thumbnail === ''){
+                else if(props.project === ''){
                     alert("Please Select Related Project");
                 }
                 else{
@@ -118,13 +118,13 @@ const GetAllProjectsTitle = gql`
     }
 `
 
-function SelectThumbnail(props) {
+function SelectProject(props) {
 
     const {data} = useQuery(GetAllProjectsTitle);
 
     return(
         data?.getAllProjects.map(({_id, title}) => (
-            <div key={_id} className={props.curThumb === title ? "SelectThumbnailClicked" : "SelectThumbnail" } 
+            <div key={_id} className={props.curProject === title ? "SelectProjectClicked" : "SelectProject" } 
                 onClick={() => {
                     props.setFunction(`${title}`)
                 }}>{title}</div>

@@ -16,7 +16,7 @@ const typeDefs = gql`
         postContent: String!,
         postDate: String!,
         postWriter: String!,
-        thumbnail: String,
+        project: String,
         category: String,
         tag: String
     },
@@ -42,10 +42,20 @@ const typeDefs = gql`
         description: String,
         reference: String,
     },
+    type Notice {
+        _id: ID,
+        project: String,
+        title: String,
+        from: String,
+        to: String,
+        content: String,
+        time: String,
+    },
     
     type Query {
         getAllUsers: [Auth],
-        getUser(userID: [String]): [Auth],
+        getUser(userID: String): Auth,
+        getUsers(userID: [String]): [Auth],
         getUserInfo(userID: String!, userPW: String!): Auth
 
         getAllPosts: [Post],
@@ -54,7 +64,10 @@ const typeDefs = gql`
         getPostbyID(postID: String!): Post,
 
         getProjectsbyStatus(status: String): [Project],
-        getAllProjects : [Project],
+        getProjectbyTitle(title: String): Project,
+        getAllProjects: [Project],
+
+        getUserNotice(userID: String): [Notice],
     },
 
     type Mutation {
@@ -68,7 +81,7 @@ const typeDefs = gql`
             postContent: String!,
             postDate: String!,
             postWriter: String!,
-            thumbnail: String,
+            project: String,
             category: String,
             tag: String
         ) :  Post,
@@ -87,7 +100,10 @@ const typeDefs = gql`
             thumbnail: String,
             description: String,
             reference: String,
-        ) : Project
+        ) : Project,
+        deleteNotice(
+            _id: ID,
+        ) : Notice,
     }
 `;
 

@@ -51,14 +51,36 @@
     border-style: none;
 }
 
-.MyPageButton:hover {
-    filter:invert();
-}
-
 .MyPageIcon {
     width: 40px;
     width: 40px;
     background-color: rgba(0,0,0,0);
+}
+
+.MyPageIcon:hover {
+    filter:invert();
+}
+
+.NoticeAlarm {
+    margin-bottom: -15px;
+    display: flex;
+    position: relative;
+    top: -45px;
+    right: -25px;
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: var(--warning);
+    border-radius: 30px;
+
+    color: var(--bright);
+    justify-content: center;
+    align-items: center;
+}
+
+.NoticeAlarmOff {
+    display: none;
 }
 
 .creditButton {

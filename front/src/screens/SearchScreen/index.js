@@ -31,18 +31,49 @@ function SearchScreen() {
     )
 }
 
+const checkIfMemberOfProjectQuery = gql`
+    query CheckIfMemeberOfProject($userID: String){
+        getUser(userID: $userID){
+            project
+        }
+    }
+`
+
 const DisplayerPostMap = observer(({store}) => {
+    
     const loadedData = store.loadedPosts;
+
+    const [CheckUsersProjects] = useLazyQuery(checkIfMemberOfProjectQuery,{
+        variables: { userID: userInfoStoreObj.curUser.id },
+        fetchPolicy: 'network-only',
+        onCompleted: (data) => {
+            return data?.getUser?.project;
+        }
+    })
+    
     return(
-        loadedData.map(({_id, postTitle, postDate, postWriter, thumbnail}) => (
+        loadedData.map(({_id, postTitle, postDate, postWriter, project}) => (
             <Displayer 
                 key={_id}
-                name={`${postDate}\n${postWriter}`}
-                img={thumbnail}
+                name={`${postDate}\n[${project}]${postWriter}`}
+                img={project}
                 imgTxt={postTitle}
-                action={"useFunction"}
+                action={"UseFunction"}
                 function={
-                    () => {screenStoreObj.GetNewScreen("PostRead",_id)}
+                    async () => {
+                        let authorized = false;
+                        const result = await CheckUsersProjects();
+                        const projects = result.data.getUser.project;
+                        for(let i = 0; i < projects.length; i++){
+                            if(projects[i] === project){
+                                screenStoreObj.GetNewScreen("PostRead",_id)
+                                authorized = true;
+                            }
+                        }
+                        if(!authorized){
+                            alert(`[${project}] Project Member Only`)
+                        }
+                    }
                 } />
         ))
     )
@@ -72,7 +103,7 @@ const GetPostsbyTitleQuery = gql`
             postTitle
             postDate
             postWriter
-            thumbnail
+            project
         }
     }
 `

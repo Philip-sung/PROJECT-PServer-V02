@@ -37,6 +37,21 @@
     background: var(--gray);
 }
 
+.NoticeBarTransparent {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    margin-right:auto;
+    margin-left:auto;
+    width: 90%;
+    height: 7vh;
+
+    border-color: var(--bright);
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
 
 .NoticeBar {
     display: flex;
@@ -49,9 +64,33 @@
 
     border-color: var(--bright);
     font-size: 11px;
+    justify-content: center;
+    align-items: center;
 }
 
-.NoticeCheckbox {
+.NoticeBarInvisible{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    margin-right:auto;
+    margin-left:auto;
+    width: 90%;
+    height: 7vh;
+
+    border-color: var(--bright);
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    
+    transition: .3s ease-out;
+    opacity: 0%;
+}
+
+.NoticeBarDeleted{
+    display:none;
+}
+
+.NoticeThumbnail {
     display: flex;
     height: 95%;
     width: 10vh;
@@ -64,6 +103,26 @@
     overflow: scroll;
     align-items: center;
     justify-content: center;
+}
+
+.NoticeImg {
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    border-radius: 10px;
+}
+
+.NoticeRemover {
+    position:relative;
+    right:-2%;
+    width:20px;
+    height:20px;
+
+    visibility: hidden;
+}
+
+.NoticeBar:hover .NoticeRemover{
+    visibility: visible;
 }
 
 .NoticeContent {
@@ -88,6 +147,4 @@
     text-align: left;
     align-items: baseline;
     justify-content: center;
-
-
 }

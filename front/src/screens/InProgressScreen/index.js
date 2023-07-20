@@ -33,6 +33,7 @@ const GetInProgressProjects = gql`
             status
             thumbnail
             description
+            link
         }
     }
 `
@@ -45,15 +46,13 @@ function DisplayerWorkMap() {
         fetchPolicy: 'network-only'
     })
     return(
-        data?.getProjectsbyStatus.map(({_id, title, thumbnail, description}) => (
+        data?.getProjectsbyStatus.map(({_id, title, thumbnail, description, link}) => (
             <Displayer 
                 key={_id}
                 name={`[${title}]${description}`}
                 img={thumbnail}
-                action={"useFunction"}
-                function={
-                    () => {alert("Hello")}
-                } />
+                action={(link === "") ? "GetProjectName" : "Link"}
+                LinkTo={link} />
         ))
     )
 }

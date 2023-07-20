@@ -24,6 +24,7 @@ function GetPostbyIDQuery(postIdString) {
                 postContent
                 postDate
                 postWriter
+                project
             }
         }
     `)
@@ -40,7 +41,7 @@ function PostbyID(props) {
     return(
         <div className="PostReadScreen">
             <div className="PostHeader">
-                <div className="PostHeaderTitle">{data?.getPostbyID.postTitle}</div>
+                <div className="PostHeaderTitle">[{data?.getPostbyID.project}] {data?.getPostbyID.postTitle}</div>
             </div>
             <div className="PostData">
                 <div className="PostHeaderDate">{data?.getPostbyID.postDate}</div>

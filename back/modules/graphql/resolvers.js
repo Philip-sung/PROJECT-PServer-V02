@@ -2,6 +2,7 @@ import Auth from "./Auth/models/auth.model.js";
 import Post from "./Post/models/post.model.js";
 import Log from "./Log/models/log.model.js";
 import Project from "./Project/models/project.model.js";
+import Notice from "./Notice/models/notice.model.js";
 //import CryptoJS from 'crypto-js';
 
 const resolvers = {
@@ -12,8 +13,12 @@ const resolvers = {
             return users;
         },
         getUser : async (parent, args, contextValue, info) => {
-            const user = await Auth.find({ userID: {$in: args.userID} })
+            const user = await Auth.findOne({ userID: args.userID })
             return user;
+        },
+        getUsers : async (parent, args, contextValue, info) => {
+            const users = await Auth.find({ userID: {$in: args.userID} })
+            return users;
         },
         getUserInfo : async (parent, args, contextValue, info) => {
             const curTime = new Date();
@@ -57,7 +62,17 @@ const resolvers = {
         getProjectsbyStatus : async (parent, args, contextValue, info) => {
             const projects = await Project.find({status: args.status});
             return projects;
-        }
+        },
+        getProjectbyTitle : async (parent, args, contextValue, info) => {
+            const project = await Project.findOne({title: args.title});
+            return project;
+        },
+
+        //Notice
+        getUserNotice: async (parent, args, contextValue, info) => {
+            const notices = await Notice.find({to: args.userID}).sort({ time : -1 });
+            return notices;
+        },
     },
     Mutation: {
         createUser: (parent, args) => {
@@ -70,19 +85,35 @@ const resolvers = {
             });
             return newAuth.save();
         },
-        createPost: (parent, args, contextValue, info) => {
+        createPost: async (parent, args, contextValue, info) => {
             const newPost = new Post({
                 postTitle: args.postTitle,
                 postContent: args.postContent,
                 postDate: args.postDate,
                 postWriter: args.postWriter,
-                thumbnail: args.thumbnail,
+                project: args.project,
                 category:args.category,
                 tag: args.tag
             });
+
+            const relatedProject = await Project.findOne({title: args.project});
+            if(relatedProject !== undefined && relatedProject !== null){
+                for(let i = 0; i < relatedProject.member.length; i++){
+                    const notice = new Notice({
+                        project: args.project,
+                        title: args.project,
+                        from: args.postWriter,
+                        to: relatedProject.member[i],
+                        content: `${args.postWriter} posted new post [${args.postTitle}] on project "${args.project}"`,
+                        time: args.postDate,
+                    })
+                    notice.save();
+                }
+            }
+
             return newPost.save();
         },
-        createProject: (parent, args, contextValue, info) => {
+        createProject: async (parent, args, contextValue, info) => {
             const newProject = new Project({
                 title: args.title,
                 designer: args.designer,
@@ -99,7 +130,27 @@ const resolvers = {
                 description: args.description,
                 reference: args.reference
             });
+
+            for(let i = 0; i < args.member.length; i++){
+                const query = { userID : args.member[i] };
+                const addProjectToUser = await Auth.findOneAndUpdate(query, { "$push": { "project": args.title }});
+                addProjectToUser.save();
+
+                const notice = new Notice({
+                    project: args.title,
+                    title: args.title,
+                    from: args.designer,
+                    to: args.member[i],
+                    content: `${args.designer} invited you to new project "${args.title}"`,
+                    time: args.started,
+                })
+                notice.save();
+            }
+
             return newProject.save();
+        },
+        deleteNotice: async(parent, args, contextValue, info) => {
+            await Notice.deleteOne({_id: args._id});
         }
     }
 }
@@ -159,6 +210,5 @@ function insertCompleted(){
     newProject.save();
 }
 insertCompleted();*/
-
 
 export default resolvers;

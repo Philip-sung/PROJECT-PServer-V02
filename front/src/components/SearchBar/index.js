@@ -33,7 +33,7 @@ const GetPostsbyTitleQuery = gql`
             postTitle
             postDate
             postWriter
-            thumbnail
+            project
         }
     }
 `

@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { gql, useQuery } from "@apollo/client";
 
 //Local Imports
 import { userInfoStoreObj } from "../../store/userInfoStore";
@@ -11,6 +12,8 @@ import { screenStoreObj } from "../../store/screenStore";
 import './index.css';
 import Info from "../../ServiceInformation";
 import mypageIcon from "../../assets/img/MyPage.png";
+import { noticeStoreObj } from "../../store/noticeStore";
+
 
 const UserInfoView = observer(({store}) => {
 
@@ -28,7 +31,11 @@ const UserInfoView = observer(({store}) => {
             {store.loginState === true?
                 <>
                     <button className="LoginButton" onClick={() => {LogOut(); navigate('/');}}>LogOut</button>
-                    <button className="MyPageButton" onClick={() => {screenStoreObj.GetNewScreen("MyPage")}}><img className="MyPageIcon" src={mypageIcon} /></button>
+                    <button className="MyPageButton" onClick={() => {screenStoreObj.GetNewScreen("MyPage")}}>
+                        <img className="MyPageIcon" src={mypageIcon} alt={"MyPageIcon"} />
+                        <NoticeAlarm store={noticeStoreObj} />
+                    </button>
+                    
                 </>
                  : <Link className="LoginButton" to="login" >Log In</Link>}
             <div><small style={{fontSize:10}}><strong>{userName}</strong></small></div>
@@ -38,11 +45,47 @@ const UserInfoView = observer(({store}) => {
 });
 
 function LogOut() {
-  window.fetch(Info.logoutURI, {credentials: 'include'});
-  userInfoStoreObj.setStateLogout();
-  userInfoStoreObj.setUserName('NONAME');
-  userInfoStoreObj.setPrivilege('GUEST');
+    window.fetch(Info.logoutURI, {credentials: 'include'});
+    userInfoStoreObj.setStateLogout();
+    userInfoStoreObj.setUserName('NONAME');
+    userInfoStoreObj.setPrivilege('GUEST');
+    screenStoreObj.GetNewScreen("");
+    window.location.reload();
 }
 
+const getUserNoticeQuery = gql`
+    query GetUserNotice($userID: String){
+        getUserNotice(userID: $userID){
+            _id
+            title
+            from
+            to
+            content
+            time
+        }
+    }
+`
+
+const NoticeAlarm = observer(({store}) => {
+    const [noticeNum, setNoticeNum] = useState(0);
+
+    const {data} = useQuery(getUserNoticeQuery,{
+        variables: {
+            userID: userInfoStoreObj.curUser.id
+        },
+        onCompleted: (data) => {
+            store.setNoticeNumber(data?.getUserNotice?.length)
+            setNoticeNum(store.noticeNumber);
+        },
+        fetchPolicy: 'network-only'
+    });
+
+    useEffect(() => {setNoticeNum(store.noticeNumber)},[store.noticeNumber])
+
+    return (
+        <div className={(noticeNum === 0)? "NoticeAlarmOff" : "NoticeAlarm"} onClick={() => {console.log(data?.getUserNotice?.length)}}>{noticeNum}</div>
+    )
+
+})
 
 export { UserInfoView };

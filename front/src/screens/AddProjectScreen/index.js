@@ -41,10 +41,10 @@ function SplitMemberString( memberStr ) {
     return memberArr;
 }
 
-const getUser =
+const getUsers =
     gql`
-        query getUser($userID: [String]) {
-            getUser(userID: $userID) {
+        query getUsers($userID: [String]) {
+            getUsers(userID: $userID) {
                 userID
             }
         }
@@ -98,14 +98,15 @@ function Submit( props ){
     const navigate = useNavigate();
     const [members, setMembers] = useState([]);
     const [memberCheck, setMemberCheck] = useState("");
-    const [checkUsers] = useLazyQuery(getUser ,{
+    const [checkUsers] = useLazyQuery(getUsers ,{
         variables: {
             userID: members
         },
+        fetchPolicy:'network-only',
         onCompleted: (data) => {
             const confirmedUser = [];
-            for(let i = 0; i < data?.getUser.length; i++){
-                confirmedUser.push(data?.getUser[i].userID)
+            for(let i = 0; i < data?.getUsers.length; i++){
+                confirmedUser.push(data?.getUsers[i].userID)
             }
             let difference = members.filter(member => !confirmedUser.includes(member));
             if(difference.length > 0){

@@ -13,10 +13,13 @@ function Displayer(props) {
     const projectName = props.name;
     const onImgText = props.imgTxt;
     const link = props.LinkTo;
-    const userFunction = props.function;
-    let action = () => {alert("Action Not defined")};
+    const action = props.action;            //Link || GetProjectName || useFunction(with function props)
+    let userFunction = props.function;      //if action == UseFunction -> define userFunction as props.function
+    const defaultFunction = () => {alert("Action Not defined")};
     
-    if (props.action === "Link") {
+    userFunction = defaultFunction;
+    
+    if (action === "Link") {
         return(
             <TransitionObject>
                     <Link className="Displayer" to={link}>
@@ -29,17 +32,21 @@ function Displayer(props) {
             </TransitionObject>
         )
     }
-    else if (props.action === "GetProjectName"){
-        action = () => {alert(projectName)}
+    else if (action === "GetProjectName"){
+        userFunction = () => {alert(`${projectName} in Processing`)}
     }
-    else if (props.action === "useFunction"){
-        action = () => {userFunction()}
+    else if (action === "UseFunction"){
+        userFunction = props.function;
+    }
+
+    const handleImgError = (e) => {
+        e.target.src = process.env.PUBLIC_URL + `/thumbnail/default.png`;
     }
 
     return(
         <TransitionObject>
-                <div className="Displayer" onClick={action}>
-                    <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} alt="DisplayerImg" />
+                <div className="Displayer" onClick={() => {userFunction()}}>
+                    <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} onError={handleImgError} alt="DisplayerImg"/>
                     <div className="onImgText">{onImgText}</div>
                     <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
                         <React.Fragment key={index}>{text}<br /></React.Fragment>)}

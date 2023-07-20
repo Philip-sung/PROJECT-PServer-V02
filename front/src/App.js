@@ -1,11 +1,11 @@
-//External Imports
-import './App.css';
-
 //Local Imports
 import { NavigationBar } from './components/Navigation';
 import { ViewArea } from './components/ViewArea';
 import Info from './ServiceInformation';
 import { userInfoStoreObj } from './store/userInfoStore';
+
+//Static Imports
+import './App.css';
 
 
 function App() {

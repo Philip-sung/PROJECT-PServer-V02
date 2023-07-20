@@ -69,13 +69,13 @@ input::placeholder {
     white-space: pre-wrap;
  }
 
- .SelectThumbnailContainer {
+ .SelectProjectContainer {
     display: flex;
     flex-direction: row;
     overflow: scroll;
  }
  
- .SelectThumbnail {
+ .SelectProject {
     padding: 3px;
     margin: 5px;
 
@@ -91,7 +91,7 @@ input::placeholder {
     font-size: small;
  }
 
- .SelectThumbnailClicked {
+ .SelectProjectClicked {
     padding: 3px;
     margin: 5px;
 
