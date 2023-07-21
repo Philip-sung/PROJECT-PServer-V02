@@ -2,7 +2,7 @@
 
 .NoticeContainer {
     margin: 3px;
-    height: 85vh;
+    height: 84vh;
 
     border-style: solid;
     border-width: 1px;
@@ -21,7 +21,7 @@
 }
 
 .NoticeProvider {
-    height: 75vh;
+    height: 75%;
     overflow: scroll;
     scrollbar-width: 2px;
 }
@@ -147,4 +147,43 @@
     text-align: left;
     align-items: baseline;
     justify-content: center;
+}
+
+@media (max-width: 800px) {
+    .NoticeContainer {
+        margin: 3px;
+        height: 84vh;
+    
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 15px;
+        border-color: var(--bright);
+    }
+        
+    .NoticeBar {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+        margin-right:auto;
+        margin-left:auto;
+        width: 90%;
+        height: 10vh;
+    
+        border-color: var(--bright);
+        font-size: 11px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .NoticeContainer {
+        margin: 3px;
+        height: 60vh;
+    
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 15px;
+        border-color: var(--bright);
+    }
 }

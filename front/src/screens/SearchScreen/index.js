@@ -55,7 +55,7 @@ const DisplayerPostMap = observer(({store}) => {
         loadedData.map(({_id, postTitle, postDate, postWriter, project}) => (
             <Displayer 
                 key={_id}
-                name={`${postDate}\n[${project}]${postWriter}`}
+                name={`${postDate}\n${postWriter}`}
                 img={project}
                 imgTxt={postTitle}
                 action={"UseFunction"}
@@ -63,9 +63,9 @@ const DisplayerPostMap = observer(({store}) => {
                     async () => {
                         let authorized = false;
                         const result = await CheckUsersProjects();
-                        const projects = result.data.getUser.project;
+                        const projects = result?.data?.getUser?.project || ["Public"];
                         for(let i = 0; i < projects.length; i++){
-                            if(projects[i] === project){
+                            if(projects[i] === project || postWriter === userInfoStoreObj.curUser.id){
                                 screenStoreObj.GetNewScreen("PostRead",_id)
                                 authorized = true;
                             }

@@ -16,6 +16,7 @@ function Displayer(props) {
     const action = props.action;            //Link || GetProjectName || useFunction(with function props)
     let userFunction = props.function;      //if action == UseFunction -> define userFunction as props.function
     const defaultFunction = () => {alert("Action Not defined")};
+    const parameter = props.parameter;
     
     userFunction = defaultFunction;
     
@@ -40,12 +41,12 @@ function Displayer(props) {
     }
 
     const handleImgError = (e) => {
-        e.target.src = process.env.PUBLIC_URL + `/thumbnail/default.png`;
+        e.target.src = process.env.PUBLIC_URL + `/thumbnail/Public.png`;
     }
 
     return(
         <TransitionObject>
-                <div className="Displayer" onClick={() => {userFunction()}}>
+                <div className="Displayer" onClick={() => {userFunction(parameter)}}>
                     <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} onError={handleImgError} alt="DisplayerImg"/>
                     <div className="onImgText">{onImgText}</div>
                     <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>

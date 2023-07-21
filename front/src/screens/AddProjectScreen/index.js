@@ -76,11 +76,11 @@ function addProjectQuery(title, members, description, reference){
                     started: "${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}",
                     completed: "",
                     progress: 0,
-                    privilege: "public",
+                    privilege: "Public",
                     link: "",
                     member: [${memberString}],
                     tech: [],
-                    thumbnail: "default",
+                    thumbnail: "Public",
                     description: "${description}",
                     reference: "${reference}",
                 ) {

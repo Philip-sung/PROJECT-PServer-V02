@@ -96,7 +96,7 @@ function NoticeBar(props) {
     })
 
     const handleImgError = (e) => {
-        e.target.src = process.env.PUBLIC_URL + `/thumbnail/default.png`;
+        e.target.src = process.env.PUBLIC_URL + `/thumbnail/Public.png`;
     }
 
     return(

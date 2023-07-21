@@ -3,6 +3,7 @@ import Post from "./Post/models/post.model.js";
 import Log from "./Log/models/log.model.js";
 import Project from "./Project/models/project.model.js";
 import Notice from "./Notice/models/notice.model.js";
+import Schedule from "./Schedule/schedule.model.js";
 //import CryptoJS from 'crypto-js';
 
 const resolvers = {
@@ -104,7 +105,7 @@ const resolvers = {
                         title: args.project,
                         from: args.postWriter,
                         to: relatedProject.member[i],
-                        content: `${args.postWriter} posted new post [${args.postTitle}] on project "${args.project}"`,
+                        content: `${args.postWriter} posted new post "${args.postTitle}" on project "${args.project}"`,
                         time: args.postDate,
                     })
                     notice.save();
@@ -151,6 +152,31 @@ const resolvers = {
         },
         deleteNotice: async(parent, args, contextValue, info) => {
             await Notice.deleteOne({_id: args._id});
+        },
+        createSchedule: async(parent, args, contextVaule, info) => {
+            const newSchedule = new Schedule({
+                project: args.project,
+                createdTime: args.createdTime,
+                startTime: args.startTime,
+                endTime: args.endTime,
+                proposer: args.proposer,
+                content: args.content,
+                member: args.member
+            })
+
+            for(let i = 0; i < args.member.length; i++){
+                const notice = new Notice({
+                    project: args.project,
+                    title: args.project,
+                    from: args.proposer,
+                    to: args.member[i],
+                    content: `${args.proposer} make new schedule "${args.content}" at ${args.startTime} - ${args.endTime}`,
+                    time: args.createdTime,
+                })
+                notice.save();
+            }
+
+            return newSchedule.save();
         }
     }
 }

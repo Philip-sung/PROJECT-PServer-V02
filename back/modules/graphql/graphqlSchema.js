@@ -51,6 +51,16 @@ const typeDefs = gql`
         content: String,
         time: String,
     },
+    type Schedule {
+        _id: ID,
+        project: String,
+        createdTime: String,
+        startTime: String,
+        endTime: String,
+        proposer: String,
+        content: String,
+        member: [String]
+    }
     
     type Query {
         getAllUsers: [Auth],
@@ -104,6 +114,15 @@ const typeDefs = gql`
         deleteNotice(
             _id: ID,
         ) : Notice,
+        createSchedule(
+            project: String,
+            createdTime: String,
+            startTime: String,
+            endTime: String,
+            proposer: String,
+            content: String,
+            member: [String]
+        ) : Schedule
     }
 `;
 

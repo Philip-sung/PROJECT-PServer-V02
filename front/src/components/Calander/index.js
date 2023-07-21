@@ -13,7 +13,7 @@ function CurrentCalander(props) {
     
     //from curTime, acquire Full Month Calander
     const curYear = curTime.getFullYear();
-    const curMonth = curTime.getMonth();
+    const curMonth = curTime.getMonth() + 1;
     const curFirstDate = new Date(curYear,curMonth,1);
     const curLastDate = new Date(curYear, curMonth + 1, 0);
     const curMonthDays = [];

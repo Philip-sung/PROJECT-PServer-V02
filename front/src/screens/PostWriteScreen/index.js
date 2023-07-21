@@ -35,8 +35,8 @@ function PostWriteScreen (){
                 <PostButton title={title} content={mdText} project={selectedProject} />
             </div>
             <div className="SelectProjectContainer">
-                <div key="default" className={selectedProject === "default" ? "SelectProjectClicked" : "SelectProject" } 
-                    onClick={() => {setSelectedProject(`default`)}}>default</div>
+                <div key="Public" className={selectedProject === "Public" ? "SelectProjectClicked" : "SelectProject" } 
+                    onClick={() => {setSelectedProject(`Public`)}}>Public</div>
                 <SelectProject curProject={selectedProject} setFunction={setSelectedProject} />
             </div>
             <div className="Board" data-color-mode="dark">
@@ -60,7 +60,7 @@ function PostQuery(title, content, project){
     return(gql`
             mutation CreatePost{
                 createPost(
-                    postTitle: "${title}",
+                    postTitle: "[${project}] ${title}",
                     postContent: "${contentString}"
                     postDate: "${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}",
                     postWriter: "${writer}",
