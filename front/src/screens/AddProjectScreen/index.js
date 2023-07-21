@@ -32,15 +32,6 @@ function AddProjectScreen() {
     )
 }
 
-function SplitMemberString( memberStr ) {
-    const memberArr = memberStr.split(',');
-    for(let i = 0; i < memberArr.length; i++){
-        memberArr[i] = memberArr[i].trim();
-    }
-
-    return memberArr;
-}
-
 const getUsers =
     gql`
         query getUsers($userID: [String]) {
@@ -92,6 +83,15 @@ function addProjectQuery(title, members, description, reference){
             }
         `
     )
+}
+
+function SplitMemberString( memberStr ) {
+    const memberArr = memberStr.split(',');
+    for(let i = 0; i < memberArr.length; i++){
+        memberArr[i] = memberArr[i].trim();
+    }
+
+    return memberArr;
 }
 
 function Submit( props ){

@@ -6,7 +6,7 @@ import { makeObservable,
 class userInfoStore {
     loginState = false;
     curUser = {
-        id: '',
+        id: 'GUEST',
         name: 'NONAME',
         privilege: 'GUEST'
     }

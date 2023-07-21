@@ -35,7 +35,8 @@ class timeStore {
             SetIsEndTimeNotSelected: action,
             SetStartTimeInSelectedDate: action,
             SetEndTimeInSelectedDate: action,
-            SetDayMarker: action
+            SetDayMarker: action,
+            GetCurrentTimeString: action
         });
     }
 
@@ -105,12 +106,17 @@ class timeStore {
         this.selectedEndTime.setHours(hours);
     }
 
-    GetCurrentTime() {
-        return this.selectedTime;
-    }
-
     SetDayMarker(date) {
         this.dayMarker = date;
+    }
+
+    GetCurrentTimeString() {
+        const curTime = new Date();
+        const Days = ['Sn','Mn','Tu','Wd','Th','Fr','St'];
+        const curDay = Days[curTime.getDay()].toString();
+        const timeString = `${curTime.getFullYear().toString().padStart(2,'0')}.${(curTime.getMonth() + 1).toString().padStart(2,'0')}.${curTime.getDate().toString().padStart(2,'0')} ${curDay} ${curTime.getHours().toString().padStart(2,'0')}:${curTime.getMinutes().toString().padStart(2,'0')}`;
+       
+        return timeString;
     }
 }
 

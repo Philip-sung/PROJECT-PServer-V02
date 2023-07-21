@@ -4,20 +4,73 @@
     margin-left: auto;
     margin-right:auto;
     width: 90%;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ReservationInput {
+    margin: 1vh;
+    width: 50%;
+    height: 5vh;
+
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 30px;
+    border-style: none;
+
+    color: var(--text);
+    font-size: 15px;
+    text-align: center;
+}
+
+.ReservationInput:focus {
+    color:var(--highlight);
+    outline: none;
+}
+
+.Warning {
+    height: 2vh;
+    color: var(--warning);
+    font-size: 15px;
+}
+
+.ReservationSubmit {
+    width: 100%;
+    margin-top: 20px;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .Submit {
-    margin-top: 40px;
-    margin-bottom: 100px;
-    width: 98.5%;
-    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    width: 50%;
+    height: 50px;
 
     background-color: var(--highlight);
     color: var(--text);
     border-style: none;
+    border-radius: 25px;
     font-weight: 700;
 }
 
 .Submit:hover {
     filter: brightness(130%);
+}
+
+@media (max-width: 800px){
+    .ReservationInput {
+        width: 95%;
+    }
+
+    .Submit {
+        width: 95%;
+    }
 }

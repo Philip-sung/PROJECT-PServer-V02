@@ -68,6 +68,7 @@ const DisplayerPostMap = observer(({store}) => {
                             if(projects[i] === project || postWriter === userInfoStoreObj.curUser.id){
                                 screenStoreObj.GetNewScreen("PostRead",_id)
                                 authorized = true;
+                                break;
                             }
                         }
                         if(!authorized){

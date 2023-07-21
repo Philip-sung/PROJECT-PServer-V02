@@ -170,7 +170,7 @@ const resolvers = {
                     title: args.project,
                     from: args.proposer,
                     to: args.member[i],
-                    content: `${args.proposer} make new schedule "${args.content}" at ${args.startTime} - ${args.endTime}`,
+                    content: `${args.proposer} make new schedule "${args.content}" on ${args.startTime} - ${args.endTime.substr(11,5)}`,
                     time: args.createdTime,
                 })
                 notice.save();
