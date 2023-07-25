@@ -64,7 +64,7 @@ const DisplayerPostMap = observer(({store}) => {
                         let authorized = false;
                         const result = await CheckUsersProjects();
                         const projects = result?.data?.getUser?.project || ["Public"];
-                        for(let i = 0; i < projects.length; i++){
+                        for(let i = 0; i <= projects.length; i++){
                             if(projects[i] === project || postWriter === userInfoStoreObj.curUser.id || project === "Public"){
                                 screenStoreObj.GetNewScreen("PostRead",_id)
                                 authorized = true;
