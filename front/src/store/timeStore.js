@@ -36,6 +36,7 @@ class timeStore {
             SetStartTimeInSelectedDate: action,
             SetEndTimeInSelectedDate: action,
             SetDayMarker: action,
+            Initialize: action, 
             GetCurrentTimeString: action
         });
     }
@@ -108,6 +109,15 @@ class timeStore {
 
     SetDayMarker(date) {
         this.dayMarker = date;
+    }
+
+    Initialize() {
+        this.isDateSelected = false;
+        this.isEndTimeSelected = false;
+        this.isStartTimeSelected = false;
+        this.selectedTime = new Date();
+        this.selectedStartTime = new Date();
+        this.selectedEndTime = new Date();
     }
 
     GetCurrentTimeString() {

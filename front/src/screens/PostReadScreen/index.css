@@ -58,6 +58,16 @@
     border-radius: 10px;
     width: 90%;
     height: 100%;
+
+    white-space: pre-wrap;
+}
+
+.visible{
+    display: block;
+}
+
+.invisible{
+    display: none;
 }
 
 @media (max-width: 800px) {

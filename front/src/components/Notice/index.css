@@ -21,7 +21,7 @@
 }
 
 .NoticeProvider {
-    height: 75%;
+    height: 80%;
     overflow: scroll;
     scrollbar-width: 2px;
 }
@@ -40,11 +40,11 @@
 .NoticeBarTransparent {
     display: flex;
     flex-direction: row;
-    margin: 10px;
+    margin: 0px;
     margin-right:auto;
     margin-left:auto;
     width: 90%;
-    height: 7vh;
+    height: 0vh;
 
     border-color: var(--bright);
     font-size: 11px;
@@ -71,11 +71,11 @@
 .NoticeBarInvisible{
     display: flex;
     flex-direction: row;
-    margin: 10px;
+    margin: 0px;
     margin-right:auto;
     margin-left:auto;
     width: 90%;
-    height: 7vh;
+    height: 0vh;
 
     border-color: var(--bright);
     font-size: 11px;

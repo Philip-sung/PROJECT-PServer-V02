@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { LoginScreen } from "../screens/LoginScreen";
 import { PostWriteScreen } from "../screens/PostWriteScreen";
+import { PostModifyScreen } from "../screens/PostModifyScreen";
 import { AddProjectScreen } from "../screens/AddProjectScreen";
 import App from "../App";
 
@@ -27,6 +28,12 @@ const pServerRouter = createBrowserRouter([
         path: "post",
         element: (
             <PostWriteScreen />
+        )
+    },
+    {
+        path: "postModify",
+        element: (
+            <PostModifyScreen />
         )
     },
     {

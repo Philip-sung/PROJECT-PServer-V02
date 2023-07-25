@@ -191,14 +191,26 @@
     word-break: break-all;
 }
 
+.ProjectScheduleMapper{
+    overflow:scroll;
+}
+
 .ProjectSchedule {
     overflow: scroll;
 }
 
 .ProjectScheduleRow {
     margin: 10px;
+    margin-bottom: 25px;
     font-size: 12px;
     text-align: left;
+}
+
+.ScheduleRowHeader{
+    display: inline-block;
+    width: 70px;
+    font-weight: 600;
+    flex-shrink: 0;
 }
 
 @media (max-width: 800px) {

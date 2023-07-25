@@ -26,11 +26,19 @@ function AddProjectScreen() {
                 <input id="description" className="AddProjectInput" type="text" placeholder="Brief Description" value={description} onChange={(e)=>{setDescription(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("member").focus()}}} />
                 <input id="member"className="AddProjectInput" type="text" placeholder="Member Recommendation(e.g. Kim, Lee, Choi)" value={member} onChange={(e)=>{setMember(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("reference").focus()}}} />
                 <input id="reference" className="AddProjectInput" type="text" placeholder="Reference" value={reference} onChange={(e)=>{setReference(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("submit").click()}}} />
-                <Submit title={title} description={description} member={member} reference={reference} />
+                <Submit title={title} description={description} member={`${userInfoStoreObj.curUser.id},` + member} reference={reference} />
             </TransitionObject>
         </div>
     )
 }
+const getProjectbyTitleQuery =
+    gql`
+        query getProjectbyTitle($title: String) {
+            getProjectbyTitle(title: $title) {
+                title
+            }
+        }
+    `
 
 const getUsers =
     gql`
@@ -86,7 +94,7 @@ function addProjectQuery(title, members, description, reference){
 }
 
 function SplitMemberString( memberStr ) {
-    const memberArr = memberStr.split(',');
+    const memberArr = memberStr?.split(',');
     for(let i = 0; i < memberArr.length; i++){
         memberArr[i] = memberArr[i].trim();
     }
@@ -97,34 +105,51 @@ function SplitMemberString( memberStr ) {
 function Submit( props ){
     const navigate = useNavigate();
     const [members, setMembers] = useState([]);
-    const [memberCheck, setMemberCheck] = useState("");
+    const [projectName, setProjectName] = useState("");
+    const [warningString, setWarningString] = useState("");
+    const [checkTitle] = useLazyQuery(getProjectbyTitleQuery, {
+        variables: {
+            title: projectName
+        },
+        fetchPolicy:'network-only',
+        onCompleted: (data) => {
+            setWarningString("");
+            if(data.getProjectbyTitle !== null || projectName === "Public"){
+                setWarningString(`Project "${projectName}" already exists.`)
+            }
+            else if(data.getProjectbyTitle === null){
+                checkUsers();
+            }
+        }
+    })
     const [checkUsers] = useLazyQuery(getUsers ,{
         variables: {
             userID: members
         },
         fetchPolicy:'network-only',
         onCompleted: (data) => {
-            const confirmedUser = [];
-            for(let i = 0; i < data?.getUsers.length; i++){
-                confirmedUser.push(data?.getUsers[i].userID)
-            }
-            let difference = members.filter(member => !confirmedUser.includes(member));
-            if(difference.length > 0){
-                let warning = "";
-                for(let i = 0; i < difference.length; i++){
-                    warning = warning + difference[i];
-                    if(i !== difference.length - 1){
-                        warning = warning + ", ";
-                    }
+            if(warningString === ""){
+                const confirmedUser = [userInfoStoreObj.curUser.id];
+                for(let i = 0; i < data?.getUsers.length; i++){
+                    confirmedUser.push(data?.getUsers[i].userID)
                 }
-                warning = warning + " is not member of PhilipSung";
-                setMemberCheck(warning)
-            }
-            else if(difference.length === 0){
-                setMemberCheck("");
-                addProject();
-                alert("Project Registered Successfully")
-                navigate('/');
+                let difference = members.filter(member => !confirmedUser.includes(member));
+                if(difference.length > 0){
+                    let warning = "";
+                    for(let i = 0; i < difference.length; i++){
+                        warning = warning + difference[i];
+                        if(i !== difference.length - 1){
+                            warning = warning + ", ";
+                        }
+                    }
+                    warning = warning + " is not member of PhilipSung";
+                    setWarningString(warning);
+                }
+                else if(difference.length === 0){
+                    addProject();
+                    alert("Project Registered Successfully")
+                    navigate('/');
+                }
             }
         }
     });
@@ -133,7 +158,7 @@ function Submit( props ){
 
     return (
         <div className="ProjectProposalSubmit">
-            <div className="Warning">{memberCheck}</div>
+            <div className="Warning">{warningString}</div>
             <button id="submit" className="AddProjectButton"
                 onClick={() => {
                     if(userInfoStoreObj.loginState === false){
@@ -142,7 +167,8 @@ function Submit( props ){
                     else if (userInfoStoreObj.loginState === true){
                         const newMembers = SplitMemberString(props.member)
                         setMembers(newMembers);
-                        checkUsers();
+                        setProjectName(props.title);
+                        checkTitle();
                     }
                 }}>SUBMIT</button>
         </div>

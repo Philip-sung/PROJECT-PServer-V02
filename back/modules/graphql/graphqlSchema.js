@@ -72,12 +72,15 @@ const typeDefs = gql`
         getPostsbyTitlePaginated(postTitle: String!, offset: Int!, limit: Int!): [Post],
         getPostsbyTitle(postTitle: String!): [Post],
         getPostbyID(postID: String!): Post,
+        modifyPostbyID(postID: String, postTitle: String, postContent: String, project : String): Post,
 
         getProjectsbyStatus(status: String): [Project],
         getProjectbyTitle(title: String): Project,
         getAllProjects: [Project],
 
         getUserNotice(userID: String): [Notice],
+
+        getSchedulebyProjectAndMember(project: String, member: String): [Schedule]
     },
 
     type Mutation {

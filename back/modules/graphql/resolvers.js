@@ -32,13 +32,14 @@ const resolvers = {
             }
             return user;
         },
+
         //Post
         getAllPosts : async () => {
             const posts = await Post.find({}).sort({ postDate : -1 });
             return posts;
         },
         getPostsbyTitlePaginated : async (parent, args, contextValue, info) => {
-            const query = new RegExp(args.postTitle);
+            const query = new RegExp(args.postTitle, "i");
             const posts = await Post.find({postTitle: query})
                 .sort({ postDate : -1 })
                 .skip(args.offset)
@@ -54,18 +55,22 @@ const resolvers = {
             const posts = await Post.findById(args.postID);
             return posts;
         },
+        modifyPostbyID : async (parent, args, contextValue, info) => {
+            const query = { $set : {postTitle: args.postTitle, postContent: args.postContent, project: args.project}}
+            const post = await Post.findByIdAndUpdate(args.postID, query)
+        },
 
         //Project
         getAllProjects : async (parent, args, contextValue, info) => {
-            const projects = await Project.find({});
+            const projects = await Project.find({}).sort({ started : -1 });
             return projects;
         },
         getProjectsbyStatus : async (parent, args, contextValue, info) => {
-            const projects = await Project.find({status: args.status});
+            const projects = await Project.find({status: args.status}).sort({ started : -1 });
             return projects;
         },
         getProjectbyTitle : async (parent, args, contextValue, info) => {
-            const project = await Project.findOne({title: args.title});
+            const project = await Project.findOne({title: args.title}).sort({ started : -1 });
             return project;
         },
 
@@ -74,6 +79,12 @@ const resolvers = {
             const notices = await Notice.find({to: args.userID}).sort({ time : -1 });
             return notices;
         },
+
+        //Schedule
+        getSchedulebyProjectAndMember: async (parent, args, contextValue, info) => {
+            const schedule = await Schedule.find({project: args.project, member: args.member}).sort({startTime: -1, createdTime: -1});
+            return schedule;
+        }
     },
     Mutation: {
         createUser: (parent, args) => {

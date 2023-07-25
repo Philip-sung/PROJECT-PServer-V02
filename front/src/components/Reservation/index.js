@@ -2,20 +2,17 @@
 import React from "react";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
-import { gql, useMutation, useLazyQuery } from "@apollo/client";
+import { gql, useQuery, useMutation, useLazyQuery } from "@apollo/client";
 
 //Local Imports
 import { TimeBar } from "../TimeBar";
 import { Displayer, DisplayerContainer } from "../../components/Displayer";
 import { timeStoreObj } from "../../store/timeStore";
 import { userInfoStoreObj } from "../../store/userInfoStore";
+import { screenStoreObj } from "../../store/screenStore";
 
 //Static Imports
 import './index.css';
-
-//Test Imports
-import sampleImg from "../../assets/img/Sample.jpeg"
 
 const Reservation = observer(({store}) => {
 
@@ -34,11 +31,7 @@ const Reservation = observer(({store}) => {
                     <br />
                     <br />
                     <DisplayerContainer>
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject1"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject2"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject3"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject4"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject5"} />
+                        <DisplayerWorkMap function={SetProjectName} />
                     </DisplayerContainer>
                     <input id="description" className="ReservationInput" type="text" placeholder="Content Brief" value={description} onChange={(e)=>{setDescription(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("member").focus()}}} />
                     <input id="member"className="ReservationInput" type="text" placeholder="Receiving Member(ID)" value={member} onChange={(e)=>{setMember(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("submit").focus()}}} />
@@ -58,11 +51,7 @@ const Reservation = observer(({store}) => {
                     <br />
                     <br />
                     <DisplayerContainer>
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject1"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject2"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject3"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject4"} />
-                        <Displayer name="SampleProject" img={sampleImg} action={"UseFunction"} function={SetProjectName} parameter={"SampleProject5"} />
+                        <DisplayerWorkMap function={SetProjectName} />
                     </DisplayerContainer>
                 </div>
             </div>
@@ -105,7 +94,7 @@ const createScheduleQuery = gql`
 
 
 function SplitMemberString( memberStr ) {
-    const memberArr = memberStr.split(',');
+    const memberArr = memberStr?.split(',');
     for(let i = 0; i < memberArr.length; i++){
         memberArr[i] = memberArr[i].trim();
     }
@@ -113,16 +102,15 @@ function SplitMemberString( memberStr ) {
     return memberArr;
 }
 
-const getUsers =gql`
-    query getUsers($userID: [String]) {
-        getUsers(userID: $userID) {
-            userID
+const getProjectMemberQuery =gql`
+    query GetProjectMember($title: String) {
+        getProjectbyTitle(title: $title) {
+            member
         }
     }
 `
 
 function CreateScheduleButton(props) {
-    const navigate = useNavigate();
 
     const [members, setMembers] = useState([]);
     const [memberCheck, setMemberCheck] = useState("");
@@ -145,17 +133,14 @@ function CreateScheduleButton(props) {
         }
     })
 
-    const [checkUsers] = useLazyQuery(getUsers ,{
+    const [checkUsers] = useLazyQuery(getProjectMemberQuery ,{
         variables: {
-            userID: members
+            title: props.project
         },
         fetchPolicy:'network-only',
         onCompleted: (data) => {
-            const confirmedUser = [];
-            for(let i = 0; i < data?.getUsers.length; i++){
-                confirmedUser.push(data?.getUsers[i].userID)
-            }
-            let difference = members.filter(member => !confirmedUser.includes(member));
+            const confirmedUser = data?.getProjectbyTitle?.member;
+            let difference = members.filter(member => !confirmedUser?.includes(member));
             if(difference.length > 0){
                 let warning = "";
                 for(let i = 0; i < difference.length; i++){
@@ -164,14 +149,15 @@ function CreateScheduleButton(props) {
                         warning = warning + ", ";
                     }
                 }
-                warning = warning + " is not member of PhilipSung";
+                warning = warning + ` is not member of ${props.project}`;
                 setMemberCheck(warning)
             }
             else if(difference.length === 0){
                 setMemberCheck("");
                 CreateSchedule();
                 alert("Reservation Successfully Submitted")
-                navigate('/');
+                timeStoreObj.Initialize();
+                screenStoreObj.GetNewScreen("");
             }
         }
     });
@@ -186,6 +172,39 @@ function CreateScheduleButton(props) {
                 checkUsers();
             }}>Make Appointment</button>
         </div>
+    )
+}
+
+const GetInProgressProjects = gql`
+    query GetProjectsbyStatus($status: String) {
+        getProjectsbyStatus(status: $status) {
+            _id
+            title
+            status
+            thumbnail
+            description
+            link
+        }
+    }
+`
+
+function DisplayerWorkMap(props) {
+    const {data} = useQuery(GetInProgressProjects,{
+        variables: {
+            status: "inProgress"
+        },
+        fetchPolicy: 'network-only'
+    })
+    return(
+        data?.getProjectsbyStatus.map(({_id, title, thumbnail, description, link}) => (
+            <Displayer 
+                key={_id}
+                name={`[${title}]${description}`}
+                img={thumbnail}
+                action={"UseFunction"}
+                function={props.function}
+                parameter={`${title}`} />
+        ))
     )
 }
 

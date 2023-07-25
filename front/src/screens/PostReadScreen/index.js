@@ -2,9 +2,14 @@
 import React from "react";
 import MDEditor from "@uiw/react-md-editor"
 import { useQuery, gql } from '@apollo/client';
+import { Link } from "react-router-dom";
+
+//Local Imports
+import { userInfoStoreObj } from "../../store/userInfoStore";
 
 //Static Imports
 import "./index.css";
+import postIcon from "../../assets/img/PostIcon.png";
 
 function PostReadScreen(props) {
     return (
@@ -31,7 +36,9 @@ function GetPostbyIDQuery(postIdString) {
 }
 
 function PostbyID(props) {
-    const {loading, error, data} = useQuery(GetPostbyIDQuery(props.postID));
+    const {loading, error, data} = useQuery(GetPostbyIDQuery(props.postID),{
+        fetchPolicy:"network-only"
+    });
     if(loading){
     }
     if(error){
@@ -50,7 +57,32 @@ function PostbyID(props) {
             <div className="PostReaderWindow" data-color-mode="dark">
                 <MDEditor.Markdown className="mdReader" source={decodeURI(data?.getPostbyID.postContent)} />
             </div>
+            <ModifyPostButton postWriter={data?.getPostbyID.postWriter} postID={props.postID} />
         </div>
+    )
+}
+function ModifyPostButton(props) {
+    const postID = props.postID;
+    
+    let redirection = 'post';
+    let onClickFunction = function(){};
+    if(userInfoStoreObj.curUser.id !== props.postWriter){
+        onClickFunction = function(){
+            alert('Only Post Writer can modify post.')
+        }
+        redirection = '/'
+    }
+    else if(userInfoStoreObj.curUser.id === props.postWriter){
+        onClickFunction = function(){
+        }
+        redirection = 'postModify'
+    }
+    return(<Link className={(props.postWriter === userInfoStoreObj.curUser.id)?"visible":"invisible"}
+        to={redirection}
+        state={{ postID : postID }}
+        onClick={onClickFunction} >
+            <img className="PostButton" alt="PostIcon" src={postIcon} />
+        </Link>
     )
 }
 

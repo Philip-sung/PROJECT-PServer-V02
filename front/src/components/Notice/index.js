@@ -11,22 +11,47 @@ import "./index.css";
 import closeButtonIcon from "../../assets/img/CloseButtonIcon.png";
 
 function NoticeOutline(){
+    const [noticeNumber, setNoticeNumber] = useState(0);
+
     return(
         <div className="NoticeContainer">
             <div className="NoticeHeader">Notice</div>
             <NoticeProvider>
-                <NoticeMapper />
-                <div className="NoticeBarTransparent">
-                    <div className="NoticeThumbnail">
-                        Empty
-                    </div>
-                    <div className="NoticeContent">
-                        <div><strong>Empty</strong></div>
-                        <div>Empty</div>
-                    </div>
-                    <img className="NoticeRemover" src={closeButtonIcon} alt="NoticeRemover" />
-                </div>
+                <NoticeMapper setNoticeNumber={setNoticeNumber} />
+                {(noticeNumber <= 0) ? ( <EmptyNotice />) : <></>}
+                {(noticeNumber <= 1) ? ( <EmptyNotice />) : <></>}
+                {(noticeNumber <= 2) ? ( <EmptyNotice />) : <></>}
+                <TransparentNotice />
             </NoticeProvider>
+        </div>
+    )
+}
+
+function EmptyNotice() {
+    return(
+        <div className="NoticeBar" style={{opacity:0.7}}>
+            <div className="NoticeThumbnail" style={{borderStyle: "dashed"}}>
+                Empty
+            </div>
+            <div className="NoticeContent">
+                <div><strong>Empty Notice</strong></div>
+                <div>Your received notice will be projected here.</div>
+            </div>
+            <img className="NoticeRemover" src={closeButtonIcon} style={{opacity:0}} alt="NoticeRemover" />
+        </div>
+    )
+}
+function TransparentNotice() {
+    return(
+        <div className="NoticeBarTransparent">
+            <div className="NoticeThumbnail" style={{borderStyle: "dashed"}}>
+                Empty
+            </div>
+            <div className="NoticeContent">
+                <div><strong>Empty Notice</strong></div>
+                <div>Your received notice will be projected here.</div>
+            </div>
+            <img className="NoticeRemover" src={closeButtonIcon} style={{opacity:0}} alt="NoticeRemover" />
         </div>
     )
 }
@@ -52,12 +77,15 @@ function NoticeProvider({children}) {
     )
 }
 
-function NoticeMapper() {
+function NoticeMapper(props) {
     const {data} = useQuery(getUserNoticeQuery,{
         variables: {
             userID: userInfoStoreObj.curUser.id
         },
-        fetchPolicy: 'network-only'
+        fetchPolicy: 'network-only',
+        onCompleted: (data) => {
+            props.setNoticeNumber(data?.getUserNotice?.length);
+        }
     });
 
     return(

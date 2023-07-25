@@ -1,6 +1,6 @@
 @import "../../styles/colorTheme.css";
 
-.PostWriteScreen {
+.PostModifyScreen {
     background-color: var(--main);
     height: 100vh;
     width: 100%;

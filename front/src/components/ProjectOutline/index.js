@@ -12,13 +12,17 @@ import "./index.css";
 function ProjectOutline() {
     const [selected, setSelected] = useState("");
     const [currentTab, setCurrentTab] = useState("Info");
+    const [projectNumber, setProjectNumber] = useState(0);
 
     return(
         <div className="ProjectContainer">
             <div className="ProjectSelectContainer">
                 <div className="ProjectOutlineHeader">My Projects</div>
                 <ProjectProvider>
-                    <ProjectMapper selected={selected} setSelected={setSelected} />
+                    <ProjectMapper selected={selected} setSelected={setSelected} setProjectNumber={setProjectNumber} />
+                    {(projectNumber <= 0) ? ( <EmptyProject />) : <></>}
+                    {(projectNumber <= 1) ? ( <EmptyProject />) : <></>}
+                    {(projectNumber <= 2) ? ( <EmptyProject />) : <></>}
                 </ProjectProvider>
             </div>
             <div className="ProjectInfoContainer">
@@ -31,6 +35,15 @@ function ProjectOutline() {
         </div>
     )
 
+}
+
+function EmptyProject() {
+    return(
+    <div className={"ProjectSelectBox"} style={{borderStyle:"dashed", opacity:0.7}} >
+        <img className="ProjectImg" src={process.env.PUBLIC_URL + `/thumbnail/AddDark.png`} alt="ProjectImg" />
+        Empty Project
+    </div>
+    )
 }
 
 const getUserProjectQuery = gql`
@@ -55,7 +68,11 @@ function ProjectMapper(props){
         variables: {
             userID: userInfoStoreObj.curUser.id
         },
-        fetchPolicy: 'network-only'
+        fetchPolicy: 'network-only',
+        onCompleted: (data) => {
+            data?.getUser.project.reverse();
+            props.setProjectNumber(data?.getUser?.project?.length);
+        }
     })
     return(
         data?.getUser.project.map((projectName) =>(
@@ -103,7 +120,11 @@ function ProjectTab(props){
         return(<ProjectInfo project={props.project} />)
     }
     else if(props.tab === "Schedule"){
-        return(<ProjectSchedule />)
+        return(
+            <div className="ProjectScheduleMapper">
+                <ProjectSchedule project={props.project} />
+            </div>
+        )
     }
 }
 
@@ -114,7 +135,6 @@ function ProjectInfo(props){
         },
         fetchPolicy: 'network-only'
     })
-    console.log()
     let memberList = "";
     for(let i = 0; i < data?.getProjectbyTitle?.member.length; i++){
         memberList = memberList + data.getProjectbyTitle.member[i];
@@ -167,63 +187,50 @@ function ProjectInfo(props){
     }
 }
 
-function ProjectSchedule() {
+const getSchedulebyProjectAndMemberQuery = gql`
+query GetSchdule($project: String, $member: String){
+    getSchedulebyProjectAndMember(project: $project, member: $member){
+        _id
+        project
+        createdTime
+        startTime
+        endTime
+        proposer
+        content
+        member
+    }
+  }
+`
+function ProjectSchedule(props) {
+    const [scheduleNum, setScheduleNum] = useState(0);
+    const {data} = useQuery(getSchedulebyProjectAndMemberQuery, {
+        variables : {project: props.project, member: userInfoStoreObj.curUser.id},
+        fetchPolicy: 'network-only',
+        onCompleted: (data) => {
+            setScheduleNum(data?.getSchedulebyProjectAndMember?.length);
+        }
+    })
+
     return(
-        <div className="ProjectSchedule">
-            <div className="ProjectScheduleRow">
-                <div><strong>[2023.03.18 13:00-19:00] Philip Sung : </strong></div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-            <div className="ProjectScheduleRow">
-                <div>[2023.03.18 13:00-19:00] Philip Sung</div>
-                <div>1차 발표회(연구 결과)공유 : baio2033, irvin512</div>
-            </div>
-        </div>
+        (scheduleNum > 0)?
+        data?.getSchedulebyProjectAndMember?.map(({_id, project, createdTime, startTime, endTime, proposer, content, member}) => (
+            <ScheduleRow key={_id} project={project} createdTime={createdTime} startTime={startTime} endTime={endTime} proposer={proposer} content={content} member={member} />
+        )) : <TransitionObject><div style={{fontSize:15}}><br/><br/>No Schedule on this Project.</div></TransitionObject>
     )
+}
+
+function ScheduleRow (props){
+    return(
+        <TransitionObject>
+            <div className="ProjectScheduleRow">
+                <div style={{fontSize:"115%"}}><strong>{` · [${props.startTime}-${props.endTime.substr(11,5)}], ${props.proposer} : `}</strong></div>
+                <div><div className="ScheduleRowHeader">Content</div>{`    ${props.content}`}</div>
+                <div><div className="ScheduleRowHeader">Member</div>{`     ${props.member}`}</div>
+                <div><div className="ScheduleRowHeader">Arranged</div>{`   ${props.createdTime}`}</div>
+            </div>
+        </TransitionObject>
+    )
+
 }
 
 

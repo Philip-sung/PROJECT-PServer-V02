@@ -18,7 +18,7 @@ function InProgressScreen() {
                 <div style={{margin: 10, fontWeight: 700}}>IN PROGRESS</div>
             </TransitionObject>
             <DisplayerContainer>
-                <Displayer name={"PROPOSE NEW PROJECT"} img={"add"} action={"Link"} LinkTo={"addProject"} />
+                <Displayer name={"PROPOSE NEW PROJECT"} img={"ADD"} action={"Link"} LinkTo={"addProject"} />
                 <DisplayerWorkMap />
             </DisplayerContainer>
         </div>
