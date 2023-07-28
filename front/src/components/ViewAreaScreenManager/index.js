@@ -19,7 +19,7 @@ import VelogIcon from "../../assets/img/VelogW.png";
 const ViewAreaScreenManager = observer(({store}) => {
     if (store.GetCurrentScreen().screenName === ""){
         return (
-            <div>
+            <div style={{width:"90%"}}>
                 <Clock />
                 This page will provide<br/><br/>
                 Our Hot Topics, Recent Tools, etc.<br /><br /><br />

@@ -92,7 +92,7 @@ function SendMessengerButton(props){
 
 
     return(
-        <button id="MessengerButton" className="Search" onClick={
+        <button id="MessengerButton" className="Messenger" onClick={
             () => {
                 setMessageObj(messageObject);
                 checkReceiver();
