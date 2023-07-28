@@ -223,7 +223,7 @@ function ScheduleRow (props){
     return(
         <TransitionObject>
             <div className="ProjectScheduleRow">
-                <div style={{fontSize:"115%"}}><strong>{` · [${props.startTime}-${props.endTime.substr(11,5)}], ${props.proposer} : `}</strong></div>
+                <div style={{fontSize:"115%"}}><strong>{` · [${props.startTime.substr(6,10)}-${props.endTime.substr(6,10)}], ${props.proposer} : `}</strong></div>
                 <div><div className="ScheduleRowHeader">Content</div>{`    ${props.content}`}</div>
                 <div><div className="ScheduleRowHeader">Member</div>{`     ${props.member}`}</div>
                 <div><div className="ScheduleRowHeader">Arranged</div>{`   ${props.createdTime}`}</div>

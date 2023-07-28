@@ -117,16 +117,17 @@ function CreateScheduleButton(props) {
     const scheduleStart = timeStoreObj.selectedStartTime;
     const scheduleEnd = timeStoreObj.selectedEndTime;
 
-    const dateString = `${scheduleStart.getFullYear().toString().padStart(2,'0')}.${(scheduleStart.getMonth() + 1).toString().padStart(2,'0')}.${scheduleStart.getDate().toString().padStart(2,'0')}`;
+    const startDateString = `${scheduleStart.getFullYear().toString().padStart(2,'0')}.${(scheduleStart.getMonth() + 1).toString().padStart(2,'0')}.${scheduleStart.getDate().toString().padStart(2,'0')}`;
     const startTimeString = `${scheduleStart.getHours().toString().padStart(2,'0')}:${scheduleStart.getMinutes().toString().padStart(2,'0')}`;
+    const endDateString = `${scheduleEnd.getFullYear().toString().padStart(2,'0')}.${(scheduleEnd.getMonth() + 1).toString().padStart(2,'0')}.${scheduleEnd.getDate().toString().padStart(2,'0')}`;
     const endTimeString = `${scheduleEnd.getHours().toString().padStart(2,'0')}:${scheduleEnd.getMinutes().toString().padStart(2,'0')}`;
     
     const [CreateSchedule] = useMutation(createScheduleQuery,{
         variables: {
             project: props.project,
             createdTime: timeStoreObj.GetCurrentTimeString(),
-            startTime: `${dateString} ${startTimeString}`,
-            endTime: `${dateString} ${endTimeString}`,
+            startTime: `${startDateString} ${startTimeString}`,
+            endTime: `${endDateString} ${endTimeString}`,
             proposer: userInfoStoreObj.curUser.id,
             content: props.description,
             member: SplitMemberString(props.member)

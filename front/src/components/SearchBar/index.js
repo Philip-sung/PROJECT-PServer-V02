@@ -10,7 +10,7 @@ import { searchStoreObj } from "../../store/SearchStore";
 
 //Static Imports
 import "./index.css"
-import image1 from "../../assets/img/SearchIcon.png"
+import searchIcon from "../../assets/img/SearchIcon.png"
 
 function SearchBar () {
 
@@ -64,7 +64,7 @@ function GetPostsbyTitleButton(props){
                 searchStoreObj.InitializeOffsetLimit();
             }
         }>
-                <img className="SearchImg" src={image1} alt="SearchImg" />
+                <img className="SearchImg" src={searchIcon} alt="SearchImg" />
         </button>
     )
 }

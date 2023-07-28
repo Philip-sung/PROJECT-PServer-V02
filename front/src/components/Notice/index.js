@@ -60,6 +60,7 @@ const getUserNoticeQuery = gql`
     query GetUserNotice($userID: String){
         getUserNotice(userID: $userID){
             _id
+            project
             title
             from
             to
@@ -89,11 +90,12 @@ function NoticeMapper(props) {
     });
 
     return(
-        data?.getUserNotice.map(({_id, title, from, to, content, time}) => (
+        data?.getUserNotice.map(({_id, project, title, from, to, content, time}) => (
             <NoticeBar
                 id={_id}
                 key={_id}
                 _id={_id}
+                project={project}
                 title={title}
                 from={from}
                 to={to}
@@ -130,7 +132,7 @@ function NoticeBar(props) {
     return(
         <div className={exist? (visible? "NoticeBar" : "NoticeBarInvisible") : "NoticeBarDeleted"}>
             <div className="NoticeThumbnail">
-                <img className="NoticeImg" src={process.env.PUBLIC_URL + `/thumbnail/${props.title}.png`} onError={handleImgError} alt="NoticeImg" />
+                <img className="NoticeImg" src={process.env.PUBLIC_URL + `/thumbnail/${props.project}.png`} onError={handleImgError} alt="NoticeImg" />
             </div>
             <div className="NoticeContent">
                 <div><strong>{`${props.title} - ${props.time}`}</strong></div>

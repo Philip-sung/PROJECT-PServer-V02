@@ -161,6 +161,17 @@ const resolvers = {
 
             return newProject.save();
         },
+        createNotice: async(parent, args, contextValue, info) => {
+            const notice = new Notice({
+                project: args.project,
+                title: args.title,
+                from: args.from,
+                to: args.to,
+                content: args.content,
+                time: args.time,
+            })
+            notice.save();
+        },
         deleteNotice: async(parent, args, contextValue, info) => {
             await Notice.deleteOne({_id: args._id});
         },
@@ -181,7 +192,7 @@ const resolvers = {
                     title: args.project,
                     from: args.proposer,
                     to: args.member[i],
-                    content: `${args.proposer} make new schedule "${args.content}" on ${args.startTime} - ${args.endTime.substr(11,5)}`,
+                    content: `${args.proposer} make new schedule "${args.content}" on ${args.startTime.substr(6,10)} - ${args.endTime.substr(6,10)}`,
                     time: args.createdTime,
                 })
                 notice.save();

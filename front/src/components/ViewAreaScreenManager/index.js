@@ -9,6 +9,7 @@ import { WorksScreen } from "../../screens/WorksScreen/index";
 import { PostReadScreen } from "../../screens/PostReadScreen";
 import { MyPageScreen } from "../../screens/MyPageScreen";
 import { Clock } from "../Clock";
+import { MessengerBar } from "../NoticeMessenger";
 
 //Static Imports
 import GithubIcon from "../../assets/img/GithubW.png";
@@ -22,6 +23,7 @@ const ViewAreaScreenManager = observer(({store}) => {
                 <Clock />
                 This page will provide<br/><br/>
                 Our Hot Topics, Recent Tools, etc.<br /><br /><br />
+                <MessengerBar />
                 <div style={{fontSize:10}}>Copyright © 2023 Philip Sung. All right reserved.</div>
                 <br /><br />
                 <a href={"http://github.com/Philip-sung"}><img src={GithubIcon} width={30} alt="Github"></img></a> &nbsp;

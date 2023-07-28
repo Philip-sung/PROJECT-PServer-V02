@@ -114,6 +114,14 @@ const typeDefs = gql`
             description: String,
             reference: String,
         ) : Project,
+        createNotice(
+            project: String,
+            title: String,
+            from: String,
+            to: String,
+            content: String,
+            time: String,
+        ) : Notice,
         deleteNotice(
             _id: ID,
         ) : Notice,
