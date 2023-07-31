@@ -90,7 +90,7 @@ function ProjectSelectBox(props) {
     return(
         <div className={(props.selected === props.project)? "SelectedProjectSelectBox" : "ProjectSelectBox" }>
             <img className="ProjectImg" src={process.env.PUBLIC_URL + `/thumbnail/${props.project}.png`} onClick={() => {props.setSelected(props.project);}} onError={handleImgError} alt="ProjectImg" />
-            {props.project}
+            <div className="ProjectName" onClick={() => {props.setSelected(props.project);}}>{props.project}</div>
         </div>
     )
 }
