@@ -68,7 +68,6 @@
     border-color: var(--main);
     border-style: solid;
     border-radius: 9.5px;
-    overflow: auto;
 
     object-fit: cover;
     font-size:12px;
@@ -87,7 +86,6 @@
     border-color: var(--bright);
     border-style: solid;
     border-radius: 9.5px;
-    overflow: auto;
 
     object-fit: cover;
     font-size:12px;
