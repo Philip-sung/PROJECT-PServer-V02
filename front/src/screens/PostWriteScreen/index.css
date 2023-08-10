@@ -89,6 +89,7 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     font-size: small;
+    white-space: nowrap;
  }
 
  .SelectProjectClicked {
@@ -107,4 +108,5 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     font-size: small;
+    white-space: nowrap;
  }
