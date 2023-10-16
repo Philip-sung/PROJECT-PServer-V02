@@ -26,7 +26,7 @@ function AddProjectScreen() {
                 <input id="description" className="AddProjectInput" type="text" placeholder="Brief Description" value={description} onChange={(e)=>{setDescription(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("member").focus()}}} />
                 <input id="member"className="AddProjectInput" type="text" placeholder="Member Recommendation(e.g. Kim, Lee, Choi)" value={member} onChange={(e)=>{setMember(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("reference").focus()}}} />
                 <input id="reference" className="AddProjectInput" type="text" placeholder="Reference" value={reference} onChange={(e)=>{setReference(e.target.value)}}  onKeyDown={(e) => {if(e.keyCode === 13){document.getElementById("submit").click()}}} />
-                <Submit title={title} description={description} member={`${userInfoStoreObj.curUser.id},` + member} reference={reference} />
+                <Submit title={title} description={description} member={member} reference={reference} />
             </TransitionObject>
         </div>
     )
@@ -129,6 +129,7 @@ function Submit( props ){
         fetchPolicy:'network-only',
         onCompleted: (data) => {
             if(warningString === ""){
+                console.log(members);
                 const confirmedUser = [userInfoStoreObj.curUser.id];
                 for(let i = 0; i < data?.getUsers.length; i++){
                     confirmedUser.push(data?.getUsers[i].userID)
@@ -154,7 +155,7 @@ function Submit( props ){
         }
     });
 
-    const [addProject] = useMutation(addProjectQuery(props.title, SplitMemberString(props.member), props.description, props.reference))
+    const [addProject] = useMutation(addProjectQuery(props.title, members, props.description, props.reference))
 
     return (
         <div className="ProjectProposalSubmit">
@@ -165,7 +166,13 @@ function Submit( props ){
                         alert("Only Member can propose Project")
                     }
                     else if (userInfoStoreObj.loginState === true){
-                        const newMembers = SplitMemberString(props.member)
+                        let newMembers;
+                        if(props.member === ""){
+                            newMembers = [userInfoStoreObj.curUser.id];
+                        }
+                        else{
+                            newMembers = SplitMemberString(props.member);
+                        }
                         setMembers(newMembers);
                         setProjectName(props.title);
                         checkTitle();
