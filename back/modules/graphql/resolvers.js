@@ -140,7 +140,8 @@ const resolvers = {
                 tech: args.tech,
                 thumbnail: args.thumbnail,
                 description: args.description,
-                reference: args.reference
+                reference: args.reference,
+                location: args.location
             });
 
             for(let i = 0; i < args.member.length; i++){

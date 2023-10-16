@@ -34,6 +34,7 @@ query GetProjectsbyStatus($status: String) {
         thumbnail
         description
         link
+        location
     }
 }
 `
@@ -46,12 +47,12 @@ const {data} = useQuery(GetCompletedProjects,{
     fetchPolicy: 'network-only'
 })
 return(
-    data?.getProjectsbyStatus.map(({_id, title, thumbnail,description,link}) => (
+    data?.getProjectsbyStatus.map(({_id, title, thumbnail, description, link, location}) => (
         <Displayer 
             key={_id}
             name={`[${title}]${description}`}
             img={thumbnail}
-            action={(link === "") ? "GetProjectName" : "Link"}
+            action={(link === "") ? "GetProjectName" : ((location === "local")?"Link" : "ExternalLink")}
             LinkTo={link} />
     ))
 )

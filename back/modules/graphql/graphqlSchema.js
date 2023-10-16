@@ -41,6 +41,7 @@ const typeDefs = gql`
         thumbnail: String,
         description: String,
         reference: String,
+        location: String,
     },
     type Notice {
         _id: ID,
@@ -113,6 +114,7 @@ const typeDefs = gql`
             thumbnail: String,
             description: String,
             reference: String,
+            location: String,
         ) : Project,
         createNotice(
             project: String,

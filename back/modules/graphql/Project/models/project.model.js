@@ -14,7 +14,8 @@ const projectSchema = new Schema({
     tech: [String],
     thumbnail: String,
     description: String,
-    reference: String
+    reference: String,
+    location: String
 })
 
 const Project = model('project', projectSchema);
