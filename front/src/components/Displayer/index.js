@@ -23,7 +23,20 @@ function Displayer(props) {
     if (action === "Link") {
         return(
             <TransitionObject>
-                    <div className="Displayer" onClick={() =>{window.open(link)}}>
+                    <Link className="Displayer" LinkTo={link}>
+                        <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} alt="DisplayerImg" />
+                        <div className="onImgText">{onImgText}</div>
+                        <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
+                            <React.Fragment key={index}>{text}<br /></React.Fragment>)}
+                        </div>
+                    </Link>
+            </TransitionObject>
+        )
+    }
+    else if (action === "ExternalLink"){
+        return(
+            <TransitionObject>
+                    <div className="Displayer" onClick={() =>{window.open(link, "_blank", "noopener, noreferrer")}}>
                         <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} alt="DisplayerImg" />
                         <div className="onImgText">{onImgText}</div>
                         <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
