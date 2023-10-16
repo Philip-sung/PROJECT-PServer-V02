@@ -36,7 +36,7 @@ function Displayer(props) {
     else if (action === "ExternalLink"){
         return(
             <TransitionObject>
-                    <div className="Displayer" onClick={() =>{console.log(link); window.open(link, "_blank", "noopener, noreferrer")}}>
+                    <div className="Displayer" onClick={() =>{console.log(link); window.location.replace(link)}}>
                         <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} alt="DisplayerImg" />
                         <div className="onImgText">{onImgText}</div>
                         <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
