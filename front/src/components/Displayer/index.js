@@ -23,7 +23,7 @@ function Displayer(props) {
     if (action === "Link") {
         return(
             <TransitionObject>
-                    <Link className="Displayer" LinkTo={link}>
+                    <Link className="Displayer" to={'/' + link}>
                         <img className="DisplayerImg" src={process.env.PUBLIC_URL + `/thumbnail/${projectImg}.png`} alt="DisplayerImg" />
                         <div className="onImgText">{onImgText}</div>
                         <div className="DisplayDescription">{projectName.split('\n').map((text, index) =>
