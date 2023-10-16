@@ -1,0 +1,14 @@
+:root {
+    --main: #135;
+    --sub: #333;
+    --bright: #eee;
+    --dark: #000;
+    --text: #fff;
+    --gray: #ccc;
+    --divide: #ccc;
+    --highlight: #7db2f6;
+    --transparentBlack: rgba(0,0,0,0.6);
+    --transparentWhite: rgba(255,255,255,0.1);
+    --transparent: rgba(0,0,0,0);
+    --warning: #fa1a1a;
+}

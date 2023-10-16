@@ -1,0 +1,189 @@
+@import "../../styles/colorTheme.css";
+
+.NoticeContainer {
+    margin: 3px;
+    height: 84vh;
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: var(--bright);
+
+}
+
+.NoticeHeader {
+    margin: 15px;
+
+    height: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.NoticeProvider {
+    height: 80%;
+    overflow: scroll;
+    scrollbar-width: 2px;
+}
+
+.NoticeProvider::-webkit-scrollbar:vertical{
+    display:block;
+    width:5px;
+    overflow: auto;
+    background-color: var(--transparent);
+}
+.NoticeProvider::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background: var(--gray);
+}
+
+.NoticeBarTransparent {
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    margin-right:auto;
+    margin-left:auto;
+    width: 90%;
+    height: 0vh;
+
+    border-color: var(--bright);
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.NoticeBar {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    margin-right:auto;
+    margin-left:auto;
+    width: 90%;
+    height: 7vh;
+
+    border-color: var(--bright);
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+}
+
+.NoticeBarInvisible{
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    margin-right:auto;
+    margin-left:auto;
+    width: 90%;
+    height: 0vh;
+
+    border-color: var(--bright);
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    
+    transition: .3s ease-out;
+    opacity: 0%;
+}
+
+.NoticeBarDeleted{
+    display:none;
+}
+
+.NoticeThumbnail {
+    display: flex;
+    height: 95%;
+    width: 10vh;
+
+    border-color: var(--bright);
+    border-radius: 10px;
+    border-width: 1px;
+    border-style:solid;
+
+    overflow: scroll;
+    align-items: center;
+    justify-content: center;
+}
+
+.NoticeImg {
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    border-radius: 0px;
+}
+
+.NoticeRemover {
+    position:relative;
+    right:-2%;
+    width:20px;
+    height:20px;
+
+    visibility: hidden;
+}
+
+.NoticeBar:hover .NoticeRemover{
+    visibility: visible;
+}
+
+.NoticeContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    margin-left: 5px;
+    
+    border-color: var(--text);
+    border-radius: 10px;
+    border-width: 2px;
+    border-style:none;
+
+    background-color: var(--transparentBlack);
+    
+    padding-left: 10px;
+    padding-right: 10px;
+
+    overflow: scroll;
+    text-align: left;
+    align-items: baseline;
+    justify-content: center;
+}
+
+@media (max-width: 800px) {
+    .NoticeContainer {
+        margin: 3px;
+        height: 84vh;
+    
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 15px;
+        border-color: var(--bright);
+    }
+        
+    .NoticeBar {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+        margin-right:auto;
+        margin-left:auto;
+        width: 90%;
+        height: 10vh;
+    
+        border-color: var(--bright);
+        font-size: 11px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .NoticeContainer {
+        margin: 3px;
+        height: 60vh;
+    
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 15px;
+        border-color: var(--bright);
+    }
+}

@@ -1,0 +1,103 @@
+@import "../../styles/colorTheme.css";
+
+.UIContainer {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.LoginButton {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+
+    width: 45px;
+    height: 25px;
+
+    background-color: var(--highlight);
+    color: var(--text);
+    border-style: none;
+    border-radius: 20px;
+
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 25px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: default;
+}
+
+.LoginButton:hover {
+    filter: brightness(150%);
+}
+
+.LoginButton >a {
+    width: 70px;
+    height: 30px;
+    color: #fff;
+    text-decoration: none;
+    cursor: default;
+}
+
+.MyPageButton {
+    padding: 0;
+    width: 40px;
+    width: 40px;
+    background-color: rgba(0,0,0,0);
+
+    border-style: none;
+}
+
+.MyPageIcon {
+    width: 40px;
+    width: 40px;
+    background-color: rgba(0,0,0,0);
+}
+
+.MyPageIcon:hover {
+    filter:invert();
+}
+
+.NoticeAlarm {
+    margin-bottom: -15px;
+    display: flex;
+    position: relative;
+    top: -45px;
+    right: -25px;
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: var(--warning);
+    border-radius: 30px;
+
+    color: var(--bright);
+    justify-content: center;
+    align-items: center;
+}
+
+.NoticeAlarmOff {
+    display: none;
+}
+
+.creditButton {
+    margin-top: 10px;
+
+    width: 45px;
+    height: 25px;
+
+    background-color: var(--highlight);
+    border-style: none;
+    border-radius: 20px;
+
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--text);
+}
+
+.creditButton:hover {
+    filter:brightness(150%);
+}

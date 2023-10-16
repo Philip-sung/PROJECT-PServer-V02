@@ -1,0 +1,61 @@
+.SearchScreen {
+    width: 90%;
+}
+
+.LoadButton {
+    position:fixed;
+    bottom:5vh;
+    right: 50%;
+    width: 40px;
+    height: 60px;
+
+    background-color: rgba(0,0,0,0);
+    border-style: none;
+
+    cursor: default;
+}
+
+.LoadButtonImg {
+    width: 40px;
+    height: 60px;
+    cursor: default;
+}
+
+.LoadButtonImg:hover {
+    filter: brightness(120%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .LoadButtonImg:hover {
+      animation: Swing infinite 0.5s linear;
+      /*animation: App-logo-blink infinite 2s linear;*/
+    }
+  }
+
+@keyframes Swing {
+    from {
+      transform: translateY(0px);
+    }
+  
+    50% {
+        transform: translateY(5px);
+    }
+  
+    to {
+        transform: translateY(0px);
+    }
+}
+
+.PostButton {
+    position:fixed;
+    top:82vh;
+    right: 12vh;
+    width: 40px;
+    height: 40px;
+
+    cursor: default;
+}
+
+.PostButton:hover {
+    filter: brightness(150%);
+}

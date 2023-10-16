@@ -1,0 +1,111 @@
+.Displayer {
+    margin: 1vh;
+
+    width: 300px;
+    height:250px;
+    display: flex;
+    flex-direction: column;
+
+    border-color: #fff;
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    background-color: #fff;
+
+    color: #000;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: default;
+}
+
+.Displayer:hover .DisplayerImg{
+    filter: brightness(100%) contrast(100%);
+}
+
+.Displayer:active .DisplayerImg{
+    filter: brightness(120%) contrast(120%);
+}
+
+.DisplayerImg {
+    flex: 0.7;
+    height:80%;
+    display: flex;
+    object-fit:cover;
+    filter: brightness(50%);
+    border-radius: 3px;
+}
+
+.onImgText {
+    position:relative;
+    text-align: center;
+    top: -45%;
+    height: 0px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.DisplayDescription {
+    flex: 0.3;
+    height:20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.3vh;
+    white-space: nowrap;
+}
+
+.DisplayerContainer {
+    margin: auto;
+    margin-bottom:5vh;
+    display: flex;
+    width: 100%;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    align-items: top;
+}
+
+.DisplayerContainer>* {
+    flex: 1 1 100px;
+}
+
+@media (max-width: 800px) {
+    .Displayer {
+        margin: 1vh;
+    
+        width: 180px;
+        height:150px;
+        display: flex;
+        flex-direction: column;
+    
+        border-color: #fff;
+        border-width: 2px;
+        border-radius: 5px;
+        border-style: solid;
+        background-color: #fff;
+    
+        color: #000;
+        font-size: 15px;
+        text-decoration: none;
+    }
+
+    .DisplayerImg {
+        flex: 0.7;
+        height:80%;
+        display: flex;
+        object-fit: cover;
+        border-radius: 3px;
+    }
+
+    .DisplayDescription {
+        flex: 0.3;
+        height:20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        overflow:scroll;
+    }
+}
