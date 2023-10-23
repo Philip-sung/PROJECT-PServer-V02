@@ -38,7 +38,7 @@ function GetProjectbyIDQuery(ProjectIdString) {
     `)
 }
 
-function ProjectIntroduction() {
+function ProjectIntroduction(props) {
     const {loading, error, data} = useQuery(GetProjectbyIDQuery(props.projectID),{
         fetchPolicy:"network-only"
     });
