@@ -1,12 +1,16 @@
 //External Imports
 import React from "react";
 import { useQuery, gql } from '@apollo/client';
+import { TransitionObject } from "../../components/TransitionObj";
+import { Displayer, DisplayerContainer } from "../../components/Displayer";
 
 function ProjectDescriptionScreen(props) {
     return (
         <div>
-            <ProjectIntroduction projectID={props.projectID} />
-            <SubProjectContainer />
+            <TransitionObject>
+                <ProjectIntroduction projectID={props.projectID} />
+                <SubProjectContainer />
+            </TransitionObject>
         </div>
     )
 }
@@ -22,6 +26,7 @@ function GetProjectbyIDQuery(ProjectIdString) {
                 title
                 designer
                 status
+                thumbnail
                 funding
                 started
                 completed
@@ -49,17 +54,25 @@ function ProjectIntroduction(props) {
         console.log(error.message);
     }
     return(
-        <div>
-            {data?.getProjectbyID.title}
+        <div style={{textAlign:'left', fontSize: 15, margin:10}}>
+            Project Title : {data?.getProjectbyID.title}<br />
+            Project Description : {data?.getProjectbyID.description}<br />
+            Project Designer : {data?.getProjectbyID.designer}<br />
+            Project Status : {data?.getProjectbyID.status}<br />
         </div>
     )
 }
 
 function SubProjectContainer() {
     return(
-        <div>
-            SubProjectContainer
-        </div>
+        <DisplayerContainer>
+            <Displayer 
+                name={"2DCanvas"}
+                img={"2DCanvas"}
+                action={"Link"}
+                LinkTo={"2DCanvasParticle"} 
+            />
+        </DisplayerContainer>
     )
 }
 

@@ -41,28 +41,28 @@ query GetProjectsbyStatus($status: String) {
 `
 
 function DisplayerWorkMap() {
-const {data} = useQuery(GetCompletedProjects,{
-    variables: {
-        status: "Completed"
-    },
-    fetchPolicy: 'network-only'
-})
-return(
-    data?.getProjectsbyStatus.map(({_id, title, thumbnail, description, link, location}) => (
-        <Displayer 
-            key={_id}
-            name={`[${title}]${description}`}
-            img={thumbnail}
-            action={(link === "") ? "GetProjectName" : ((location === "local")?"UseFunction" : "ExternalLink")}
-            function={
-                async () => {
-                    screenStoreObj.GetNewScreen("ProjectDescription",_id)
+    const {data} = useQuery(GetCompletedProjects,{
+        variables: {
+            status: "Completed"
+        },
+        fetchPolicy: 'network-only'
+    })
+    return(
+        data?.getProjectsbyStatus.map(({_id, title, thumbnail, description, link, location}) => (
+            <Displayer 
+                key={_id}
+                name={`[${title}]${description}`}
+                img={thumbnail}
+                action={(link === "") ? "GetProjectName" : ((location === "local")?"UseFunction" : "ExternalLink")}
+                function={
+                    async () => {
+                        screenStoreObj.GetNewScreen("ProjectDescription",_id)
+                    }
                 }
-            }
-            LinkTo={link} />
-    ))
-)
-}
+                LinkTo={link} />
+        ))
+    )
+    }
 
 
 

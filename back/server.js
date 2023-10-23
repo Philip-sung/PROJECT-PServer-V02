@@ -64,6 +64,12 @@ app.get('/logout', (req,res) =>{
     req.session.destroy();
 })
 
+//User Static
+app.get('/2DCanvasParticle', (req,res) => {
+    res.send(express.static(path.join(__dirname, '../../front/src/modules/particleDrop.html')));
+})
+//User Static
+
 app.listen(app.get('port'), () => {
     console.log(`[INIT]Server running on http://localhost:${app.get('port')}${server.graphqlPath}`);
 })
