@@ -48,10 +48,12 @@ function ProjectIntroduction(props) {
     if(error){
         console.log(error.message);
     }
+    console.log('ss')
     return(
         <div>
+            {data}
             {data?.getProjectbyID.title}
-            {data?.getProjectbyID.title}
+            ss
         </div>
     )
 }
