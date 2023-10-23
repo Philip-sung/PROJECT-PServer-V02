@@ -73,6 +73,10 @@ const resolvers = {
             const project = await Project.findOne({title: args.title}).sort({ started : -1 });
             return project;
         },
+        getProjectbyID : async (parent, args, contextValue, info) => {
+            const project = await Project.findById(args.projectID);
+            return project;
+        },
 
         //Notice
         getUserNotice: async (parent, args, contextValue, info) => {

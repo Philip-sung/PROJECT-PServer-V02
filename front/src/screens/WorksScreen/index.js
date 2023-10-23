@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 //Local Imports
 import { Displayer, DisplayerContainer } from "../../components/Displayer";
 import { TransitionObject } from "../../components/TransitionObj";
+import { screenStoreObj } from "../../store/screenStore";
 
 //Static Imports
 import "./index.css";
@@ -52,7 +53,12 @@ return(
             key={_id}
             name={`[${title}]${description}`}
             img={thumbnail}
-            action={(link === "") ? "GetProjectName" : ((location === "local")?"Link" : "ExternalLink")}
+            action={(link === "") ? "GetProjectName" : ((location === "local")?"UseFunction" : "ExternalLink")}
+            function={
+                async () => {
+                    screenStoreObj.GetNewScreen("ProjectDescription",_id)
+                }
+            }
             LinkTo={link} />
     ))
 )
