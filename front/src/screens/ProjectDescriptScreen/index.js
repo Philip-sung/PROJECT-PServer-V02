@@ -5,7 +5,7 @@ import { useQuery, gql } from '@apollo/client';
 function ProjectDescriptionScreen(props) {
     return (
         <div>
-            <ProjectIntroduction />
+            <ProjectIntroduction projectID={props.projectID} />
             <SubProjectContainer />
             {props.projectID}
         </div>
@@ -39,7 +39,7 @@ function GetProjectbyIDQuery(ProjectIdString) {
 }
 
 function ProjectIntroduction() {
-    const {loading, error, data} = useQuery(GeProjectbyIDQuery(props.projectID),{
+    const {loading, error, data} = useQuery(GetProjectbyIDQuery(props.projectID),{
         fetchPolicy:"network-only"
     });
 
