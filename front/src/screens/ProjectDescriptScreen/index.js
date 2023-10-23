@@ -6,7 +6,7 @@ import { Displayer, DisplayerContainer } from "../../components/Displayer";
 
 function ProjectDescriptionScreen(props) {
     return (
-        <div>
+        <div style={{display:"flex", justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
             <TransitionObject>
                 <ProjectIntroduction projectID={props.projectID} />
                 <SubProjectContainer />
@@ -54,11 +54,19 @@ function ProjectIntroduction(props) {
         console.log(error.message);
     }
     return(
-        <div style={{textAlign:'left', fontSize: 15, margin:10}}>
-            Project Title : {data?.getProjectbyID.title}<br />
-            Project Description : {data?.getProjectbyID.description}<br />
-            Project Designer : {data?.getProjectbyID.designer}<br />
-            Project Status : {data?.getProjectbyID.status}<br />
+        <div style={{display:'flex', textAlign:'left', fontSize: 15, margin:10, flexDirection:'row'}}>
+            <div style={{marginRight:40, fontWeight:'600'}}>
+                Project Title : <br />
+                Project Status :<br />
+                Project Leader : <br />
+                Description : <br />
+            </div>
+            <div>
+                {data?.getProjectbyID.title}<br />
+                {data?.getProjectbyID.status}<br />
+                {data?.getProjectbyID.designer}<br />
+                {data?.getProjectbyID.description}<br />
+            </div>
         </div>
     )
 }
@@ -67,9 +75,21 @@ function SubProjectContainer() {
     return(
         <DisplayerContainer>
             <Displayer 
-                name={"2DCanvas"}
+                name={"[SubProject] : Particle"}
                 img={"2DCanvas"}
-                action={"Link"}
+                action={"GetProjectName"}
+                LinkTo={"2DCanvasParticle"} 
+            />
+            <Displayer 
+                name={"[SubProject] : Particle"}
+                img={"2DCanvas"}
+                action={"GetProjectName"}
+                LinkTo={"2DCanvasParticle"} 
+            />
+            <Displayer 
+                name={"[SubProject] : Particle"}
+                img={"2DCanvas"}
+                action={"GetProjectName"}
                 LinkTo={"2DCanvasParticle"} 
             />
         </DisplayerContainer>
