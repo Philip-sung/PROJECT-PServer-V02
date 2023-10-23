@@ -75,8 +75,6 @@ const resolvers = {
         },
         getProjectbyID : async (parent, args, contextValue, info) => {
             const project = await Project.findById(args.projectID);
-            console.log("QueryCall")
-            console.log(project)
             return project;
         },
 

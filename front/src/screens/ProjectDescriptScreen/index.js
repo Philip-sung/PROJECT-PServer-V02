@@ -7,7 +7,6 @@ function ProjectDescriptionScreen(props) {
         <div>
             <ProjectIntroduction projectID={props.projectID} />
             <SubProjectContainer />
-            {props.projectID}
         </div>
     )
 }
@@ -18,7 +17,7 @@ function GetProjectbyIDQuery(ProjectIdString) {
     return(
         gql`
         query GetProjectbyID {
-            getProjectbyID(ProjectID: "${ProjectID}"){
+            getProjectbyID(projectID: "${ProjectID}"){
                 _id
                 title
                 designer
@@ -39,6 +38,7 @@ function GetProjectbyIDQuery(ProjectIdString) {
 }
 
 function ProjectIntroduction(props) {
+    console.log(props.projectID)
     const {loading, error, data} = useQuery(GetProjectbyIDQuery(props.projectID),{
         fetchPolicy:"network-only"
     });
@@ -48,12 +48,9 @@ function ProjectIntroduction(props) {
     if(error){
         console.log(error.message);
     }
-    console.log('ss')
     return(
         <div>
-            {data}
             {data?.getProjectbyID.title}
-            ss
         </div>
     )
 }
