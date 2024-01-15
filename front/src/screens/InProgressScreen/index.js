@@ -18,7 +18,7 @@ function InProgressScreen() {
                 <div style={{margin: 10, fontWeight: 700}}>IN PROGRESS</div>
             </TransitionObject>
             <DisplayerContainer>
-                <Displayer name={"PROPOSE NEW PROJECT"} img={"ADD"} action={"Link"} LinkTo={"addProject"} />
+                <Displayer name={"PROPOSE NEW PROJECT"} img={"ADD"} action={"Link"} LinkTo={"addProject"} location={"local"} />
                 <DisplayerWorkMap />
             </DisplayerContainer>
         </div>
@@ -34,6 +34,7 @@ const GetInProgressProjects = gql`
             thumbnail
             description
             link
+            location
         }
     }
 `
@@ -46,12 +47,12 @@ function DisplayerWorkMap() {
         fetchPolicy: 'network-only'
     })
     return(
-        data?.getProjectsbyStatus.map(({_id, title, thumbnail, description, link}) => (
+        data?.getProjectsbyStatus.map(({_id, title, thumbnail, description, link, location}) => (
             <Displayer 
                 key={_id}
                 name={`[${title}]${description}`}
                 img={thumbnail}
-                action={(link === "") ? "GetProjectName" : "Link"}
+                action={(link === "") ? "GetProjectName" : ((location === "local")?"Link" : "ExternalLink")}
                 LinkTo={link} />
         ))
     )

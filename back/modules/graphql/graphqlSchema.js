@@ -78,6 +78,7 @@ const typeDefs = gql`
         getProjectsbyStatus(status: String): [Project],
         getProjectbyTitle(title: String): Project,
         getAllProjects: [Project],
+        getProjectbyID(projectID: String!): Project,
 
         getUserNotice(userID: String): [Notice],
 

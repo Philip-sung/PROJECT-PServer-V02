@@ -82,6 +82,7 @@ function addProjectQuery(title, members, description, reference){
                     thumbnail: "Public",
                     description: "${description}",
                     reference: "${reference}",
+                    location: "local"
                 ) {
                     title
                     status

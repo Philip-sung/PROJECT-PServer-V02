@@ -41,8 +41,7 @@ const pServerRouter = createBrowserRouter([
         element: (
             <AddProjectScreen />
         )
-    }
-
+    },
 ])
 
 export { pServerRouter };

@@ -47,7 +47,7 @@ app.use(cors({
 //!END! : CORS CODE FOR TEST ENVIRONMENT
 
 app.get('/', (req,res) => {
-    res.send(express.static(path.join(__dirname, '../../front/build/index.html')));
+    res.send(express.static(path.join(__dirname, '../../front/build/particleDrop.html')));
 })
 
 app.post('/setLoginInfo', (req,res) =>{
