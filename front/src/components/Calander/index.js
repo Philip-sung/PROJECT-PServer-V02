@@ -9,7 +9,6 @@ function CurrentCalander(props) {
     let curTime = new Date();
     const [explore, setExplore] = useState(0);
     curTime.setMonth(curTime.getMonth() + explore, 1);
-    curTime.setHours(0,0,0,0);
     
     //from curTime, acquire Full Month Calander
     const curYear = curTime.getFullYear();
@@ -31,7 +30,7 @@ function CurrentCalander(props) {
         <div className={props.className}>
             <div className="CalanderHeader">
                 <button className="ExploreMonth" onClick={() =>{setExplore(explore - 1)}}></button>
-                <div className="Year">{curYear} . {curMonth + 1}</div>
+                <div className="Year">{curYear} . {curMonth}</div>
                 <button className="ExploreMonth" onClick={() =>{setExplore(explore + 1)}}></button>
             </div>
             <div className="Month">
