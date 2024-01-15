@@ -8,6 +8,7 @@ import { InProgressScreen } from "../../screens/InProgressScreen/index";
 import { WorksScreen } from "../../screens/WorksScreen/index";
 import { PostReadScreen } from "../../screens/PostReadScreen";
 import { MyPageScreen } from "../../screens/MyPageScreen";
+import { ProjectDescriptionScreen } from "../../screens/ProjectDescriptScreen";
 import { Clock } from "../Clock";
 import { MessengerBar } from "../NoticeMessenger";
 
@@ -60,6 +61,11 @@ const ViewAreaScreenManager = observer(({store}) => {
     else if (store.currentScreen.screenName === "MyPage"){
         return (
             <MyPageScreen />
+        )
+    }
+    else if (store.currentScreen.screenName === "ProjectDescription"){
+        return (
+            <ProjectDescriptionScreen projectID={store.currentScreen.screenID} />
         )
     }
 
