@@ -31,7 +31,7 @@ function CurrentCalander(props) {
         <div className={props.className}>
             <div className="CalanderHeader">
                 <button className="ExploreMonth" onClick={() =>{setExplore(explore - 1)}}></button>
-                <div className="Year">{curYear} . {curMonth + 1}</div>
+                <div className="Year">{curYear} . {curMonth + 1 % 12}</div>
                 <button className="ExploreMonth" onClick={() =>{setExplore(explore + 1)}}></button>
             </div>
             <div className="Month">

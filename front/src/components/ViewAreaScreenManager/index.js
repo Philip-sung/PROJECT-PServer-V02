@@ -23,7 +23,6 @@ const ViewAreaScreenManager = observer(({store}) => {
                 <Clock />
                 This page will provide<br/><br/>
                 Our Hot Topics, Recent Tools, etc.<br /><br /><br />
-                <div style={{fontSize:10}}>[TEMPORARY]Guest ID / PW : guest / guest</div>
                 <MessengerBar />
                 <div style={{fontSize:10}}>Copyright © 2023 Philip Sung. All right reserved.</div>
                 <br /><br />
